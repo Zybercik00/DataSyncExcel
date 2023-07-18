@@ -1,4 +1,6 @@
 package proces;
 
-public interface MaterialRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MaterialRepo extends JpaRepository<Material, String> {
 }

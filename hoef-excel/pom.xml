@@ -13,11 +13,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.hoef</groupId>
+            <groupId>org.hoef</groupId>
             <artifactId>hoef-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.hoef</groupId>
+            <groupId>org.hoef</groupId>
             <artifactId>hoef-service</artifactId>
         </dependency>
 
