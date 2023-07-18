@@ -1,0 +1,14 @@
+@startuml
+
+actor Employee
+boundary "Material Form" as MaterialForm
+control "Material Control" as MaterialControl
+entity Material
+
+Employee -> MaterialForm ++ : search by batch or name
+MaterialForm -> MaterialControl : search material
+MaterialControl -> Material : searchByBatchOrName
+Material -> MaterialControl : material[]
+MaterialControl -> MaterialForm : material[]
+
+@enduml

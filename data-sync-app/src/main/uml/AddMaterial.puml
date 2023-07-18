@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+actor Employee
+boundary "Material Form" as MaterialForm
+control "Material Control" as MaterialControl
+entity Material
+boundary "Data in Excel Files" as ExcelData
+
+Employee -> MaterialForm : add material
+MaterialForm -> MaterialControl : add material
+MaterialControl -> Material : addMaterial
+
+@enduml
