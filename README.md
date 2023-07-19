@@ -36,4 +36,4 @@ The project utilizes various dependencies, such as Spring Boot, Lombok, SnakeYAM
 
 ## Author
 
-- Author: [Zybercik](https://github.com/Zybercik00)
+- Author: [Kamil Chmiel](https://github.com/Zybercik00)
