@@ -20,15 +20,14 @@ public class Waste {
     @EqualsAndHashCode.Include
     private Long id;
 
-
     @Column(name = "PACKED_KG")
     private double packedKg;
 
     @Column(name = "LOSS_AFTER_WASH_KG")
-    private double lossAfterWashKg;
+    private double lossAfterExtractionInKg;
 
     @Column(name = "LOSS_AFTER_WASH_PERCENT")
-    private double lossAfterWashPercent;
+    private double lossAfterExtractionInPercent;
 
     @Column(name = "LOSS_TRIM")
     private double lossTrim;

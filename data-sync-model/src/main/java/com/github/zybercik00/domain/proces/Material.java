@@ -38,7 +38,6 @@ public class Material {
     @Column(name = "WEIGHT")
     private String weight;
 
-
     @Column
     private String content;
 
