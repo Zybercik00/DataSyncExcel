@@ -1,7 +1,6 @@
 package com.github.zybercik00;
 
 import com.github.zybercik00.domain.proces.*;
-import com.github.zybercik00.domain.proces.Currency;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -119,7 +118,7 @@ public class ExcelFileReader  implements CommandLineRunner {
                 }
                 case "loss kg" -> {
                     double numericCellValue = cell.getNumericCellValue();
-                    waste.setLossAfterWashKg(numericCellValue);
+                    waste.setLossAfterExtractionInKg(numericCellValue);
                 }
                 case "loss %" -> {
                     double numericCellValue = cell.getNumericCellValue();

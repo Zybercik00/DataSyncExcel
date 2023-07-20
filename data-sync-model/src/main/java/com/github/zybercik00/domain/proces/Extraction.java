@@ -33,15 +33,9 @@ public class Extraction {
     private Date preparedOn;
 
 
-    @Column(name = "HOW_MANY_BAGS")
-    private Double howManyBags;
-
     @Column(name = "WEIGHT_BEFORE")
     private Double weightBefore;
 
-
-    @Column(name = "NOTIFIED_IN_BINDER")
-    private String notifiedInBinder;
 
     @Column(name = "WEIGHT_AFTER")
     private Double weightAfter;
