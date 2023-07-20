@@ -1,0 +1,130 @@
+@startuml
+hide empty members
+
+class Warehouse <<dictionary>> {
+- id: number
+---
+- location: WarehouseLocation
+---
+}
+
+class WarehouseLocation <<entity>> {
+- id: number
+---
+- name: String
+---
+}
+
+class Supplier <<entity>> {
+- id: number
+---
+- name: String
+---
+}
+
+class Employee <<entity>> {
+- id: number
+---
+- name: String
+---
+- position: String
+- accessLevel: String
+}
+
+class Material <<entity>> {
+- id: number
+---
+- batch: String
+---
+- name: String
+- inventoryStatus: String
+- weight: String
+- content: String
+- warehouse: Warehouse
+- price: Price
+- supplier: Supplier
+}
+
+class Extraction <<entity>> {
+- id: number
+---
+- material: Material
+---
+- preparedOn: Date
+- howManyBags: number
+- notifiedInBinder: boolean
+- realizedBy: Employee
+- receivedInBernOn: Date
+- whoBroughtMaterial: Employee
+- thcBefore: String
+- thcAfter: String
+}
+
+class Currency <<dictionary>> {
+- id: number
+---
+- currency: String
+---
+}
+
+class PurchasePrice <<entity>> {
+- id: number
+- currency: Currency
+- purchasePrice: String
+- price: Price
+}
+
+note right of PurchasePrice
+Euro
+CHF
+end note
+
+class Price <<entity>> {
+- id: number
+- purchasePrice: PurchasePrice[]
+- salePrice: SalePrice[]
+}
+
+class Margin <<dictionary>> {
+-id: number
+- margin: String
+}
+
+note left of Margin
+10k30%
+1k15%
+5k40%
+1k50%
+0,5k60%
+0,25k65%
+0,1k100%
+end note
+
+class SalePrice <<entity>> {
+- id: number
+- margin: Margin
+- price: Price
+- salePrice: String
+}
+
+class Waste <<entity>> {
+- id: number
+- packedKg: String
+- lossTrim: String
+- lossTotalKg: String
+- lossTotalPercents: String
+}
+
+Material "*" -- "1" Warehouse : placed on
+Material "*" -- "1" Supplier : supplied by
+SalePrice "1" -- "1" Price: sale price
+Material "1" -- "*" Extraction : washed in
+PurchasePrice "1" -- "1" Price
+PurchasePrice "1" -- "1" Currency
+SalePrice "1" -- "*" Margin : margin
+WarehouseLocation "*" -- "1" Warehouse : warehouseLocation
+Material "1" -- "*" SalePrice : salePrice
+Material "1" -- "1"PurchasePrice : purchasePrice
+Extraction "1" -- "1" Employee
+
+@enduml

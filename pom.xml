@@ -4,18 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.hoef</groupId>
-    <artifactId>handlingOfExcelFiles</artifactId>
+    <groupId>com.github.zybercik00</groupId>
+    <artifactId>data-sync-excel-project</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
-        <module>hoef-app</module>
-        <module>hoef-repository</module>
-        <module>hoef-excel</module>
-        <module>hoef-model</module>
-        <module>hoef-service</module>
-        <module>hoef-config</module>
+        <module>data-sync-app</module>
+        <module>data-sync-repository</module>
+        <module>data-sync-excel</module>
+        <module>data-sync-model</module>
+        <module>data-sync-service</module>
+        <module>data-sync-config</module>
     </modules>
 
     <properties>
@@ -47,28 +47,28 @@
             </dependency>
 
             <dependency>
-                <groupId>com.alplant</groupId>
-                <artifactId>alplant-model</artifactId>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-model</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.alplant</groupId>
-                <artifactId>alplant-excel</artifactId>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-excel</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.alplant</groupId>
-                <artifactId>alplant-repository</artifactId>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-repository</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.alplant</groupId>
-                <artifactId>alplant-service</artifactId>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-service</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>com.alplant</groupId>
-                <artifactId>alplant-config</artifactId>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-config</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
 

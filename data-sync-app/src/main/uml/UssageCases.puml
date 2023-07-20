@@ -1,0 +1,18 @@
+@startuml
+
+actor Employee
+actor ExcelData
+actor Material
+
+usecase "Search for a Material" as Search
+usecase "Enter new Material" as Create
+
+Employee --> Search
+Employee --> Create
+
+Material --> Search
+Material --> Create
+
+ExcelData --> Create
+
+@enduml
