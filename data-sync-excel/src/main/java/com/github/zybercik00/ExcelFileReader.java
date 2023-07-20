@@ -1,9 +1,7 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Employee;
-import com.github.zybercik00.domain.proces.Extraction;
-import com.github.zybercik00.domain.proces.Margin;
-import com.github.zybercik00.domain.proces.Waste;
+import com.github.zybercik00.domain.proces.*;
+import com.github.zybercik00.domain.proces.Currency;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -88,7 +86,7 @@ public class ExcelFileReader  implements CommandLineRunner {
             Map<String, Employee> employees,
             Map<Integer, String> header,
             Row row) {
-        Extraction washProcess = new Extraction();
+        Extraction extraction = new Extraction();
         Waste waste = new Waste();
         int columnIndex = 1;
         Iterable<Cell> cells = row::cellIterator;
@@ -98,14 +96,134 @@ public class ExcelFileReader  implements CommandLineRunner {
                 continue;
             }
             switch (columnName) {
-                case  "1" -> {
-                    //TODO
+                case  "lot" -> {
+                    String stringCellValue = dataFormatter.formatCellValue(cell);
+                    Material material = mAterialService.getMaterial(stringCellValue);
+                    extraction.setMaterial(material);
                 }
+                case "Name" -> {
+                    Material material = extraction.getMaterial();
+                    material.setName(dataFormatter.formatCellValue(cell));
+                }
+                case "made on" -> {
+                    Date dateCellValue = cell.getDateCellValue();
+                    extraction.setPreparedOn(dateCellValue);
+                }
+                case "weight before" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    extraction.setWeightBefore(numericCellValue);
+                }
+                case "weight after" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    extraction.setWeightAfter(numericCellValue);
+                }
+                case "loss kg" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    waste.setLossAfterWashKg(numericCellValue);
+                }
+                case "loss %" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    waste.setLossTotalPercents(numericCellValue);
+                }
+                case "prepared by " -> {
+                    String stringCellValue = cell.getStringCellValue();
+                    Employee employee = new Employee();
+                    employee.setName(stringCellValue);
+                    extraction.setRealizedBy(employee);
+                }
+                case "recived back" -> {
+                    Date dateCellValue = cell.getDateCellValue();
+                    extraction.setReceivedBackOn(dateCellValue);
+                }
+                case "result of the tested sample " -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    extraction.setSampleTestResult(numericCellValue);
+                }
+                case "packed kg" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    waste.setPackedKg(numericCellValue);
+                }
+                case "aggregate loss kg" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    waste.setLossTotalKg(numericCellValue);
+                }
+                case "aggregate loss %" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    waste.setLossTotalPercents(numericCellValue);
+                }
+                case "purchase price EUR" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    PurchasePrice purchasePrice = new PurchasePrice();
+                    //TODO Set currency
+                    purchasePrice.setPurchasePrice(BigDecimal.valueOf(numericCellValue));
 
+                }
+                case "purchase price CHF" -> {
+                    double numericCellValue = cell.getNumericCellValue();
+                    PurchasePrice purchasePrice = new PurchasePrice();
+                    //TODO Set currency
+                    purchasePrice.setPurchasePrice(BigDecimal.valueOf(numericCellValue));
+                }
+                case "sale price 10% marge" -> {
+                    BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
+                    SalePrice salePrice = new SalePrice();
+                    Margin margin = getMargin("10% marge");
+                    salePrice.setMargin(margin);
+                    salePrice.setSalePrice(numericCellValue);
+                }
+                case "sale price 20% marge" -> {
+                    BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
+                    SalePrice salePrice = new SalePrice();
+                    Margin margin = getMargin("20% marge");
+                    salePrice.setMargin(margin);
+                    salePrice.setSalePrice(numericCellValue);
+                }
+                case "sale price 30% marge" -> {
+                    BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
+                    SalePrice salePrice = new SalePrice();
+                    Margin margin = getMargin("30% marge");
+                    salePrice.setMargin(margin);
+                    salePrice.setSalePrice(numericCellValue);
+                }
+                case "sale price 40% marge" -> {
+                    BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
+                    SalePrice salePrice = new SalePrice();
+                    Margin margin = getMargin("40% marge");
+                    salePrice.setMargin(margin);
+                    salePrice.setSalePrice(numericCellValue);
+                }
+                case "sale price 50% marge" -> {
+                    BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
+                    SalePrice salePrice = new SalePrice();
+                    Margin margin = getMargin("50% marge");
+                    salePrice.setMargin(margin);
+                    salePrice.setSalePrice(numericCellValue);
+                }
+                case "sale price 60% marge" -> {
+                    BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
+                    SalePrice salePrice = new SalePrice();
+                    Margin margin = getMargin("60% marge");
+                    salePrice.setMargin(margin);
+                    salePrice.setSalePrice(numericCellValue);
+                }
+                case "sale price 70% marge" -> {
+                    BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
+                    SalePrice salePrice = new SalePrice();
+                    Margin margin = getMargin("70% marge");
+                    salePrice.setMargin(margin);
+                    salePrice.setSalePrice(numericCellValue);
+                }
+                case "sale price 100% marge" -> {
+                    BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
+                    SalePrice salePrice = new SalePrice();
+                    Margin margin = getMargin("100% marge");
+                    salePrice.setMargin(margin);
+                    salePrice.setSalePrice(numericCellValue);
+                }
             }
             columnIndex++;
         }
-        return washProcess;
+        return extraction;
     }
 
     private Margin getMargin(String name) {
