@@ -52,7 +52,7 @@ public class Extraction {
 
 
     @Column(name = "RECEIVED_IN_BERN")
-    private Date receivedInBernOn;
+    private Date receivedBackOn;
 
 
     @PrimaryKeyJoinColumn(name = "WHO_BROUGHT_MATERIAL")
@@ -63,13 +63,8 @@ public class Extraction {
     @OneToOne
     private Waste waste;
 
-
-    @Column(name = "THC_BEFORE")
-    private double thcBefore;
-
-
-    @Column(name = "THC_AFTER")
-    private double thcAfter;
+    @Column(name = "SAMPLE_TEST_RESULT")
+    private double sampleTestResult;
 
     @PrimaryKeyJoinColumn(name = "PURCHASE_PRICE")
     @OneToOne

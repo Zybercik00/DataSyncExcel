@@ -22,9 +22,16 @@ public class SalePrice {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Column(name = "SALE_PRICE")
+    private BigDecimal salePrice;
+
     @JoinColumn(name = "CURRENCY")
     @ManyToOne
     private Currency currency;
+
+    @JoinColumn(name = "MARGIN")
+    @ManyToOne
+    private Margin margin;
 
     @Column(name = "PURCHASE_PRICE")
     private BigDecimal purchasePrice;
