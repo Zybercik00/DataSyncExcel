@@ -19,7 +19,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ExcelFileReader  implements CommandLineRunner {
 
-    private final MaterialService mAterialService;
+    private final MaterialService materialService;
     private final EmployeeService employeeService;
     private final MarginService marginService;
     private final ExcelSheetProperties properties;
@@ -97,7 +97,7 @@ public class ExcelFileReader  implements CommandLineRunner {
             switch (columnName) {
                 case  "lot" -> {
                     String stringCellValue = dataFormatter.formatCellValue(cell);
-                    Material material = mAterialService.getMaterial(stringCellValue);
+                    Material material = materialService.getMaterial(stringCellValue);
                     extraction.setMaterial(material);
                 }
                 case "Name" -> {
