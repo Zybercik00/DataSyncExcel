@@ -1,6 +1,6 @@
-# Excel File Handling Application
+# DataSyncExcel
 
-The Excel File Handling Application is a tool designed for efficient data management from Excel files. It provides capabilities to read, save data to a database, and search for specific information within the Excel files.
+The DataSyncExcel Application is a tool designed for efficient data management from Excel files. It provides capabilities to read, save data to a database, and search for specific information within the Excel files.
 
 ## Features
 
@@ -12,7 +12,7 @@ The Excel File Handling Application is a tool designed for efficient data manage
 
 ## Project Structure
 
-The Excel File Handling Application project consists of the following modules:
+The DataSyncExcel Application project consists of the following modules:
 
 - `data-sync-app`: This module contains the main application and the entry point (main class) to run the application. 
 
