@@ -48,11 +48,6 @@ public class Extraction {
     @Column(name = "RECEIVED_IN_BERN")
     private Date receivedBackOn;
 
-
-    @PrimaryKeyJoinColumn(name = "WHO_BROUGHT_MATERIAL")
-    @OneToOne
-    private Employee whoBroughtMaterial;
-
     @PrimaryKeyJoinColumn(name = "WASTE")
     @OneToOne
     private Waste waste;
