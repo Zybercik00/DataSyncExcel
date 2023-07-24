@@ -95,7 +95,7 @@ public class ExcelFileReader  implements CommandLineRunner {
                 continue;
             }
             switch (columnName) {
-                case  "lot" -> {
+                case  "Lot" -> {
                     String stringCellValue = dataFormatter.formatCellValue(cell);
                     Material material = materialService.getMaterial(stringCellValue);
                     extraction.setMaterial(material);
@@ -104,11 +104,11 @@ public class ExcelFileReader  implements CommandLineRunner {
                     Material material = extraction.getMaterial();
                     material.setName(dataFormatter.formatCellValue(cell));
                 }
-                case "made on" -> {
+                case "Made on" -> {
                     Date dateCellValue = cell.getDateCellValue();
                     extraction.setPreparedOn(dateCellValue);
                 }
-                case "weight before" -> {
+                case "Weight before" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     extraction.setWeightBefore(numericCellValue);
                 }
@@ -116,103 +116,103 @@ public class ExcelFileReader  implements CommandLineRunner {
                     double numericCellValue = cell.getNumericCellValue();
                     extraction.setWeightAfter(numericCellValue);
                 }
-                case "loss kg" -> {
+                case "Loss kg" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setLossAfterExtractionInKg(numericCellValue);
                 }
-                case "loss %" -> {
+                case "Loss %" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setLossTotalPercents(numericCellValue);
                 }
-                case "prepared by " -> {
+                case "Prepared by " -> {
                     String stringCellValue = cell.getStringCellValue();
                     Employee employee = new Employee();
                     employee.setName(stringCellValue);
                     extraction.setRealizedBy(employee);
                 }
-                case "recived back" -> {
+                case "Received back" -> {
                     Date dateCellValue = cell.getDateCellValue();
                     extraction.setReceivedBackOn(dateCellValue);
                 }
-                case "result of the tested sample " -> {
+                case "Result of the tested sample " -> {
                     double numericCellValue = cell.getNumericCellValue();
                     extraction.setSampleTestResult(numericCellValue);
                 }
-                case "packed kg" -> {
+                case "Packed kg" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setPackedKg(numericCellValue);
                 }
-                case "aggregate loss kg" -> {
+                case "Aggregate loss kg" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setLossTotalKg(numericCellValue);
                 }
-                case "aggregate loss %" -> {
+                case "Aggregate loss %" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setLossTotalPercents(numericCellValue);
                 }
-                case "purchase price EUR" -> {
+                case "Purchase price EUR" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     PurchasePrice purchasePrice = new PurchasePrice();
                     //TODO Set currency
                     purchasePrice.setPurchasePrice(BigDecimal.valueOf(numericCellValue));
 
                 }
-                case "purchase price CHF" -> {
+                case "Purchase price CHF" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     PurchasePrice purchasePrice = new PurchasePrice();
                     //TODO Set currency
                     purchasePrice.setPurchasePrice(BigDecimal.valueOf(numericCellValue));
                 }
-                case "sale price 10% marge" -> {
+                case "Sale price 10% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
                     SalePrice salePrice = new SalePrice();
                     Margin margin = getMargin("10% marge");
                     salePrice.setMargin(margin);
                     salePrice.setSalePrice(numericCellValue);
                 }
-                case "sale price 20% marge" -> {
+                case "Sale price 20% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
                     SalePrice salePrice = new SalePrice();
                     Margin margin = getMargin("20% marge");
                     salePrice.setMargin(margin);
                     salePrice.setSalePrice(numericCellValue);
                 }
-                case "sale price 30% marge" -> {
+                case "Sale price 30% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
                     SalePrice salePrice = new SalePrice();
                     Margin margin = getMargin("30% marge");
                     salePrice.setMargin(margin);
                     salePrice.setSalePrice(numericCellValue);
                 }
-                case "sale price 40% marge" -> {
+                case "Sale price 40% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
                     SalePrice salePrice = new SalePrice();
                     Margin margin = getMargin("40% marge");
                     salePrice.setMargin(margin);
                     salePrice.setSalePrice(numericCellValue);
                 }
-                case "sale price 50% marge" -> {
+                case "Sale price 50% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
                     SalePrice salePrice = new SalePrice();
                     Margin margin = getMargin("50% marge");
                     salePrice.setMargin(margin);
                     salePrice.setSalePrice(numericCellValue);
                 }
-                case "sale price 60% marge" -> {
+                case "Sale price 60% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
                     SalePrice salePrice = new SalePrice();
                     Margin margin = getMargin("60% marge");
                     salePrice.setMargin(margin);
                     salePrice.setSalePrice(numericCellValue);
                 }
-                case "sale price 70% marge" -> {
+                case "Sale price 70% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
                     SalePrice salePrice = new SalePrice();
                     Margin margin = getMargin("70% marge");
                     salePrice.setMargin(margin);
                     salePrice.setSalePrice(numericCellValue);
                 }
-                case "sale price 100% marge" -> {
+                case "Sale price 100% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
                     SalePrice salePrice = new SalePrice();
                     Margin margin = getMargin("100% marge");

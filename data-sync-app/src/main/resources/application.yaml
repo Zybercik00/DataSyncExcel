@@ -1,0 +1,22 @@
+
+com:
+  github:
+    zybercik00:
+      excelResource: Chemical treatment process .xlsx
+      sheetName: process data
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/DataSyncExcel
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+  h2:
+    console.path: /h2-console
+    console:
+      settings:
+        trace: false
+        web-allow-others: false
