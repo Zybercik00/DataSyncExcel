@@ -23,19 +23,14 @@ public class Waste {
     @Column(name = "PACKED_KG")
     private double packedKg;
 
-    @Column(name = "LOSS_AFTER_WASH_KG")
+    @Column(name = "LOSS_AFTER_EXTRACTION_KG")
     private double lossAfterExtractionInKg;
 
-    @Column(name = "LOSS_AFTER_WASH_PERCENT")
+    @Column(name = "LOSS_AFTER_EXTRACTION_PERCENT")
     private double lossAfterExtractionInPercent;
-
-    @Column(name = "LOSS_TRIM")
-    private double lossTrim;
-
 
     @Column(name = "LOSS_TOTAL_KG")
     private double lossTotalKg;
-
 
     @Column(name = "LOSS_TOTAL_PERCENTS")
     private double lossTotalPercents;
