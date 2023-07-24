@@ -112,7 +112,7 @@ public class ExcelFileReader  implements CommandLineRunner {
                     double numericCellValue = cell.getNumericCellValue();
                     extraction.setWeightBefore(numericCellValue);
                 }
-                case "weight after" -> {
+                case "Weight after" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     extraction.setWeightAfter(numericCellValue);
                 }
@@ -124,7 +124,7 @@ public class ExcelFileReader  implements CommandLineRunner {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setLossTotalPercents(numericCellValue);
                 }
-                case "Prepared by " -> {
+                case "Prepared by" -> {
                     String stringCellValue = cell.getStringCellValue();
                     Employee employee = new Employee();
                     employee.setName(stringCellValue);
@@ -134,7 +134,7 @@ public class ExcelFileReader  implements CommandLineRunner {
                     Date dateCellValue = cell.getDateCellValue();
                     extraction.setReceivedBackOn(dateCellValue);
                 }
-                case "Result of the tested sample " -> {
+                case "Result of the tested sample" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     extraction.setSampleTestResult(numericCellValue);
                 }
