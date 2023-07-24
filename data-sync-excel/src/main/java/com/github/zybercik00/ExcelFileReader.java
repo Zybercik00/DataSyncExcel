@@ -119,10 +119,12 @@ public class ExcelFileReader  implements CommandLineRunner {
                 case "Loss kg" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setLossAfterExtractionInKg(numericCellValue);
+                    extraction.setWaste(waste);
                 }
                 case "Loss %" -> {
                     double numericCellValue = cell.getNumericCellValue();
-                    waste.setLossTotalPercents(numericCellValue);
+                    waste.setLossAfterExtractionInPercent(numericCellValue);
+                    extraction.setWaste(waste);
                 }
                 case "Prepared by" -> {
                     String stringCellValue = cell.getStringCellValue();
@@ -141,20 +143,24 @@ public class ExcelFileReader  implements CommandLineRunner {
                 case "Packed kg" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setPackedKg(numericCellValue);
+                    extraction.setWaste(waste);
                 }
                 case "Aggregate loss kg" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setLossTotalKg(numericCellValue);
+                    extraction.setWaste(waste);
                 }
                 case "Aggregate loss %" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     waste.setLossTotalPercents(numericCellValue);
+                    extraction.setWaste(waste);
                 }
                 case "Purchase price EUR" -> {
                     double numericCellValue = cell.getNumericCellValue();
                     PurchasePrice purchasePrice = new PurchasePrice();
                     //TODO Set currency
                     purchasePrice.setPurchasePrice(BigDecimal.valueOf(numericCellValue));
+                    extraction.setPurchasePrice(purchasePrice);
 
                 }
                 case "Purchase price CHF" -> {
@@ -162,6 +168,7 @@ public class ExcelFileReader  implements CommandLineRunner {
                     PurchasePrice purchasePrice = new PurchasePrice();
                     //TODO Set currency
                     purchasePrice.setPurchasePrice(BigDecimal.valueOf(numericCellValue));
+                    extraction.setPurchasePrice(purchasePrice);
                 }
                 case "Sale price 10% marge" -> {
                     BigDecimal numericCellValue = BigDecimal.valueOf(cell.getNumericCellValue());
