@@ -25,6 +25,6 @@ public class Margin {
     @Column(name = "MARGIN_NAME")
     private String name;
 
-    @OneToMany(mappedBy = "MARGIN")
+    @OneToMany(mappedBy = "margin")
     private List<SalePrice> prices;
 }

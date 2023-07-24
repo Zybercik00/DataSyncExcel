@@ -20,11 +20,11 @@ public class Price {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @PrimaryKeyJoinColumn(name = "PURCHASEPRICE")
+    @PrimaryKeyJoinColumn(name = "PURCHASE_PRICE")
     @OneToOne
     private PurchasePrice purchasePrice;
 
-    @PrimaryKeyJoinColumn(name = "SALEPRICE")
+    @PrimaryKeyJoinColumn(name = "SALE_PRICE")
     @OneToOne
     private SalePrice salePrice;
 }
