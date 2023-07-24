@@ -1,6 +1,7 @@
 package com.github.zybercik00;
 
 import com.github.zybercik00.domain.proces.*;
+import com.github.zybercik00.domain.proces.Currency;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -159,6 +160,9 @@ public class ExcelFileReader  implements CommandLineRunner {
                     double numericCellValue = cell.getNumericCellValue();
                     PurchasePrice purchasePrice = new PurchasePrice();
                     //TODO Set currency
+                    Currency currency = new Currency();
+                    currency.setCurrency("EUR");
+                    purchasePrice.setCurrency(currency);
                     purchasePrice.setPurchasePrice(BigDecimal.valueOf(numericCellValue));
                     extraction.setPurchasePrice(purchasePrice);
 
@@ -167,6 +171,9 @@ public class ExcelFileReader  implements CommandLineRunner {
                     double numericCellValue = cell.getNumericCellValue();
                     PurchasePrice purchasePrice = new PurchasePrice();
                     //TODO Set currency
+                    Currency currency = new Currency();
+                    currency.setCurrency("CHF");
+                    purchasePrice.setCurrency(currency);
                     purchasePrice.setPurchasePrice(BigDecimal.valueOf(numericCellValue));
                     extraction.setPurchasePrice(purchasePrice);
                 }
