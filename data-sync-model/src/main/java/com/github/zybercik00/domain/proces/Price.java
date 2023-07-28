@@ -1,5 +1,6 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,9 +23,11 @@ public class Price {
 
     @PrimaryKeyJoinColumn(name = "PURCHASE_PRICE")
     @OneToOne
+    @JsonBackReference
     private PurchasePrice purchasePrice;
 
     @PrimaryKeyJoinColumn(name = "SALE_PRICE")
     @OneToOne
+    @JsonBackReference
     private SalePrice salePrice;
 }

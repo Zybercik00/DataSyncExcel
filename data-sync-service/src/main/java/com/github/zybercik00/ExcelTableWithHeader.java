@@ -23,7 +23,7 @@ public class ExcelTableWithHeader {
     }
 
     private void fillHeader() {
-        int columnIndex = 1;
+        int columnIndex = 0;
         Iterable<Cell> cells = sheet.getRow(sheet.getFirstRowNum())::cellIterator;
         for (Cell cell : cells) {
             String columnName = dataFormatter.formatCellValue(cell).trim();
