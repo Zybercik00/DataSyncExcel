@@ -1,5 +1,6 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,18 +23,31 @@ public class SalePrice {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Column(name = "SALE_PRICE")
+    @JsonBackReference
+    private BigDecimal salePrice;
+
     @JoinColumn(name = "CURRENCY")
     @ManyToOne
+    @JsonBackReference
     private Currency currency;
 
+    @JoinColumn(name = "MARGIN")
+    @ManyToOne
+    @JsonBackReference
+    private Margin margin;
+
     @Column(name = "PURCHASE_PRICE")
+    @JsonBackReference
     private BigDecimal purchasePrice;
 
     @JoinColumn
     @OneToOne(mappedBy = "purchasePrice")
+    @JsonBackReference
     private Price price;
 
     @JoinColumn(name = "EXTRACTION")
     @ManyToOne
+    @JsonBackReference
     private Extraction extraction;
 }

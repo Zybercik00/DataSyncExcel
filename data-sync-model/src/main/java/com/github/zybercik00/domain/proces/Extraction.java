@@ -1,8 +1,10 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -33,18 +35,12 @@ public class Extraction {
     private Date preparedOn;
 
 
-    @Column(name = "HOW_MANY_BAGS")
-    private Double howManyBags;
-
     @Column(name = "WEIGHT_BEFORE")
-    private Double weightBefore;
+    private BigDecimal weightBefore;
 
-
-    @Column(name = "NOTIFIED_IN_BINDER")
-    private String notifiedInBinder;
 
     @Column(name = "WEIGHT_AFTER")
-    private Double weightAfter;
+    private BigDecimal weightAfter;
 
     @PrimaryKeyJoinColumn(name = "REALIZED_BY")
     @OneToOne
@@ -52,30 +48,20 @@ public class Extraction {
 
 
     @Column(name = "RECEIVED_IN_BERN")
-    private Date receivedInBernOn;
-
-
-    @PrimaryKeyJoinColumn(name = "WHO_BROUGHT_MATERIAL")
-    @OneToOne
-    private Employee whoBroughtMaterial;
+    private Date receivedBackOn;
 
     @PrimaryKeyJoinColumn(name = "WASTE")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Waste waste;
 
+    @Column(name = "SAMPLE_TEST_RESULT")
+    private BigDecimal sampleTestResult;
 
-    @Column(name = "THC_BEFORE")
-    private double thcBefore;
+    @OneToMany(mappedBy = "extraction")
+    @JsonManagedReference
+    private List<PurchasePrice> purchasePrices;
 
-
-    @Column(name = "THC_AFTER")
-    private double thcAfter;
-
-    @PrimaryKeyJoinColumn(name = "PURCHASE_PRICE")
-    @OneToOne
-    private PurchasePrice purchasePrice;
-
-    @PrimaryKeyJoinColumn(name = "SALE_PRICE")
-    @OneToMany
-    private List<SalePrice> salePrice;
+    @OneToMany(mappedBy = "extraction")
+    @JsonManagedReference
+    private List<SalePrice> salePrices;
 }

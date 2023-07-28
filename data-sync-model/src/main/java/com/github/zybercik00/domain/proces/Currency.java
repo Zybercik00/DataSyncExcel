@@ -1,5 +1,6 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,8 +24,9 @@ public class Currency {
 
     @EqualsAndHashCode.Include
     @Column(name = "CURRENCY_NAME")
-    private String currency;
+    private String code;
 
     @OneToMany(mappedBy = "currency")
+    @JsonManagedReference
     private List<PurchasePrice> purchasePrices;
 }

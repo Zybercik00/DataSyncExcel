@@ -22,9 +22,9 @@ public class Material {
     private Long id;
 
 
-    @Column(name = "BATCH")
+    @Column(name = "LOT")
     @EqualsAndHashCode.Include
-    private String batch;
+    private String lot;
 
 
     @Column(name = "MATERIAL_NAME")
@@ -37,7 +37,6 @@ public class Material {
 
     @Column(name = "WEIGHT")
     private String weight;
-
 
     @Column
     private String content;

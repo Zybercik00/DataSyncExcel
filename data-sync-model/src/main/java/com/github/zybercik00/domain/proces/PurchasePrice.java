@@ -1,5 +1,6 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,16 +25,20 @@ public class PurchasePrice {
 
     @JoinColumn(name = "CURRENCY")
     @ManyToOne
+    @JsonBackReference
     private Currency currency;
 
     @Column(name = "PURCHASE_PRICE")
+    @JsonBackReference
     private BigDecimal purchasePrice;
 
     @JoinColumn
     @OneToOne(mappedBy = "purchasePrice")
+    @JsonBackReference
     private Price price;
 
     @JoinColumn(name = "EXTRACTION")
     @ManyToOne
+    @JsonBackReference
     private Extraction extraction;
 }

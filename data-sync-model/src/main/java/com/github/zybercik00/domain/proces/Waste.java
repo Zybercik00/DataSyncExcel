@@ -1,7 +1,10 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "WASTE")
@@ -20,24 +23,22 @@ public class Waste {
     @EqualsAndHashCode.Include
     private Long id;
 
-
     @Column(name = "PACKED_KG")
-    private double packedKg;
+    private BigDecimal packedKg;
 
-    @Column(name = "LOSS_AFTER_WASH_KG")
-    private double lossAfterWashKg;
+    @Column(name = "LOSS_AFTER_EXTRACTION_KG")
+    private BigDecimal lossAfterExtractionInKg;
 
-    @Column(name = "LOSS_AFTER_WASH_PERCENT")
-    private double lossAfterWashPercent;
-
-    @Column(name = "LOSS_TRIM")
-    private double lossTrim;
-
+    @Column(name = "LOSS_AFTER_EXTRACTION_PERCENT")
+    private BigDecimal lossAfterExtractionInPercent;
 
     @Column(name = "LOSS_TOTAL_KG")
-    private double lossTotalKg;
-
+    private BigDecimal lossTotalKg;
 
     @Column(name = "LOSS_TOTAL_PERCENTS")
-    private double lossTotalPercents;
+    private BigDecimal lossTotalPercents;
+
+    @OneToOne(mappedBy = "waste")
+    @JsonBackReference
+    private Extraction extraction;
 }
