@@ -3,6 +3,8 @@ package com.github.zybercik00.domain.proces;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "WASTE")
 @NoArgsConstructor
@@ -21,17 +23,20 @@ public class Waste {
     private Long id;
 
     @Column(name = "PACKED_KG")
-    private double packedKg;
+    private BigDecimal packedKg;
 
     @Column(name = "LOSS_AFTER_EXTRACTION_KG")
-    private double lossAfterExtractionInKg;
+    private BigDecimal lossAfterExtractionInKg;
 
     @Column(name = "LOSS_AFTER_EXTRACTION_PERCENT")
-    private double lossAfterExtractionInPercent;
+    private BigDecimal lossAfterExtractionInPercent;
 
     @Column(name = "LOSS_TOTAL_KG")
-    private double lossTotalKg;
+    private BigDecimal lossTotalKg;
 
     @Column(name = "LOSS_TOTAL_PERCENTS")
-    private double lossTotalPercents;
+    private BigDecimal lossTotalPercents;
+
+    @OneToOne(mappedBy = "waste")
+    private Extraction extraction;
 }
