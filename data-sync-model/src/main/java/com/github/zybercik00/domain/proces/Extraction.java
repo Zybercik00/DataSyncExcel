@@ -3,6 +3,7 @@ package com.github.zybercik00.domain.proces;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -34,11 +35,11 @@ public class Extraction {
 
 
     @Column(name = "WEIGHT_BEFORE")
-    private Double weightBefore;
+    private BigDecimal weightBefore;
 
 
     @Column(name = "WEIGHT_AFTER")
-    private Double weightAfter;
+    private BigDecimal weightAfter;
 
     @PrimaryKeyJoinColumn(name = "REALIZED_BY")
     @OneToOne
@@ -49,17 +50,15 @@ public class Extraction {
     private Date receivedBackOn;
 
     @PrimaryKeyJoinColumn(name = "WASTE")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Waste waste;
 
     @Column(name = "SAMPLE_TEST_RESULT")
-    private double sampleTestResult;
+    private BigDecimal sampleTestResult;
 
-    @PrimaryKeyJoinColumn(name = "PURCHASE_PRICE")
-    @OneToOne
-    private PurchasePrice purchasePrice;
+    @OneToMany(mappedBy = "extraction")
+    private List<PurchasePrice> purchasePrices;
 
-    @PrimaryKeyJoinColumn(name = "SALE_PRICE")
-    @OneToMany
-    private List<SalePrice> salePrice;
+    @OneToMany(mappedBy = "extraction")
+    private List<SalePrice> salePrices;
 }
