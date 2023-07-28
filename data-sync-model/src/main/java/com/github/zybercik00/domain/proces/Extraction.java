@@ -1,5 +1,6 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -57,8 +58,10 @@ public class Extraction {
     private BigDecimal sampleTestResult;
 
     @OneToMany(mappedBy = "extraction")
+    @JsonManagedReference
     private List<PurchasePrice> purchasePrices;
 
     @OneToMany(mappedBy = "extraction")
+    @JsonManagedReference
     private List<SalePrice> salePrices;
 }

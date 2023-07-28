@@ -1,5 +1,6 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,5 +27,6 @@ public class Currency {
     private String code;
 
     @OneToMany(mappedBy = "currency")
+    @JsonManagedReference
     private List<PurchasePrice> purchasePrices;
 }
