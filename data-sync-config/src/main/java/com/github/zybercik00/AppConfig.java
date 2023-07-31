@@ -2,6 +2,7 @@ package com.github.zybercik00;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.zybercik00.repository.proces.*;
+import jakarta.persistence.EntityManager;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -58,20 +59,16 @@ public class AppConfig {
     }
 
     @Bean
+    public EntityService entityService (EntityManager entityManager) {
+        return new EntityService(entityManager);
+    }
+
+    @Bean
     public ExtractionService extractionService(
-            ExtractionRepo extractionRepo,
-            WasteRepo wasteRepo,
-            MaterialService materialService,
-            EmployeeService employeeService,
-            PurchasePriceService purchasePriceService,
-            SalePriceService salePriceService,
+            EntityService entityService,
             ExcelTableFactory excelTableFactory) {
         return new ExtractionService(
-                extractionRepo,
-                materialService,
-                employeeService,
-                purchasePriceService,
-                salePriceService,
+                entityService,
                 excelTableFactory);
     }
 

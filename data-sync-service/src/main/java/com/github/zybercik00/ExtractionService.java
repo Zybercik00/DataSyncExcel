@@ -12,14 +12,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 public class ExtractionService {
     private final ExtractionRepo extractionRepo;
-    private final MaterialService materialService;
-    private final EmployeeService employeeService;
-    private final PurchasePriceService purchasePriceService;
-    private final SalePriceService salePriceService;
+    private final EntityService entityService;
     private final ExcelTableFactory excelTableFactory;
 
     @Transactional
@@ -41,98 +39,140 @@ public class ExtractionService {
         // TODO Handle missing value
         {
             String lot = cursor.getStringValue("Lot");
-            Material material = materialService.getMaterial(lot);
-            extraction.setMaterial(material);
+            Material material = entityService.findEntityBy(Material.class, Map.of("lot", lot));
+            BeanUtils.setProperty(extraction, "material", material);
         }
         {
+            // TODO depends on material mapping
             String name = cursor.getStringValue("Name");
             BeanUtils.setProperty(extraction, "material.name", name);
         }
-        // TODO Use BeanUtils to make mapping generic
+
         {
             Date daterowValue = cursor.getDateValue("Made on");
-            extraction.setPreparedOn(daterowValue);
+            BeanUtils.setProperty(extraction, "preparedOn", daterowValue);
         }
         {
             BigDecimal numericrowValue = cursor.getNumericValue("Weight before");
-            extraction.setWeightBefore(numericrowValue);
+            BeanUtils.setProperty(extraction, "weightBefore", numericrowValue);
         }
         {
             BigDecimal numericrowValue = cursor.getNumericValue("Weight after");
-            extraction.setWeightAfter(numericrowValue);
+            BeanUtils.setProperty(extraction, "weightAfter", numericrowValue);
         }
         {
             BigDecimal numericrowValue = cursor.getNumericValue("Loss kg");
-            extraction.getWaste().setLossAfterExtractionInKg(numericrowValue);
+            BeanUtils.setProperty(extraction, "waste.lossAfterExtractionInKG", numericrowValue);
         }
         {
             BigDecimal numericrowValue = cursor.getNumericValue("Loss %");
-            extraction.getWaste().setLossAfterExtractionInPercent(numericrowValue);
+            BeanUtils.setProperty(extraction, "waste.lossAfterExtractionInPercent", numericrowValue);
         }
         {
             String stringrowValue = cursor.getStringValue("Prepared by");
-            Employee employee = employeeService.getEmployee(stringrowValue);
-            extraction.setRealizedBy(employee);
+            Employee employee = entityService.findEntityBy(Employee.class, Map.of("name", stringrowValue));
+            BeanUtils.setProperty(extraction, "realizedBy", employee);
         }
         {
             Date daterowValue = cursor.getDateValue("Received back");
-            extraction.setReceivedBackOn(daterowValue);
+            BeanUtils.setProperty(extraction, "recivedBackOn", daterowValue);
         }
         {
             BigDecimal numericrowValue = cursor.getNumericValue("Result of the tested sample");
-            extraction.setSampleTestResult(numericrowValue);
+            BeanUtils.setProperty(extraction, "sampleTestResult", numericrowValue);
         }
         {
             BigDecimal numericrowValue = cursor.getNumericValue("Packed kg");
-            extraction.getWaste().setPackedKg(numericrowValue);
+            BeanUtils.setProperty(extraction, "waste.packedKg", numericrowValue);
         }
         {
             BigDecimal numericrowValue = cursor.getNumericValue("Aggregate loss kg");
-            extraction.getWaste().setLossTotalKg(numericrowValue);
+            BeanUtils.setProperty(extraction, "waste.lossTotalKg", numericrowValue);
         }
         {
             BigDecimal numericrowValue = cursor.getNumericValue("Aggregate loss %");
-            extraction.getWaste().setLossTotalPercents(numericrowValue);
+            BeanUtils.setProperty(extraction, "waste.lossTotalPercents", numericrowValue);
         }
         {
             BigDecimal price = cursor.getNumericValue("Purchase price EUR");
-            addPurchasePrice(extraction, "EUR", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "currency", Map.of("code", "EUR"));
+            PurchasePrice purchasePrice = entityService.findEntityBy(PurchasePrice.class, lookup);
+            BeanUtils.setProperty(purchasePrice, "purchasePrice", price);
+            extraction.getPurchasePrices().add(purchasePrice);
+
         }
         {
             BigDecimal price = cursor.getNumericValue("Purchase price CHF");
-            addPurchasePrice(extraction, "CHF", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "currency", Map.of("code", "CHF"));
+            PurchasePrice purchasePrice = entityService.findEntityBy(PurchasePrice.class, lookup);
+            BeanUtils.setProperty(purchasePrice, "purchasePrice", price);
+            extraction.getPurchasePrices().add(purchasePrice);
         }
         {
             BigDecimal price = cursor.getNumericValue("Sale price 10% marge");
-            addSalePrice(extraction, "10% marge", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "margin", Map.of("name", "10% marge"));
+            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
+            BeanUtils.setProperty(salePrice, "salePrice", price);
+            extraction.getSalePrices().add(salePrice);
         }
         {
             BigDecimal price = cursor.getNumericValue("Sale price 20% marge");
-            addSalePrice(extraction, "20% marge", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "margin", Map.of("name", "20% marge"));
+            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
+            BeanUtils.setProperty(salePrice, "salePrice", price);
+            extraction.getSalePrices().add(salePrice);
         }
         {
             BigDecimal price = cursor.getNumericValue("Sale price 30% marge");
-            addSalePrice(extraction, "30% marge", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "margin", Map.of("name", "30% marge"));
+            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
+            BeanUtils.setProperty(salePrice, "salePrice", price);
+            extraction.getSalePrices().add(salePrice);
         }
         {
             BigDecimal price = cursor.getNumericValue("Sale price 40% marge");
-            addSalePrice(extraction, "40% marge", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "margin", Map.of("name", "40% marge"));
+            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
+            BeanUtils.setProperty(salePrice, "salePrice", price);
+            extraction.getSalePrices().add(salePrice);
         }
         {
             BigDecimal price = cursor.getNumericValue("Sale price 50% marge");
-            addSalePrice(extraction, "50% marge", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "margin", Map.of("name", "50% marge"));
+            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
+            BeanUtils.setProperty(salePrice, "salePrice", price);
+            extraction.getSalePrices().add(salePrice);
         }
         {
             BigDecimal price = cursor.getNumericValue("Sale price 60% marge");
-            addSalePrice(extraction, "60% marge", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "margin", Map.of("name", "60% marge"));
+            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
+            BeanUtils.setProperty(salePrice, "salePrice", price);
+            extraction.getSalePrices().add(salePrice);
         }
         {
             BigDecimal price = cursor.getNumericValue("Sale price 70% marge");
-            addSalePrice(extraction, "70% marge", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "margin", Map.of("name", "70% marge"));
+            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
+            BeanUtils.setProperty(salePrice, "salePrice", price);
+            extraction.getSalePrices().add(salePrice);
         }
         {
             BigDecimal price = cursor.getNumericValue("Sale price 100% marge");
-            addSalePrice(extraction, "100% marge", price);
+            Map<String, Object> lookup = Map.of("extraction", extraction,
+                    "margin", Map.of("name", "100% marge"));
+            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
+            BeanUtils.setProperty(salePrice, "salePrice", price);
+            extraction.getSalePrices().add(salePrice);
         }
         return extractionRepo.save(extraction);
     }
@@ -143,19 +183,7 @@ public class ExtractionService {
         extraction.setWaste(new Waste());
         extraction.setPurchasePrices(new ArrayList<>());
         extraction.setSalePrices(new ArrayList<>());
-        return extraction;
-    }
-
-    private void addPurchasePrice(Extraction extraction, String currencyCode, BigDecimal price) {
-        PurchasePrice purchasePrice = purchasePriceService.getPurchasePrice(extraction, currencyCode, price);
-        extraction.getPurchasePrices()
-                .add(purchasePrice);
-    }
-
-    private void addSalePrice(Extraction extraction, String marginName, BigDecimal price) {
-        SalePrice salePrice = salePriceService.getSalePrice(extraction, marginName, price);
-        extraction.getSalePrices()
-                .add(salePrice);
+        return extractionRepo.save(extraction);
     }
 
 }
