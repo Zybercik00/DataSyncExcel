@@ -35,7 +35,7 @@ public class ExtractionService {
     private Extraction getExtraction(ExcelTableWithHeader.Cursor cursor) {
         Extraction extraction = getExtraction();
         for (Mapping mapping : extractionMappingService.getMappings()) {
-            mappingService.setValue(
+            mappingService.setSimpleValue(
                     cursor,
                     extraction,
                     attributeService.getAttribute(mapping.getTarget()),

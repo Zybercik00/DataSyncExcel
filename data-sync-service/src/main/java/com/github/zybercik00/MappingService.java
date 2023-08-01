@@ -15,10 +15,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -86,19 +83,19 @@ public class MappingService {
                         entityType.getJavaType() == entityClasss)
                 .map(EntityType::getName)
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new NoSuchElementException(entityClasss.getName()));
     }
 
-    void setValue(ExcelTableWithHeader.Cursor cursor,
-                  Object target,
-                  MappingAttribute attribute,
-                  String columnName) {
+    void setSimpleValue(ExcelTableWithHeader.Cursor cursor,
+                        Object target,
+                        MappingAttribute attribute,
+                        String columnName) {
         if ( attribute instanceof SimpleMappingAttribute simpleMappingAttribute) {
-            setValue(cursor, target, simpleMappingAttribute, columnName);
+            setSimpleValue(cursor, target, simpleMappingAttribute, columnName);
         } else if (attribute instanceof ReferenceMappingAttribute referenceMappingAttribute ) {
-            setValue(cursor, target, referenceMappingAttribute, columnName);
+            setReferenceValue(cursor, target, referenceMappingAttribute, columnName);
         } else if ( attribute instanceof QualifierMappingAttribute qualifierMappingAttribute ) {
-            setValue(cursor, target, qualifierMappingAttribute, columnName);
+            setQualifiedValue(cursor, target, qualifierMappingAttribute, columnName);
         }
     }
 
@@ -115,19 +112,19 @@ public class MappingService {
     }
 
     @SneakyThrows
-    private void setValue(ExcelTableWithHeader.Cursor cursor,
-                          Object target,
-                          SimpleMappingAttribute attribute,
-                          String columnName) {
+    private void setSimpleValue(ExcelTableWithHeader.Cursor cursor,
+                                Object target,
+                                SimpleMappingAttribute attribute,
+                                String columnName) {
         String targetProperty = attribute.getTargetProperty();
-        setValue(cursor, target, columnName, targetProperty);
+        setSimpleValue(cursor, target, columnName, targetProperty);
     }
 
     @SneakyThrows
-    private void setValue(ExcelTableWithHeader.Cursor cursor,
-                          Object target,
-                          String columnName,
-                          String targetProperty) {
+    private void setSimpleValue(ExcelTableWithHeader.Cursor cursor,
+                                Object target,
+                                String columnName,
+                                String targetProperty) {
         Class<?> propertyType = PropertyUtils.getPropertyType(target, targetProperty);
         // TODO Handle missing value
         Object value = valueForType(cursor, propertyType).apply(columnName);
@@ -150,7 +147,7 @@ public class MappingService {
             Map<String, Object> qualifierLookup = new HashMap<>(attribute.getQualifier());
             qualifierLookup.put(attribute.getQualifierParent(), target);
             Object componentBean = findEntityBy(componentType, qualifierLookup);
-            setValue(cursor, componentBean, attribute.getQualifierProperty(), columnName);
+            setSimpleValue(cursor, componentBean, columnName, attribute.getQualifierProperty());
 
             @SuppressWarnings("unchecked")
             Collection<Object> components = (Collection<Object>) PropertyUtils.getProperty(target, attribute.getTargetProperty());
@@ -159,7 +156,7 @@ public class MappingService {
             Object componentBean = findEntityBy(
                     propertyType,
                     attribute.getQualifier());
-            setValue(cursor, componentBean,
+            setSimpleValue(cursor, componentBean,
                     attribute.getQualifierProperty(), columnName);
             BeanUtils.setProperty(target, attribute.getTargetProperty(), componentBean);
         }
