@@ -10,7 +10,12 @@ import lombok.SneakyThrows;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +23,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class EntityService {
+public class MappingService {
     private final EntityManager entityManager;
 
     @SneakyThrows
@@ -27,10 +32,10 @@ public class EntityService {
         String filters = lookup.keySet()
                 .stream()
                 .map(attribute ->
-                        "e"+"." + attribute + "=:" + attribute)
+                        "e" + "." + attribute + "=:" + attribute)
                 .collect(Collectors.joining(" and "));
         TypedQuery<T> query = entityManager.createQuery(
-                "select "+"e"+" from " + entityName + " "+"e"+" " +
+                "select " + "e"+" from " + entityName + " " + "e" + " " +
                         "where " + filters, entityClass);
 
         T entity = entityClass.getConstructor().newInstance();
@@ -55,7 +60,7 @@ public class EntityService {
     @SneakyThrows
     private <T> Object getValueReplace(T entity, String key, Object value) {
         Class<?> propertyType = PropertyUtils.getPropertyType(entity, key);
-        if ( propertyType.isInstance(value) ) {
+        if (propertyType.isInstance(value)) {
             return value;
         }
         boolean persistenceClass = isPersistenceClass(propertyType);
@@ -105,16 +110,48 @@ public class EntityService {
         BeanUtils.setProperty(target, targetProperty, value);
     }
 
+    @SneakyThrows
+    void setComponentValue(
+            ExcelTableWithHeader.Cursor cursor,
+            Object target,
+            String targetProperty,
+            Map<String, Object> componentLookup,
+            String componentProperty,
+            String columnName) {
+        Class<?> propertyType = PropertyUtils.getPropertyType(target, targetProperty);
+        if ( Collection.class.isAssignableFrom(propertyType) ) {
+            PropertyDescriptor propertyDescriptor = PropertyUtils.getPropertyDescriptor(target, targetProperty);
+            Method readMethod = propertyDescriptor.getReadMethod();
+            Type genericReturnType = readMethod.getGenericReturnType();
+            Class<?> componentType = (Class<?>) ((ParameterizedType) genericReturnType).getActualTypeArguments()[0];
+
+            Object componentBean = findEntityBy(componentType, componentLookup);
+            setProperty(cursor, componentBean, componentProperty, columnName);
+
+            @SuppressWarnings("unchecked")
+            Collection<Object> components = (Collection<Object>) PropertyUtils.getProperty(target, targetProperty);
+            components.add(componentBean);
+        } else {
+            Object componentBean = findEntityBy(
+                    propertyType,
+                    componentLookup);
+            setProperty(cursor, componentBean,
+                    componentProperty, columnName);
+            BeanUtils.setProperty(target, targetProperty, componentBean);
+        }
+
+    }
+
     private Function<String,?> valueForType(
             ExcelTableWithHeader.Cursor cursor,
             Class<?> propertyType) {
-        if ( propertyType == String.class ) {
+        if (propertyType == String.class) {
             return cursor::getStringValue;
         }
-        if ( propertyType == Date.class ) {
+        if (propertyType == Date.class) {
             return cursor::getDateValue;
         }
-        if ( propertyType == BigDecimal.class ) {
+        if (propertyType == BigDecimal.class) {
             return cursor::getNumericValue;
         }
         return cursor::getStringValue;

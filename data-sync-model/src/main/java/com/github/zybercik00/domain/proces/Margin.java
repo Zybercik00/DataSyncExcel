@@ -1,5 +1,6 @@
 package com.github.zybercik00.domain.proces;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,6 +28,6 @@ public class Margin {
     private String name;
 
     @OneToMany(mappedBy = "margin")
-    @JsonManagedReference
+    @JsonIgnore
     private List<SalePrice> prices;
 }

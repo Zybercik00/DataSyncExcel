@@ -17,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ExtractionService {
     private final ExtractionRepo extractionRepo;
-    private final EntityService entityService;
+    private final MappingServive mappingServive;
     private final ExcelTableFactory excelTableFactory;
 
     @Transactional
@@ -38,180 +38,173 @@ public class ExtractionService {
         // TODO Use list of value mappers from excel to entity
         // TODO Handle missing value
         {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "material",
                     Map.of("lot", "Lot"));
-        }
-        {
             // TODO depends on material mapping
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "material.name",
                     "Name");
-        }
-
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "preparedOn",
                     "Made on");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "weightBefore",
                     "Weight before");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "weightAfter",
                     "Weight after");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "waste.lossAfterExtractionInKg",
                     "Loss kg");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "waste.lossAfterExtractionInPercent",
                     "Loss %");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "realizedBy",
                     Map.of("name", "Prepared by"));
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "receivedBackOn",
                     "Received back");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "sampleTestResult",
                     "Result of the tested sample");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "waste.packedKg",
                     "Packed kg");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "waste.lossTotalKg",
                     "Aggregate loss kg");
-        }
-        {
-            entityService.setProperty(
+            mappingService.setProperty(
                     cursor,
                     extraction,
                     "waste.lossTotalPercents",
                     "Aggregate loss %");
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Purchase price EUR");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "currency", Map.of("code", "EUR"));
-            PurchasePrice purchasePrice = entityService.findEntityBy(PurchasePrice.class, lookup);
-            BeanUtils.setProperty(purchasePrice, "purchasePrice", price);
-            extraction.getPurchasePrices().add(purchasePrice);
-
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Purchase price CHF");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "currency", Map.of("code", "CHF"));
-            PurchasePrice purchasePrice = entityService.findEntityBy(PurchasePrice.class, lookup);
-            BeanUtils.setProperty(purchasePrice, "purchasePrice", price);
-            extraction.getPurchasePrices().add(purchasePrice);
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Sale price 10% marge");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "margin", Map.of("name", "10% marge"));
-            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
-            BeanUtils.setProperty(salePrice, "salePrice", price);
-            extraction.getSalePrices().add(salePrice);
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Sale price 20% marge");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "margin", Map.of("name", "20% marge"));
-            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
-            BeanUtils.setProperty(salePrice, "salePrice", price);
-            extraction.getSalePrices().add(salePrice);
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Sale price 30% marge");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "margin", Map.of("name", "30% marge"));
-            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
-            BeanUtils.setProperty(salePrice, "salePrice", price);
-            extraction.getSalePrices().add(salePrice);
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Sale price 40% marge");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "margin", Map.of("name", "40% marge"));
-            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
-            BeanUtils.setProperty(salePrice, "salePrice", price);
-            extraction.getSalePrices().add(salePrice);
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Sale price 50% marge");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "margin", Map.of("name", "50% marge"));
-            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
-            BeanUtils.setProperty(salePrice, "salePrice", price);
-            extraction.getSalePrices().add(salePrice);
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Sale price 60% marge");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "margin", Map.of("name", "60% marge"));
-            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
-            BeanUtils.setProperty(salePrice, "salePrice", price);
-            extraction.getSalePrices().add(salePrice);
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Sale price 70% marge");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "margin", Map.of("name", "70% marge"));
-            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
-            BeanUtils.setProperty(salePrice, "salePrice", price);
-            extraction.getSalePrices().add(salePrice);
-        }
-        {
-            BigDecimal price = cursor.getNumericValue("Sale price 100% marge");
-            Map<String, Object> lookup = Map.of("extraction", extraction,
-                    "margin", Map.of("name", "100% marge"));
-            SalePrice salePrice = entityService.findEntityBy(SalePrice.class, lookup);
-            BeanUtils.setProperty(salePrice, "salePrice", price);
-            extraction.getSalePrices().add(salePrice);
-        }
-        return extractionRepo.save(extraction);
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "purchasePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "currency", Map.of("code", "EUR")
+                    ),
+                    "purchasePrice",
+                    "Purchase price EUR");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "purchasePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "currency", Map.of("code", "CHF")
+                    ),
+                    "purchasePrice",
+                    "Purchase price CHF");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "salePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "margin", Map.of("name", "10% marge")
+                    ),
+                    "salePrice",
+                    "Sale price 10% marge");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "salePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "margin", Map.of("name", "20% marge")
+                    ),
+                    "salePrice",
+                    "Sale price 20% marge");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "salePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "margin", Map.of("name", "30% marge")
+                    ),
+                    "salePrice",
+                    "Sale price 30% marge");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "salePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "margin", Map.of("name", "40% marge")
+                    ),
+                    "salePrice",
+                    "Sale price 40% marge");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "salePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "margin", Map.of("name", "50% marge")
+                    ),
+                    "salePrice",
+                    "Sale price 50% marge");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "salePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "margin", Map.of("name", "60% marge")
+                    ),
+                    "salePrice",
+                    "Sale price 60% marge");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "salePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "margin", Map.of("name", "70% marge")
+                    ),
+                    "salePrice",
+                    "Sale price 70% marge");
+            mappingService.setComponentValue(
+                    cursor,
+                    extraction,
+                    "salePrices",
+                    Map.of(
+                            "extraction", extraction,
+                            "margin", Map.of("name", "100% marge")
+                    ),
+                    "salePrice",
+                    "Sale price 100% marge");
+            return extractionRepo.save(extraction);
     }
 
     private Extraction getExtraction() {

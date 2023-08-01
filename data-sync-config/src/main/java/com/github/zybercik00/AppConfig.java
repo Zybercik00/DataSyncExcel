@@ -59,16 +59,16 @@ public class AppConfig {
     }
 
     @Bean
-    public EntityService entityService (EntityManager entityManager) {
-        return new EntityService(entityManager);
+    public MappingService mappingService (EntityManager entityManager) {
+        return new MappingService(entityManager);
     }
 
     @Bean
     public ExtractionService extractionService(
-            EntityService entityService,
+            MappingService mappingService,
             ExcelTableFactory excelTableFactory) {
         return new ExtractionService(
-                entityService,
+                mappingService,
                 excelTableFactory);
     }
 
