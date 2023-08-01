@@ -1,16 +1,20 @@
 package com.github.zybercik00;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.github.zybercik00.repository.proces.*;
 import jakarta.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@RequiredArgsConstructor
 public class AppConfig {
 
+    private final EntityManager entityManager;
     @Bean
     public MaterialService materialService(MaterialRepo materialRepo) {
         return new MaterialService(materialRepo);
@@ -59,7 +63,12 @@ public class AppConfig {
     }
 
     @Bean
-    public MappingService mappingService(EntityManager entityManager) {
+    public ObjectWriter objectWriter(ObjectMapper objectMapper) {
+        return objectMapper.writerWithDefaultPrettyPrinter();
+    }
+
+    @Bean
+    public MappingService mappingService() {
         return new MappingService(entityManager);
     }
 
@@ -92,16 +101,15 @@ public class AppConfig {
     public ExcelFileReader excelFileReader(
             ExtractionService extractionService,
             ExcelSheetProperties excelSheetProperties,
-            ObjectMapper objectMapper) {
+            ObjectWriter objectWriter) {
         return new ExcelFileReader(
                 extractionService,
                 excelSheetProperties,
-                objectMapper);
+                objectWriter);
     }
 
     @Bean
     public DataFormatter poiDataFormatter() {
-
         return new DataFormatter();
     }
 
