@@ -38,60 +38,97 @@ public class ExtractionService {
         // TODO Use list of value mappers from excel to entity
         // TODO Handle missing value
         {
-            String lot = cursor.getStringValue("Lot");
-            Material material = entityService.findEntityBy(Material.class, Map.of("lot", lot));
-            BeanUtils.setProperty(extraction, "material", material);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "material",
+                    Map.of("lot", "Lot"));
         }
         {
             // TODO depends on material mapping
-            String name = cursor.getStringValue("Name");
-            BeanUtils.setProperty(extraction, "material.name", name);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "material.name",
+                    "Name");
         }
 
         {
-            Date daterowValue = cursor.getDateValue("Made on");
-            BeanUtils.setProperty(extraction, "preparedOn", daterowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "preparedOn",
+                    "Made on");
         }
         {
-            BigDecimal numericrowValue = cursor.getNumericValue("Weight before");
-            BeanUtils.setProperty(extraction, "weightBefore", numericrowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "weightBefore",
+                    "Weight before");
         }
         {
-            BigDecimal numericrowValue = cursor.getNumericValue("Weight after");
-            BeanUtils.setProperty(extraction, "weightAfter", numericrowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "weightAfter",
+                    "Weight after");
         }
         {
-            BigDecimal numericrowValue = cursor.getNumericValue("Loss kg");
-            BeanUtils.setProperty(extraction, "waste.lossAfterExtractionInKG", numericrowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "waste.lossAfterExtractionInKg",
+                    "Loss kg");
         }
         {
-            BigDecimal numericrowValue = cursor.getNumericValue("Loss %");
-            BeanUtils.setProperty(extraction, "waste.lossAfterExtractionInPercent", numericrowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "waste.lossAfterExtractionInPercent",
+                    "Loss %");
         }
         {
-            String stringrowValue = cursor.getStringValue("Prepared by");
-            Employee employee = entityService.findEntityBy(Employee.class, Map.of("name", stringrowValue));
-            BeanUtils.setProperty(extraction, "realizedBy", employee);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "realizedBy",
+                    Map.of("name", "Prepared by"));
         }
         {
-            Date daterowValue = cursor.getDateValue("Received back");
-            BeanUtils.setProperty(extraction, "recivedBackOn", daterowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "receivedBackOn",
+                    "Received back");
         }
         {
-            BigDecimal numericrowValue = cursor.getNumericValue("Result of the tested sample");
-            BeanUtils.setProperty(extraction, "sampleTestResult", numericrowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "sampleTestResult",
+                    "Result of the tested sample");
         }
         {
-            BigDecimal numericrowValue = cursor.getNumericValue("Packed kg");
-            BeanUtils.setProperty(extraction, "waste.packedKg", numericrowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "waste.packedKg",
+                    "Packed kg");
         }
         {
-            BigDecimal numericrowValue = cursor.getNumericValue("Aggregate loss kg");
-            BeanUtils.setProperty(extraction, "waste.lossTotalKg", numericrowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "waste.lossTotalKg",
+                    "Aggregate loss kg");
         }
         {
-            BigDecimal numericrowValue = cursor.getNumericValue("Aggregate loss %");
-            BeanUtils.setProperty(extraction, "waste.lossTotalPercents", numericrowValue);
+            entityService.setProperty(
+                    cursor,
+                    extraction,
+                    "waste.lossTotalPercents",
+                    "Aggregate loss %");
         }
         {
             BigDecimal price = cursor.getNumericValue("Purchase price EUR");
