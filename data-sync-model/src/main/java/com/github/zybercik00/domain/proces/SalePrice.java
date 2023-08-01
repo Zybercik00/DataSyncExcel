@@ -1,6 +1,8 @@
 package com.github.zybercik00.domain.proces;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,30 +26,28 @@ public class SalePrice {
     private Long id;
 
     @Column(name = "SALE_PRICE")
-    @JsonBackReference
+    @JsonFormat
     private BigDecimal salePrice;
 
     @JoinColumn(name = "CURRENCY")
     @ManyToOne
-    @JsonBackReference
     private Currency currency;
 
     @JoinColumn(name = "MARGIN")
     @ManyToOne
-    @JsonBackReference
     private Margin margin;
 
     @Column(name = "PURCHASE_PRICE")
-    @JsonBackReference
+    @JsonFormat
     private BigDecimal purchasePrice;
 
     @JoinColumn
     @OneToOne(mappedBy = "purchasePrice")
-    @JsonBackReference
+    @JsonIgnore
     private Price price;
 
     @JoinColumn(name = "EXTRACTION")
     @ManyToOne
-    @JsonBackReference
+    @JsonIgnore
     private Extraction extraction;
 }

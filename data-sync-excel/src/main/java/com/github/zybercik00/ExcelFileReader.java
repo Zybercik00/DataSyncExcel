@@ -2,6 +2,7 @@ package com.github.zybercik00;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.github.zybercik00.domain.proces.Extraction;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class ExcelFileReader implements CommandLineRunner {
 
     private final ExtractionService extractionService;
     private final ExcelSheetProperties properties;
-    private final ObjectMapper objectMapper;
+    private final ObjectWriter objectWriter;
     private URL excelResourceUrl;
 
     void initService() throws IOException {
@@ -63,7 +64,7 @@ public class ExcelFileReader implements CommandLineRunner {
 
     private String toJson(Extraction extraction) {
         try {
-            return objectMapper.writeValueAsString(extraction);
+            return objectWriter.writeValueAsString(extraction);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

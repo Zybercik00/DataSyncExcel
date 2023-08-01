@@ -1,15 +1,20 @@
 package com.github.zybercik00;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.github.zybercik00.repository.proces.*;
+import jakarta.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@RequiredArgsConstructor
 public class AppConfig {
 
+    private final EntityManager entityManager;
     @Bean
     public MaterialService materialService(MaterialRepo materialRepo) {
         return new MaterialService(materialRepo);
@@ -58,37 +63,53 @@ public class AppConfig {
     }
 
     @Bean
+    public ObjectWriter objectWriter(ObjectMapper objectMapper) {
+        return objectMapper.writerWithDefaultPrettyPrinter();
+    }
+
+    @Bean
+    public MappingService mappingService() {
+        return new MappingService(entityManager);
+    }
+
+    @Bean
+    public MappingAttributeService mappingAttributeService() {
+        return new MappingAttributeService();
+    }
+
+    @Bean
+    public ExtractionMappingService extractionMappingService() {
+        return new ExtractionMappingService();
+    }
+
+    @Bean
     public ExtractionService extractionService(
             ExtractionRepo extractionRepo,
-            WasteRepo wasteRepo,
-            MaterialService materialService,
-            EmployeeService employeeService,
-            PurchasePriceService purchasePriceService,
-            SalePriceService salePriceService,
-            ExcelTableFactory excelTableFactory) {
+            MappingService mappingService,
+            ExcelTableFactory excelTableFactory,
+            MappingAttributeService attributeService,
+            ExtractionMappingService extractionMappingService) {
         return new ExtractionService(
                 extractionRepo,
-                materialService,
-                employeeService,
-                purchasePriceService,
-                salePriceService,
-                excelTableFactory);
+                mappingService,
+                excelTableFactory,
+                attributeService,
+                extractionMappingService);
     }
 
     @Bean(initMethod = "initService")
     public ExcelFileReader excelFileReader(
             ExtractionService extractionService,
             ExcelSheetProperties excelSheetProperties,
-            ObjectMapper objectMapper) {
+            ObjectWriter objectWriter) {
         return new ExcelFileReader(
                 extractionService,
                 excelSheetProperties,
-                objectMapper);
+                objectWriter);
     }
 
     @Bean
     public DataFormatter poiDataFormatter() {
-
         return new DataFormatter();
     }
 

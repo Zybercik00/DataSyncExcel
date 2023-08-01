@@ -67,7 +67,8 @@ public class ExcelTableWithHeader {
         }
 
         public String getStringValue(String column) {
-            Cell cell = row.getCell(header.get(column));
+            int cellnum = Objects.requireNonNull(header.get(column), column);
+            Cell cell = row.getCell(cellnum);
             return dataFormatter.formatCellValue(cell);
         }
     }
