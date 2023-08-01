@@ -35,7 +35,7 @@ public class MappingService {
                         "e" + "." + attribute + "=:" + attribute)
                 .collect(Collectors.joining(" and "));
         TypedQuery<T> query = entityManager.createQuery(
-                "select " + "e"+" from " + entityName + " " + "e" + " " +
+                "select " + "e" + " from " + entityName + " " + "e" + " " +
                         "where " + filters, entityClass);
 
         T entity = entityClass.getConstructor().newInstance();
@@ -89,60 +89,85 @@ public class MappingService {
                 .orElseThrow();
     }
 
+    void setValue(ExcelTableWithHeader.Cursor cursor,
+                  Object target,
+                  MappingAttribute attribute,
+                  String columnName) {
+        if ( attribute instanceof SimpleMappingAttribute simpleMappingAttribute) {
+            setValue(cursor, target, simpleMappingAttribute, columnName);
+        } else if (attribute instanceof ReferenceMappingAttribute referenceMappingAttribute ) {
+            setValue(cursor, target, referenceMappingAttribute, columnName);
+        } else if ( attribute instanceof QualifierMappingAttribute qualifierMappingAttribute ) {
+            setValue(cursor, target, qualifierMappingAttribute, columnName);
+        }
+    }
+
+
     @SneakyThrows
-    void setProperty(ExcelTableWithHeader.Cursor cursor,
-                     Object target,
-                     String targetProperty,
-                     Map<String, String> lookupProperties) {
-        Class<?> propertyType = PropertyUtils.getPropertyType(target, targetProperty);
-        Map<String, Object> lookup = getLookup(cursor, lookupProperties);
+    private void setReferenceValue(ExcelTableWithHeader.Cursor cursor,
+                                   Object target,
+                                   ReferenceMappingAttribute attribute,
+                                   String columnName) {
+        Class<?> propertyType = PropertyUtils.getPropertyType(target, attribute.getTargetProperty());
+        Map<String, Object> lookup = getLookup(cursor, Map.of(attribute.getNestedProperty(), columnName));
         Object entity = findEntityBy(propertyType, lookup);
-        BeanUtils.setProperty(target, targetProperty, entity);
+        BeanUtils.setProperty(target, attribute.getTargetProperty(), entity);
     }
 
     @SneakyThrows
-    void setProperty(ExcelTableWithHeader.Cursor cursor,
-                     Object target,
-                     String targetProperty,
-                     String columnName) {
+    private void setValue(ExcelTableWithHeader.Cursor cursor,
+                          Object target,
+                          SimpleMappingAttribute attribute,
+                          String columnName) {
+        String targetProperty = attribute.getTargetProperty();
+        setValue(cursor, target, columnName, targetProperty);
+    }
+
+    @SneakyThrows
+    private void setValue(ExcelTableWithHeader.Cursor cursor,
+                          Object target,
+                          String columnName,
+                          String targetProperty) {
         Class<?> propertyType = PropertyUtils.getPropertyType(target, targetProperty);
+        // TODO Handle missing value
         Object value = valueForType(cursor, propertyType).apply(columnName);
         BeanUtils.setProperty(target, targetProperty, value);
     }
 
     @SneakyThrows
-    void setComponentValue(
+    private void setQualifiedValue(
             ExcelTableWithHeader.Cursor cursor,
             Object target,
-            String targetProperty,
-            Map<String, Object> componentLookup,
-            String componentProperty,
+            QualifierMappingAttribute attribute,
             String columnName) {
-        Class<?> propertyType = PropertyUtils.getPropertyType(target, targetProperty);
-        if ( Collection.class.isAssignableFrom(propertyType) ) {
-            PropertyDescriptor propertyDescriptor = PropertyUtils.getPropertyDescriptor(target, targetProperty);
+        Class<?> propertyType = PropertyUtils.getPropertyType(target, attribute.getTargetProperty());
+        if (Collection.class.isAssignableFrom(propertyType)) {
+            PropertyDescriptor propertyDescriptor = PropertyUtils.getPropertyDescriptor(target, attribute.getTargetProperty());
             Method readMethod = propertyDescriptor.getReadMethod();
             Type genericReturnType = readMethod.getGenericReturnType();
             Class<?> componentType = (Class<?>) ((ParameterizedType) genericReturnType).getActualTypeArguments()[0];
 
-            Object componentBean = findEntityBy(componentType, componentLookup);
-            setProperty(cursor, componentBean, componentProperty, columnName);
+            Map<String, Object> qualifierLookup = new HashMap<>(attribute.getQualifier());
+            qualifierLookup.put(attribute.getQualifierParent(), target);
+            Object componentBean = findEntityBy(componentType, qualifierLookup);
+            setValue(cursor, componentBean, attribute.getQualifierProperty(), columnName);
 
             @SuppressWarnings("unchecked")
-            Collection<Object> components = (Collection<Object>) PropertyUtils.getProperty(target, targetProperty);
+            Collection<Object> components = (Collection<Object>) PropertyUtils.getProperty(target, attribute.getTargetProperty());
             components.add(componentBean);
         } else {
             Object componentBean = findEntityBy(
                     propertyType,
-                    componentLookup);
-            setProperty(cursor, componentBean,
-                    componentProperty, columnName);
-            BeanUtils.setProperty(target, targetProperty, componentBean);
+                    attribute.getQualifier());
+            setValue(cursor, componentBean,
+                    attribute.getQualifierProperty(), columnName);
+            BeanUtils.setProperty(target, attribute.getTargetProperty(), componentBean);
         }
 
     }
 
-    private Function<String,?> valueForType(
+
+    private Function<String, ?> valueForType(
             ExcelTableWithHeader.Cursor cursor,
             Class<?> propertyType) {
         if (propertyType == String.class) {
@@ -157,7 +182,7 @@ public class MappingService {
         return cursor::getStringValue;
     }
 
-    private static Map<String, Object> getLookup(
+    private Map<String, Object> getLookup(
             ExcelTableWithHeader.Cursor cursor,
             Map<String, String> lookupProperties) {
         // TODO Use stream

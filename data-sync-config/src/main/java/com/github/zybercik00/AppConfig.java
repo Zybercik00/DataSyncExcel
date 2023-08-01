@@ -66,10 +66,14 @@ public class AppConfig {
     @Bean
     public ExtractionService extractionService(
             MappingService mappingService,
-            ExcelTableFactory excelTableFactory) {
+            ExcelTableFactory excelTableFactory,
+            MappingAttributeService attributeService,
+            ExtractionMappingService extractionMappingService) {
         return new ExtractionService(
                 mappingService,
-                excelTableFactory);
+                excelTableFactory,
+                attributeService,
+                extractionMappingService);
     }
 
     @Bean(initMethod = "initService")
