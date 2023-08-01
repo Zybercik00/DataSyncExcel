@@ -35,6 +35,7 @@
         <h2.version>2.1.214</h2.version>
         <mockito-core.version>4.11.0</mockito-core.version>
         <jackson.version>2.15.2</jackson.version>
+        <liquibase-core.version>4.23.0</liquibase-core.version>
     </properties>
 
     <dependencyManagement>
@@ -202,6 +203,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.3.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.23.0</version>
+                <configuration>
+                    <driver>org.h2.Driver</driver>
+                    <url>jdbc:h2:file:./data/DataSyncExcel</url>
+                    <username>sa</username>
+                    <password>password</password>
+                    <outputChangeLogFile>data-sync-app/src/main/resources/liquibase-outputChangeLog.xml</outputChangeLogFile>
+                </configuration>
             </plugin>
         </plugins>
     </build>
