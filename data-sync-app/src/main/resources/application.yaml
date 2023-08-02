@@ -11,6 +11,8 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password: password
+    liquibase:
+      change-log=classpath:db/changelog/db.changelog-master.xml
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     generate-ddl: true
