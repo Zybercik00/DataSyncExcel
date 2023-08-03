@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "MAPPING_ATTRIBUTE_ENTITY")
+@Table(name = "MAPPING_ENTITY")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -12,14 +12,16 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class MappingAttributeEntity {
+public class MappingEntity {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "PATH")
-    private String path;
-    @Column(name = "TARGET_PROPERTY")
-    private String targetProperty;
+    //excel
+    @Column(name = "SOURCE")
+    private String source;
+    //db attribute
+    @Column(name = "TARGET")
+    private String target;
 
 }

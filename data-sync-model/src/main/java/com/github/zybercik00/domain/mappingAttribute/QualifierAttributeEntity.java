@@ -4,21 +4,17 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "QUALIFIER_MAPPING_ATTRIBUTE_ENTITY")
+@Table(name = "QUALIFIER_ATTRIBUTE")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString
-public class QualifierMappingAttributeEntity {
+public class QualifierAttributeEntity extends AttributeEntity {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-    @Column(name = "PATH")
-    private String path;
+
     @Column(name = "TARGET_PROPERTY")
     private String targetProperty;
     @Column(name = "QUALIFIER")

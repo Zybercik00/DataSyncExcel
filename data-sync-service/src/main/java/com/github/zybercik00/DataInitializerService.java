@@ -2,9 +2,9 @@ package com.github.zybercik00;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.zybercik00.domain.mappingAttribute.MappingAttributeEntity;
-import com.github.zybercik00.domain.mappingAttribute.QualifierMappingAttributeEntity;
-import com.github.zybercik00.domain.mappingAttribute.ReferenceMappingAttributeEntity;
+import com.github.zybercik00.domain.mappingAttribute.MappingEntity;
+import com.github.zybercik00.domain.mappingAttribute.QualifierAttributeEntity;
+import com.github.zybercik00.domain.mappingAttribute.ReferenceAttributeEntity;
 import com.github.zybercik00.repository.mappingattribute.MappingAttributeRepo;
 import com.github.zybercik00.repository.mappingattribute.QualifierMappingAttributeRepo;
 import com.github.zybercik00.repository.mappingattribute.ReferenceMappingAttributeRepo;
@@ -42,8 +42,8 @@ public class DataInitializerService {
         );
 
         for (String path : mappingPaths) {
-            MappingAttributeEntity mappingAttribute = new MappingAttributeEntity();
-            mappingAttribute.setPath(path);
+            MappingEntity mappingAttribute = new MappingEntity();
+            mappingAttribute.setSource(path);
             mappingAttributeRepo.save(mappingAttribute);
         }
 
@@ -53,7 +53,7 @@ public class DataInitializerService {
         );
 
         for (Map<String, String> mapping: referenceMappings) {
-            ReferenceMappingAttributeEntity referenceEntity = new ReferenceMappingAttributeEntity();
+            ReferenceAttributeEntity referenceEntity = new ReferenceAttributeEntity();
             referenceEntity.setTargetProperty(mapping.get("targetProperty"));
             referenceEntity.setNestedProperty(mapping.get("nestedProperty"));
             referenceMappingAttributeRepo.save(referenceEntity);
@@ -66,7 +66,7 @@ public class DataInitializerService {
         );
 
         for (Map<String, String> mapping: qualifierMappings) {
-            QualifierMappingAttributeEntity qualifierEntity = new QualifierMappingAttributeEntity();
+            QualifierAttributeEntity qualifierEntity = new QualifierAttributeEntity();
             qualifierEntity.setTargetProperty(mapping.get("targetProperty"));
             qualifierEntity.setQualifierProperty(mapping.get("qualifierProperty"));
             qualifierEntity.setQualifierParent(mapping.get("qualifierParent"));

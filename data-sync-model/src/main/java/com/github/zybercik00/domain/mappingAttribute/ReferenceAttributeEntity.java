@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "REFERENCE_MAPPING_ATTRIBUTE_ENTITY")
+@Table(name = "REFERENCE_ATTRIBUTE")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -12,13 +12,11 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class ReferenceMappingAttributeEntity {
+public class ReferenceAttributeEntity {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "PATH")
-    private String path;
     @Column(name = "TARGET_PROPERTY")
     private String targetProperty;
     @Column(name = "NESTED_PROPERTY")
