@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AttributeMappings",
+  "type": "object",
+  "properties": {
+    "mappings": {
+      "type": "array",
+      "title": "AttributeMappingList",
+      "items": {
+        "type": "object",
+        "title": "AttributeMapping",
+        "properties": {
+          "target": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "target",
+          "source"
+        ],
+        "additionalItems": false
+      }
+    }
+  },
+  "required": [
+    "mappings"
+  ],
+  "additionalItems": false
+}

@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Attributes",
+  "type": "object",
+  "properties": {
+    "attributes": {
+      "type": "object",
+      "title": "AttributeMap",
+      "simple": {
+        "type": "array",
+        "title": "SimpleAttributeList",
+        "items": {
+          "type": "object",
+          "title": "SimpleAttribute",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "targetProperty": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "targetProperty"
+          ],
+          "additionalItems": false
+        }
+      },
+      "reference": {
+        "type": "array",
+        "title": "ReferenceAttributeList",
+        "items": {
+          "type": "object",
+          "title": "ReferenceAttribute",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "targetProperty": {
+              "type": "string"
+            },
+            "nestedProperty": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "targetProperty",
+            "nestedProperty"
+          ],
+          "additionalItems": false
+        }
+      },
+      "qualified": {
+        "type": "array",
+        "title": "QualifiedAttributeList",
+        "items": {
+          "type": "object",
+          "title": "QualifiedAttribute",
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "targetProperty": {
+              "type": "string"
+            },
+            "qualifier": {
+              "type": "object",
+              "title": "Qualifier",
+              "properties": {
+                "nestedProperty": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "array",
+                  "title": "QualifierValueList",
+                  "items": {
+                    "type": "object",
+                    "title": "QualifierValue",
+                    "properties": {
+                      "key": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "key",
+                      "value"
+                    ],
+                    "additionalItems": false
+                  }
+                }
+              },
+              "required": [
+                "nestedProperty",
+                "value"
+              ],
+              "additionalItems": false
+            }
+          },
+          "required": [
+            "path",
+            "targetProperty",
+            "qualifier"
+          ],
+          "additionalItems": false
+        }
+      }
+    },
+    "required": [
+      "simple",
+      "reference",
+      "qualified"
+    ],
+    "additionalItems": false
+  },
+  "required": [
+    "attributes"
+  ],
+  "additionalItems": false
+}
