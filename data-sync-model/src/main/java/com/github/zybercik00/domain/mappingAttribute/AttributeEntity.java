@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "SIMPLE_ATTRIBUTE")
+// TODO Performance
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "ATTRIBUTE")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.zybercik00.domain.mappingAttribute.MappingEntity;
 import com.github.zybercik00.domain.mappingAttribute.QualifierAttributeEntity;
 import com.github.zybercik00.domain.mappingAttribute.ReferenceAttributeEntity;
-import com.github.zybercik00.repository.mappingattribute.MappingAttributeRepo;
-import com.github.zybercik00.repository.mappingattribute.QualifierMappingAttributeRepo;
-import com.github.zybercik00.repository.mappingattribute.ReferenceMappingAttributeRepo;
+import com.github.zybercik00.domain.mappingAttribute.SimpleAttributeEntity;
+import com.github.zybercik00.repository.mappingattribute.MappingRepo;
+import com.github.zybercik00.repository.mappingattribute.AttributeRepo;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,9 +20,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class DataInitializerService {
 
-    private final MappingAttributeRepo mappingAttributeRepo;
-    private final ReferenceMappingAttributeRepo referenceMappingAttributeRepo;
-    private final QualifierMappingAttributeRepo qualifierMappingAttributeRepo;
+    private final MappingRepo mappingRepo;
+    private final AttributeRepo attributeRepo;
     private final ObjectMapper objectMapper;
 
     @PostConstruct
@@ -44,7 +43,7 @@ public class DataInitializerService {
         for (String path : mappingPaths) {
             MappingEntity mappingAttribute = new MappingEntity();
             mappingAttribute.setSource(path);
-            mappingAttributeRepo.save(mappingAttribute);
+            mappingRepo.save(mappingAttribute);
         }
 
         List<Map<String, String>> referenceMappings = Arrays.asList(
@@ -75,7 +74,7 @@ public class DataInitializerService {
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
-            qualifierMappingAttributeRepo.save(qualifierEntity);
+            attributeRepo.save(qualifierEntity);
         }
 
     }

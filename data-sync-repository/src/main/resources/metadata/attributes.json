@@ -1,0 +1,48 @@
+{
+  "attributes": {
+    "simple": [
+      {
+        "path": "material.name",
+        "targetProperty": "material.name"
+      },
+      {
+        "path": "preparedOn",
+        "targetProperty": "preparedOn"
+      }
+    ],
+    "reference": [
+      {
+        "path": "material",
+        "targetProperty": "material",
+        "nestedProperty": "lot"
+      },
+      {
+        "path": "realizedBy",
+        "targetProperty": "realizedBy",
+        "nestedProperty": "name"
+      }
+    ],
+    "qualified": [
+      {
+        "path": "purchasePrices[currency.code='EUR']",
+        "targetProperty": "purchasePrices",
+        "qualifier": {"currency":  {"code": "EUR"}}
+      },
+      {
+        "path": "purchasePrices[currency.code='CHF']",
+        "targetProperty": "purchasePrices",
+        "qualifier": {"currency":  {"code": "CHF"}}
+      },
+      {
+        "path": "salePrices[margin.name='10% marge']",
+        "targetProperty": "salePrices",
+        "qualifier": {"margin":  {"name": "10% marge"}}
+      },
+      {
+        "path": "salePrices[margin.name='70% marge']",
+        "targetProperty": "salePrices",
+        "qualifier": {"margin":  {"name": "70% marge"}}
+      }
+    ]
+  }
+}

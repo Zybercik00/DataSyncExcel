@@ -17,11 +17,12 @@ public class MappingEntity {
     @Id
     @GeneratedValue
     private Long id;
+
     //excel
     @Column(name = "SOURCE")
     private String source;
-    //db attribute
+
     @Column(name = "TARGET")
-    private String target;
+    private AttributeEntity target;
 
 }
