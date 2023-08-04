@@ -21,7 +21,8 @@ public class MappingEntity {
     @Column(name = "SOURCE")
     private String source;
     //db attribute
-    @Column(name = "TARGET")
-    private String target;
+    @JoinColumn(name = "TARGET")
+    @ManyToOne
+    private AttributeEntity target;
 
 }

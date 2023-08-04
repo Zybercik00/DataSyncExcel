@@ -2,16 +2,18 @@ package com.github.zybercik00.domain.mappingAttribute;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "QUALIFIER_ATTRIBUTE")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString
+@DiscriminatorValue("3")
 public class QualifierAttributeEntity extends AttributeEntity {
 
 
