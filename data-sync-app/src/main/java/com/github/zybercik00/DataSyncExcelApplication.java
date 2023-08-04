@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EntityScan("com.github.zybercik00.domain")
+@EntityScan("com.github.zybercik00.entity")
 @EnableJpaRepositories(basePackages = "com.github.zybercik00.repository")
 @SpringBootApplication
 public class DataSyncExcelApplication {

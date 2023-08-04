@@ -1,4 +1,4 @@
-package com.github.zybercik00.metadata;
+package com.github.zybercik00.entity.metadata;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,9 +11,9 @@ import lombok.*;
 @ToString
 public class ReferenceAttributeEntity extends AttributeEntity {
 
-    @Column(name = "TARGET_PROPERTY")
+    @Column(name = "TARGET_PROPERTY", length = 32)
     private String targetProperty;
 
-    @Column(name = "NESTED_PROPERTY")
+    @Column(name = "NESTED_PROPERTY", length = 32)
     private String nestedProperty;
 }

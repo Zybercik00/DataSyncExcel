@@ -1,6 +1,6 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Margin;
+import com.github.zybercik00.entity.process.Margin;
 import com.github.zybercik00.repository.proces.MarginRepo;
 import lombok.RequiredArgsConstructor;
 

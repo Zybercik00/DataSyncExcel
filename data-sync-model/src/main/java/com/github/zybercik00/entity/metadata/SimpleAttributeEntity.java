@@ -1,4 +1,4 @@
-package com.github.zybercik00.metadata;
+package com.github.zybercik00.entity.metadata;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import lombok.*;
 public class SimpleAttributeEntity extends AttributeEntity {
 
     //db attribute
-    @Column(name = "TARGET_PROPERTY")
+    @Column(name = "TARGET_PROPERTY", length = 32)
     private String targetProperty;
 
 }

@@ -26,54 +26,46 @@
       {
         "path": "purchasePrices[currency.code='EUR']",
         "targetProperty": "purchasePrices",
-        "qualifier": {
-          "nestedProperty": "currency",
-          "value": [
-            {
-              "key": "code",
-              "value": "EUR"
-            }
-          ]
-        }
+        "qualifierProperty": "currency",
+        "qualifierValue": [
+          {
+            "key": "code",
+            "value": "EUR"
+          }
+        ]
       },
       {
         "path": "purchasePrices[currency.code='CHF']",
         "targetProperty": "purchasePrices",
-        "qualifier": {
-          "nestedProperty": "currency",
-          "value": [
-            {
-              "key": "code",
-              "value": "CHF"
-            }
-          ]
-        }
+        "qualifierProperty": "currency",
+        "qualifierValue": [
+          {
+            "key": "code",
+            "value": "CHF"
+          }
+        ]
       },
       {
         "path": "salePrices[margin.name='10% marge']",
         "targetProperty": "salePrices",
-        "qualifier": {
-          "nestedProperty": "margin",
-          "value": [
-            {
-              "key": "name",
-              "value": "10% marge"
-            }
-          ]
-        }
+        "qualifierProperty": "margin",
+        "qualifierValue": [
+          {
+            "key": "name",
+            "value": "10% marge"
+          }
+        ]
       },
       {
         "path": "salePrices[margin.name='70% marge']",
         "targetProperty": "salePrices",
-        "qualifier": {
-          "nestedProperty": "margin",
-          "value": [
-            {
-              "key": "name",
-              "value": "70% marge"
-            }
-          ]
-        }
+        "qualifierProperty": "margin",
+        "qualifierValue": [
+          {
+            "key": "name",
+            "value": "70% marge"
+          }
+        ]
       }
     ]
   }

@@ -1,4 +1,4 @@
-package com.github.zybercik00.metadata;
+package com.github.zybercik00.entity.metadata;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,7 +17,7 @@ public class AttributeEntity {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "PATH")
+    @Column(name = "PATH", length = 1024)
     @EqualsAndHashCode.Include
     private String path;
 

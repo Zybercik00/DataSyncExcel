@@ -99,25 +99,10 @@
         "targetProperty": {
           "type": "string"
         },
-        "qualifier": {
-          "$ref": "#/$defs/Qualifier"
-        }
-      },
-      "required": [
-        "path",
-        "targetProperty",
-        "qualifier"
-      ],
-      "additionalItems": false
-    },
-    "Qualifier": {
-      "type": "object",
-      "title": "Qualifier",
-      "properties": {
-        "nestedProperty": {
+        "qualifierProperty": {
           "type": "string"
         },
-        "value": {
+        "qualifierValue": {
           "type": "array",
           "title": "QualifierValueList",
           "items": {
@@ -126,8 +111,10 @@
         }
       },
       "required": [
-        "nestedProperty",
-        "value"
+        "path",
+        "targetProperty",
+        "qualifierProperty",
+        "qualifierValue"
       ],
       "additionalItems": false
     },

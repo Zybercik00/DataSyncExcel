@@ -1,8 +1,8 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Extraction;
-import com.github.zybercik00.domain.proces.Margin;
-import com.github.zybercik00.domain.proces.SalePrice;
+import com.github.zybercik00.entity.process.Extraction;
+import com.github.zybercik00.entity.process.Margin;
+import com.github.zybercik00.entity.process.SalePrice;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;

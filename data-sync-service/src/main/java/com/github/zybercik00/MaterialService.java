@@ -1,6 +1,6 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Material;
+import com.github.zybercik00.entity.process.Material;
 import com.github.zybercik00.repository.proces.MaterialRepo;
 import lombok.RequiredArgsConstructor;
 
