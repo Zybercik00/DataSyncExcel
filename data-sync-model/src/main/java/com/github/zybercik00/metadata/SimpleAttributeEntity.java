@@ -1,17 +1,13 @@
-package com.github.zybercik00.domain.mappingAttribute;
+package com.github.zybercik00.metadata;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "SIMPLE_ATTRIBUTE")
-@NoArgsConstructor
-@AllArgsConstructor
-@SuperBuilder
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true)
 @ToString
 public class SimpleAttributeEntity extends AttributeEntity {
 

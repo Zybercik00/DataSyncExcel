@@ -1,24 +1,19 @@
-package com.github.zybercik00.domain.mappingAttribute;
+package com.github.zybercik00.metadata;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Table(name = "REFERENCE_ATTRIBUTE")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @ToString
-public class ReferenceAttributeEntity {
+public class ReferenceAttributeEntity extends AttributeEntity {
 
-    @Id
-    @GeneratedValue
-    private Long id;
     @Column(name = "TARGET_PROPERTY")
     private String targetProperty;
+
     @Column(name = "NESTED_PROPERTY")
     private String nestedProperty;
 }

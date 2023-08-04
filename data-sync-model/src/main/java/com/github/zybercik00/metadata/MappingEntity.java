@@ -1,16 +1,13 @@
-package com.github.zybercik00.domain.mappingAttribute;
+package com.github.zybercik00.metadata;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Table(name = "MAPPING_ENTITY")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class MappingEntity {
 
@@ -19,9 +16,11 @@ public class MappingEntity {
     private Long id;
 
     //excel
+    @EqualsAndHashCode.Include
     @Column(name = "SOURCE")
     private String source;
 
+    @EqualsAndHashCode.Include
     @Column(name = "TARGET")
     private AttributeEntity target;
 

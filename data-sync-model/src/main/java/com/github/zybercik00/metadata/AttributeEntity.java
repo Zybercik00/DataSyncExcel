@@ -1,4 +1,4 @@
-package com.github.zybercik00.domain.mappingAttribute;
+package com.github.zybercik00.metadata;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,9 +7,6 @@ import lombok.*;
 // TODO Performance
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "ATTRIBUTE")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -19,6 +16,7 @@ public class AttributeEntity {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(name = "PATH")
     @EqualsAndHashCode.Include
     private String path;
