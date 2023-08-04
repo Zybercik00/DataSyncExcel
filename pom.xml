@@ -12,6 +12,7 @@
     <modules>
         <module>data-sync-app</module>
         <module>data-sync-repository</module>
+        <module>data-sync-init</module>
         <module>data-sync-excel</module>
         <module>data-sync-model</module>
         <module>data-sync-service</module>
@@ -73,6 +74,11 @@
                 <artifactId>data-sync-config</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-init</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -114,6 +120,11 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
