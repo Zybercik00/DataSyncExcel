@@ -1,15 +1,5 @@
 {
   "attributes": {
-    "simple": [
-      {
-        "path": "material.name",
-        "targetProperty": "material.name"
-      },
-      {
-        "path": "preparedOn",
-        "targetProperty": "preparedOn"
-      }
-    ],
     "reference": [
       {
         "path": "material",
@@ -22,48 +12,220 @@
         "nestedProperty": "name"
       }
     ],
+    "simple": [
+      {
+        "path": "material.name",
+        "targetProperty": "material.name"
+      },
+      {
+        "path": "preparedOn",
+        "targetProperty": "preparedOn"
+      },
+      {
+        "path": "weightBefore",
+        "targetProperty": "weightBefore"
+      },
+      {
+        "path": "weightAfter",
+        "targetProperty": "weightAfter"
+      },
+      {
+        "path": "waste.lossAfterExtractionInKg",
+        "targetProperty": "waste.lossAfterExtractionInKg"
+      },
+      {
+        "path": "waste.lossAfterExtractionInPercent",
+        "targetProperty": "waste.lossAfterExtractionInPercent"
+      },
+      {
+        "path": "receivedBackOn",
+        "targetProperty": "receivedBackOn"
+      },
+      {
+        "path": "sampleTestResult",
+        "targetProperty": "sampleTestResult"
+      },
+      {
+        "path": "waste.packedKg",
+        "targetProperty": "waste.packedKg"
+      },
+      {
+        "path": "waste.lossTotalKg",
+        "targetProperty": "waste.lossTotalKg"
+      },
+      {
+        "path": "waste.lossTotalPercents",
+        "targetProperty": "waste.lossTotalPercents"
+      }
+    ],
     "qualified": [
       {
-        "path": "purchasePrices[currency.code='EUR']",
+        "path": "purchasePrices[extraction,currency[code='EUR']].purchasePrice",
         "targetProperty": "purchasePrices",
-        "qualifierProperty": "currency",
+        "qualifierProperty": "purchasePrice",
+        "qualifierParent": "extraction",
         "qualifierValue": [
           {
-            "key": "code",
-            "value": "EUR"
+            "key": "currency",
+            "value": [
+              {
+                "key": "code",
+                "value": "EUR"
+              }
+            ]
           }
         ]
       },
       {
-        "path": "purchasePrices[currency.code='CHF']",
+        "path": "purchasePrices[extraction,currency[code='CHF']].purchasePrice",
         "targetProperty": "purchasePrices",
-        "qualifierProperty": "currency",
+        "qualifierProperty": "purchasePrice",
+        "qualifierParent": "extraction",
         "qualifierValue": [
           {
-            "key": "code",
-            "value": "CHF"
+            "key": "currency",
+            "value": [
+              {
+                "key": "code",
+                "value": "CHF"
+              }
+            ]
           }
         ]
       },
       {
-        "path": "salePrices[margin.name='10% marge']",
+        "path": "salePrices[extraction,margin[name='10% marge']].salePrice",
         "targetProperty": "salePrices",
-        "qualifierProperty": "margin",
+        "qualifierProperty": "salePrice",
+        "qualifierParent": "extraction",
         "qualifierValue": [
           {
-            "key": "name",
-            "value": "10% marge"
+            "key": "margin",
+            "value": [
+              {
+                "key": "name",
+                "value": "10% marge"
+              }
+            ]
           }
         ]
       },
       {
-        "path": "salePrices[margin.name='70% marge']",
+        "path": "salePrices[extraction,margin[name='20% marge']].salePrice",
         "targetProperty": "salePrices",
-        "qualifierProperty": "margin",
+        "qualifierProperty": "salePrice",
+        "qualifierParent": "extraction",
         "qualifierValue": [
           {
-            "key": "name",
-            "value": "70% marge"
+            "key": "margin",
+            "value": [
+              {
+                "key": "name",
+                "value": "20% marge"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "salePrices[extraction,margin[name='30% marge']].salePrice",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrice",
+        "qualifierParent": "extraction",
+        "qualifierValue": [
+          {
+            "key": "margin",
+            "value": [
+              {
+                "key": "name",
+                "value": "30% marge"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "salePrices[extraction,margin[name='40% marge']].salePrice",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrice",
+        "qualifierParent": "extraction",
+        "qualifierValue": [
+          {
+            "key": "margin",
+            "value": [
+              {
+                "key": "name",
+                "value": "40% marge"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "salePrices[extraction,margin[name='50% marge']].salePrice",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrice",
+        "qualifierParent": "extraction",
+        "qualifierValue": [
+          {
+            "key": "margin",
+            "value": [
+              {
+                "key": "name",
+                "value": "50% marge"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "salePrices[extraction,margin[name='60% marge']].salePrice",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrice",
+        "qualifierParent": "extraction",
+        "qualifierValue": [
+          {
+            "key": "margin",
+            "value": [
+              {
+                "key": "name",
+                "value": "60% marge"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "salePrices[extraction,margin[name='70% marge']].salePrice",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrice",
+        "qualifierParent": "extraction",
+        "qualifierValue": [
+          {
+            "key": "margin",
+            "value": [
+              {
+                "key": "name",
+                "value": "70% marge"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "path": "salePrices[extraction,margin[name='100% marge']].salePrice",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrice",
+        "qualifierParent": "extraction",
+        "qualifierValue": [
+          {
+            "key": "margin",
+            "value": [
+              {
+                "key": "name",
+                "value": "100% marge"
+              }
+            ]
           }
         ]
       }

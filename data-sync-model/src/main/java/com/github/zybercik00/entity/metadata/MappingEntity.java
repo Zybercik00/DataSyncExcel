@@ -1,5 +1,6 @@
 package com.github.zybercik00.entity.metadata;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,11 +18,11 @@ public class MappingEntity {
 
     //excel
     @EqualsAndHashCode.Include
-    @Column(name = "SOURCE", length = 32)
+    @Column(name = "SOURCE", length = 32, nullable = false)
     private String source;
 
     @EqualsAndHashCode.Include
-    @JoinColumn(name = "TARGET")
+    @JoinColumn(name = "TARGET", nullable = false)
     @ManyToOne
     private AttributeEntity target;
 

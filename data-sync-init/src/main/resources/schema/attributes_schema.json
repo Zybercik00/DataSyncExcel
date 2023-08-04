@@ -102,21 +102,28 @@
         "qualifierProperty": {
           "type": "string"
         },
+        "qualifierParent": {
+          "type": "string"
+        },
         "qualifierValue": {
-          "type": "array",
-          "title": "QualifierValueList",
-          "items": {
-            "$ref": "#/$defs/QualifierValue"
-          }
+          "$ref": "#/$defs/QualifierValueList"
         }
       },
       "required": [
         "path",
         "targetProperty",
         "qualifierProperty",
+        "qualifierParent",
         "qualifierValue"
       ],
       "additionalItems": false
+    },
+    "QualifierValueList": {
+      "type": "array",
+      "title": "QualifierValueList",
+      "items": {
+        "$ref": "#/$defs/QualifierValue"
+      }
     },
     "QualifierValue": {
       "type": "object",
@@ -126,7 +133,14 @@
           "type": "string"
         },
         "value": {
-          "type": "string"
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/$defs/QualifierValueList"
+            }
+          ]
         }
       },
       "required": [

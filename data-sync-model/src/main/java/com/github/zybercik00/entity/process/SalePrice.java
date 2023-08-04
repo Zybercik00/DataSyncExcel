@@ -28,25 +28,13 @@ public class SalePrice {
     @JsonFormat
     private BigDecimal salePrice;
 
-    @JoinColumn(name = "CURRENCY")
-    @ManyToOne
-    private Currency currency;
-
     @JoinColumn(name = "MARGIN")
     @ManyToOne
     private Margin margin;
 
-    @Column(name = "PURCHASE_PRICE")
-    @JsonFormat
-    private BigDecimal purchasePrice;
-
-    @JoinColumn
-    @OneToOne(mappedBy = "purchasePrice")
-    @JsonIgnore
-    private Price price;
-
     @JoinColumn(name = "EXTRACTION")
     @ManyToOne
     @JsonIgnore
+    @ToString.Exclude
     private Extraction extraction;
 }

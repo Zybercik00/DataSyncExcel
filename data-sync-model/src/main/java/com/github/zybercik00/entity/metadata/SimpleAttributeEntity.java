@@ -11,8 +11,4 @@ import lombok.*;
 @ToString
 public class SimpleAttributeEntity extends AttributeEntity {
 
-    //db attribute
-    @Column(name = "TARGET_PROPERTY", length = 32)
-    private String targetProperty;
-
 }

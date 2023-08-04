@@ -13,14 +13,16 @@ import java.util.List;
 @ToString
 public class QualifiedAttributeEntity extends AttributeEntity {
 
-    @EqualsAndHashCode.Include
-    @Column(name = "TARGET_PROPERTY", length = 32)
-    private String targetProperty;
-
-    @Column(name = "PROPERTY", length = 32)
+    @Column(name = "QUALIFIER_PROPERTY", length = 128, nullable = false)
     @EqualsAndHashCode.Include
     private String qualifierProperty;
 
-    @OneToMany(mappedBy = "attribute", cascade = {CascadeType.PERSIST})
+    @Column(name = "PARENT_PROPERTY", length = 128, nullable = false)
+    @EqualsAndHashCode.Include
+    private String qualifierParent;
+
+    @OneToMany(mappedBy = "attribute",
+            cascade = {CascadeType.PERSIST},
+            fetch = FetchType.EAGER)
     private List<QualifierValueEntity> values;
 }

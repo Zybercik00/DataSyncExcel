@@ -78,28 +78,18 @@ public class AppConfig {
     }
 
     @Bean
-    public MappingAttributeService mappingAttributeService() {
-        return new MappingAttributeService();
-    }
-
-    @Bean
-    public ExtractionMappingService extractionMappingService() {
-        return new ExtractionMappingService();
-    }
-
-    @Bean
     public ExtractionService extractionService(
             ExtractionRepo extractionRepo,
+            MappingRepo mappingRepo,
             MappingService mappingService,
             ExcelTableFactory excelTableFactory,
-            MappingAttributeService attributeService,
-            ExtractionMappingService extractionMappingService) {
+            ObjectMapper objectMapper) {
         return new ExtractionService(
                 extractionRepo,
+                mappingRepo,
                 mappingService,
                 excelTableFactory,
-                attributeService,
-                extractionMappingService);
+                objectMapper);
     }
 
     @Bean(initMethod = "initService")
@@ -141,8 +131,8 @@ public class AppConfig {
     }
 
     @Bean
-    public AttributeEntityFactory attributeEntityFactory() {
-        return new AttributeEntityFactory();
+    public AttributeEntityFactory attributeEntityFactory(ObjectMapper objectMapper) {
+        return new AttributeEntityFactory(objectMapper);
     }
 
     @Bean

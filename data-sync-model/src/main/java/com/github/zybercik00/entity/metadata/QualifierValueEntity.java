@@ -1,5 +1,6 @@
 package com.github.zybercik00.entity.metadata;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,15 +21,16 @@ public class QualifierValueEntity {
 
     @EqualsAndHashCode.Include
     @ManyToOne
-    @JoinColumn(name = "ATTRIBUTE_ID")
+    @JoinColumn(name = "ATTRIBUTE_ID", nullable = false)
     @ToString.Exclude
     private QualifiedAttributeEntity attribute;
 
-    @Column(name = "QCODE", length = 32)
+    @Column(name = "QCODE", length = 32, nullable = false)
     @EqualsAndHashCode.Include
     private String code;
 
-    @Column(name = "QVALUE", length = 1024)
+    @Column(name = "QVALUE", length = 1024, nullable = false)
     @EqualsAndHashCode.Include
-    private String value;
+    @Convert(converter = JsonNodeConverter.class)
+    private JsonNode value;
 }

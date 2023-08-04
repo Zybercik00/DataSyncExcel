@@ -86,16 +86,16 @@ public class MappingService {
                 .orElseThrow(() -> new NoSuchElementException(entityClasss.getName()));
     }
 
-    void setSimpleValue(ExcelTableWithHeader.Cursor cursor,
-                        Object target,
-                        MappingAttribute attribute,
-                        String columnName) {
+    void setValue(ExcelTableWithHeader.Cursor cursor,
+                  Object target,
+                  String source,
+                  MappingAttribute attribute) {
         if ( attribute instanceof SimpleMappingAttribute simpleMappingAttribute) {
-            setSimpleValue(cursor, target, simpleMappingAttribute, columnName);
+            setSimpleValue(cursor, target, simpleMappingAttribute, source);
         } else if (attribute instanceof ReferenceMappingAttribute referenceMappingAttribute ) {
-            setReferenceValue(cursor, target, referenceMappingAttribute, columnName);
+            setReferenceValue(cursor, target, referenceMappingAttribute, source);
         } else if ( attribute instanceof QualifierMappingAttribute qualifierMappingAttribute ) {
-            setQualifiedValue(cursor, target, qualifierMappingAttribute, columnName);
+            setQualifiedValue(cursor, target, qualifierMappingAttribute, source);
         }
     }
 
@@ -144,8 +144,9 @@ public class MappingService {
             Type genericReturnType = readMethod.getGenericReturnType();
             Class<?> componentType = (Class<?>) ((ParameterizedType) genericReturnType).getActualTypeArguments()[0];
 
-            Map<String, Object> qualifierLookup = new HashMap<>(attribute.getQualifier());
+            Map<String, Object> qualifierLookup = new LinkedHashMap<>();
             qualifierLookup.put(attribute.getQualifierParent(), target);
+            qualifierLookup.putAll(attribute.getQualifier());
             Object componentBean = findEntityBy(componentType, qualifierLookup);
             setSimpleValue(cursor, componentBean, columnName, attribute.getQualifierProperty());
 

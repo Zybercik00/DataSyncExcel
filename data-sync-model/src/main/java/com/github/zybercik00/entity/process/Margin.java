@@ -28,5 +28,6 @@ public class Margin {
 
     @OneToMany(mappedBy = "margin")
     @JsonIgnore
+    @ToString.Exclude
     private List<SalePrice> prices;
 }

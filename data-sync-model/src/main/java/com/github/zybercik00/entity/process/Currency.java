@@ -28,5 +28,6 @@ public class Currency {
 
     @OneToMany(mappedBy = "currency")
     @JsonIgnore
+    @ToString.Exclude
     private List<PurchasePrice> purchasePrices;
 }

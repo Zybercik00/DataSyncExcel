@@ -32,13 +32,9 @@ public class PurchasePrice {
     @JsonFormat
     private BigDecimal purchasePrice;
 
-    @JoinColumn
-    @OneToOne(mappedBy = "purchasePrice")
-    @JsonIgnore
-    private Price price;
-
     @JoinColumn(name = "EXTRACTION")
     @ManyToOne
     @JsonIgnore
+    @ToString.Exclude
     private Extraction extraction;
 }

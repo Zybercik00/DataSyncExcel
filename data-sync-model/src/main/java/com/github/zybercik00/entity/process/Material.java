@@ -47,11 +47,6 @@ public class Material {
     private Warehouse warehouse;
 
 
-    @PrimaryKeyJoinColumn(name = "PRICE")
-    @OneToOne
-    private Price price;
-
-
     @JoinColumn(name = "SUPPILER")
     @ManyToOne
     private Supplier supplier;

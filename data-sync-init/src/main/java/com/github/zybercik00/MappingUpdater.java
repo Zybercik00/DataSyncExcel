@@ -21,6 +21,11 @@ public class MappingUpdater {
         for (AttributeMapping mapping : mappings.getMappings()) {
             String source = mapping.getSource();
             AttributeEntity target = attributeRepo.findByPath(mapping.getTarget());
+            if ( target == null ) {
+                throw new IllegalStateException("Missing attribute for mapping: " +
+                        "source = " + mapping.getSource() + ", " +
+                        "target = " + mapping.getTarget());
+            }
             MappingEntity persisted = mappingRepo.findBySourceAndTarget(source, target);
             if ( persisted != null ) {
                 continue;

@@ -11,9 +11,6 @@ import lombok.*;
 @ToString
 public class ReferenceAttributeEntity extends AttributeEntity {
 
-    @Column(name = "TARGET_PROPERTY", length = 32)
-    private String targetProperty;
-
-    @Column(name = "NESTED_PROPERTY", length = 32)
+    @Column(name = "NESTED_PROPERTY", length = 32, nullable = false)
     private String nestedProperty;
 }
