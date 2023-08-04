@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Builder
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class PurchasePrice {
 

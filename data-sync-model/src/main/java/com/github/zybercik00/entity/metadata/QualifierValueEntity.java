@@ -8,10 +8,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "QUALIFIER_VALUE")
+@Table(name = "QUALIFIER_VALUE",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_QUALIFIER_VALUE",
+                columnNames = {"ATTRIBUTE_ID", "QCODE"}))
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class QualifierValueEntity {
 
@@ -30,7 +33,6 @@ public class QualifierValueEntity {
     private String code;
 
     @Column(name = "QVALUE", length = 1024, nullable = false)
-    @EqualsAndHashCode.Include
     @Convert(converter = JsonNodeConverter.class)
     private JsonNode value;
 }

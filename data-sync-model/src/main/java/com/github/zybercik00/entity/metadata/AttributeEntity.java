@@ -6,7 +6,10 @@ import lombok.*;
 @Entity
 // TODO Performance
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "ATTRIBUTE")
+@Table(name = "ATTRIBUTE",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_ATTRIBUTE",
+                columnNames = "PATH"))
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

@@ -49,7 +49,6 @@
         }
       },
       "required": [
-        "path",
         "targetProperty"
       ],
       "additionalItems": false
@@ -76,7 +75,6 @@
         }
       },
       "required": [
-        "path",
         "targetProperty",
         "nestedProperty"
       ],
@@ -110,7 +108,6 @@
         }
       },
       "required": [
-        "path",
         "targetProperty",
         "qualifierProperty",
         "qualifierParent",

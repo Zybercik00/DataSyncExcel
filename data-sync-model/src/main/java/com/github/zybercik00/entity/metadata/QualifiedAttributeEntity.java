@@ -9,16 +9,14 @@ import java.util.List;
 @Table(name = "QUALIFIER_ATTRIBUTE")
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString
 public class QualifiedAttributeEntity extends AttributeEntity {
 
     @Column(name = "QUALIFIER_PROPERTY", length = 128, nullable = false)
-    @EqualsAndHashCode.Include
     private String qualifierProperty;
 
     @Column(name = "PARENT_PROPERTY", length = 128, nullable = false)
-    @EqualsAndHashCode.Include
     private String qualifierParent;
 
     @OneToMany(mappedBy = "attribute",

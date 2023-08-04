@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "MAPPING_ENTITY")
+@Table(name = "MAPPING_ENTITY",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_MAPPING_ENTITY",
+                columnNames = {"SOURCE", "TARGET"}))
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

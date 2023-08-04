@@ -7,7 +7,7 @@ import lombok.*;
 @Table(name = "REFERENCE_ATTRIBUTE")
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString
 public class ReferenceAttributeEntity extends AttributeEntity {
 

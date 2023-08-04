@@ -17,13 +17,15 @@ public class AttributeUpdater {
         List<Object> jsonAttributes = attributesLoader.getJsonAttributes();
 
         for (Object jsonAttribute : jsonAttributes) {
-            String path = attributeEntityFactory.getPath(jsonAttribute);
+            AttributeEntity entity = attributeEntityFactory.newAttributeEntity(jsonAttribute);
+            String path = entity.getPath();
             AttributeEntity persisted = attributeRepo.findByPath(path);
             if ( persisted != null ) {
-                // TODO Update
+                persisted.setTargetProperty(entity.getTargetProperty());
+                // TODO Copy other attribute properties
+                attributeRepo.save(persisted);
                 continue;
             }
-            AttributeEntity entity = attributeEntityFactory.newAttributeEntity(jsonAttribute);
             attributeRepo.save(entity);
         }
     }
