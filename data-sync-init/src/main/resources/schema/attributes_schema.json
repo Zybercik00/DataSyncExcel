@@ -6,119 +6,147 @@
     "attributes": {
       "type": "object",
       "title": "AttributeMap",
-      "simple": {
-        "type": "array",
-        "title": "SimpleAttributeList",
-        "items": {
-          "type": "object",
-          "title": "SimpleAttribute",
-          "properties": {
-            "path": {
-              "type": "string"
-            },
-            "targetProperty": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "path",
-            "targetProperty"
-          ],
-          "additionalItems": false
+      "properties": {
+        "simple": {
+          "$ref": "#/$defs/SimpleAttributeList"
+        },
+        "reference": {
+          "$ref": "#/$defs/ReferenceAttributeList"
+        },
+        "qualified": {
+          "$ref": "#/$defs/QualifiedAttributeList"
         }
       },
-      "reference": {
-        "type": "array",
-        "title": "ReferenceAttributeList",
-        "items": {
-          "type": "object",
-          "title": "ReferenceAttribute",
-          "properties": {
-            "path": {
-              "type": "string"
-            },
-            "targetProperty": {
-              "type": "string"
-            },
-            "nestedProperty": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "path",
-            "targetProperty",
-            "nestedProperty"
-          ],
-          "additionalItems": false
-        }
-      },
-      "qualified": {
-        "type": "array",
-        "title": "QualifiedAttributeList",
-        "items": {
-          "type": "object",
-          "title": "QualifiedAttribute",
-          "properties": {
-            "path": {
-              "type": "string"
-            },
-            "targetProperty": {
-              "type": "string"
-            },
-            "qualifier": {
-              "type": "object",
-              "title": "Qualifier",
-              "properties": {
-                "nestedProperty": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": "array",
-                  "title": "QualifierValueList",
-                  "items": {
-                    "type": "object",
-                    "title": "QualifierValue",
-                    "properties": {
-                      "key": {
-                        "type": "string"
-                      },
-                      "value": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "key",
-                      "value"
-                    ],
-                    "additionalItems": false
-                  }
-                }
-              },
-              "required": [
-                "nestedProperty",
-                "value"
-              ],
-              "additionalItems": false
-            }
-          },
-          "required": [
-            "path",
-            "targetProperty",
-            "qualifier"
-          ],
-          "additionalItems": false
-        }
-      }
-    },
-    "required": [
-      "simple",
-      "reference",
-      "qualified"
-    ],
-    "additionalItems": false
+      "required": [
+        "simple",
+        "reference",
+        "qualified"
+      ],
+      "additionalItems": false
+    }
   },
   "required": [
     "attributes"
   ],
-  "additionalItems": false
+  "additionalItems": false,
+  "$defs": {
+    "SimpleAttributeList": {
+      "type": "array",
+      "title": "SimpleAttributeList",
+      "items": {
+        "$ref": "#/$defs/SimpleAttribute"
+      }
+    },
+    "SimpleAttribute": {
+      "type": "object",
+      "title": "SimpleAttribute",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "targetProperty": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "targetProperty"
+      ],
+      "additionalItems": false
+    },
+    "ReferenceAttributeList": {
+      "type": "array",
+      "title": "ReferenceAttributeList",
+      "items": {
+        "$ref": "#/$defs/ReferenceAttribute"
+      }
+    },
+    "ReferenceAttribute": {
+      "type": "object",
+      "title": "ReferenceAttribute",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "targetProperty": {
+          "type": "string"
+        },
+        "nestedProperty": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "targetProperty",
+        "nestedProperty"
+      ],
+      "additionalItems": false
+    },
+    "QualifiedAttributeList": {
+      "type": "array",
+      "title": "QualifiedAttributeList",
+      "items": {
+        "$ref": "#/$defs/QualifiedAttribute"
+      }
+    },
+    "QualifiedAttribute": {
+      "type": "object",
+      "title": "QualifiedAttribute",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "targetProperty": {
+          "type": "string"
+        },
+        "qualifier": {
+          "$ref": "#/$defs/Qualifier"
+        }
+      },
+      "required": [
+        "path",
+        "targetProperty",
+        "qualifier"
+      ],
+      "additionalItems": false
+    },
+    "Qualifier": {
+      "type": "object",
+      "title": "Qualifier",
+      "properties": {
+        "nestedProperty": {
+          "type": "string"
+        },
+        "value": {
+          "type": "array",
+          "title": "QualifierValueList",
+          "items": {
+            "$ref": "#/$defs/QualifierValue"
+          }
+        }
+      },
+      "required": [
+        "nestedProperty",
+        "value"
+      ],
+      "additionalItems": false
+    },
+    "QualifierValue": {
+      "type": "object",
+      "title": "QualifierValue",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ],
+      "additionalItems": false
+    }
+  }
 }
