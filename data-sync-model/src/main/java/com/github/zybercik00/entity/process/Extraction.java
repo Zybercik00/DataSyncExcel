@@ -21,12 +21,13 @@ public class Extraction {
 
     @Id
     @GeneratedValue
-    @Column(name = "EXTRACTION_|D")
+    @Column(name = "EXTRACTION_ID")
     @EqualsAndHashCode.Include
     private Long id;
 
 
-    @JoinColumn(name = "MATERIAL")
+    @JoinColumn(name = "MATERIAL",
+            foreignKey = @ForeignKey(name = "FK_EXT_MAT"))
     @ManyToOne
     private Material material;
 

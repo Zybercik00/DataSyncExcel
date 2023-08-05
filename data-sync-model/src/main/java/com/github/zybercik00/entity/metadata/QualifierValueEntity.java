@@ -24,7 +24,9 @@ public class QualifierValueEntity {
 
     @EqualsAndHashCode.Include
     @ManyToOne
-    @JoinColumn(name = "ATTRIBUTE_ID", nullable = false)
+    @JoinColumn(name = "ATTRIBUTE_ID",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "FK_QVL_QAT"))
     @ToString.Exclude
     private QualifiedAttributeEntity attribute;
 

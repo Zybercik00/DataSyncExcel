@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "MAPPING_ENTITY",
+@Table(name = "MAPPING",
         uniqueConstraints = @UniqueConstraint(
                 name = "UC_MAPPING_ENTITY",
                 columnNames = {"SOURCE", "TARGET"}))
@@ -25,7 +25,9 @@ public class MappingEntity {
     private String source;
 
     @EqualsAndHashCode.Include
-    @JoinColumn(name = "TARGET", nullable = false)
+    @JoinColumn(name = "TARGET",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "FK_MEN_ATTR"))
     @ManyToOne
     private AttributeEntity target;
 

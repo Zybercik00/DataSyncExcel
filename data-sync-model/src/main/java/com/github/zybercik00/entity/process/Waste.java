@@ -1,6 +1,6 @@
 package com.github.zybercik00.entity.process;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,6 +39,6 @@ public class Waste {
     private BigDecimal lossTotalPercents;
 
     @OneToOne(mappedBy = "waste")
-    @JsonBackReference
+    @JsonIgnore
     private Extraction extraction;
 }

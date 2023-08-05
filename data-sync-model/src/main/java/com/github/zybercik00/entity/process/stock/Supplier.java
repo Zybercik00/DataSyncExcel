@@ -8,7 +8,10 @@ import com.github.zybercik00.entity.process.Material;
 import java.util.List;
 
 @Entity
-@Table(name = "SUPPLIER")
+@Table(name = "SUPPLIER",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_SUPPLIER",
+                columnNames = "SUPPLIER_NAME"))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -21,16 +24,14 @@ public class Supplier {
     @Id
     @GeneratedValue
     @Nonnull
-    @Column(name = "SUPPILER_ID")
+    @Column(name = "SUPPLIER_ID")
     private Long id;
 
     @Nonnull
-    @Column(name = "SUPPILER_NAME")
+    @Column(name = "SUPPLIER_NAME")
     @EqualsAndHashCode.Include
     private String name;
 
-    @Nonnull
-    @Column(name = "MATERIALS")
-    @OneToMany
+    @OneToMany(mappedBy = "supplier")
     private List<Material> supplierMaterials;
 }

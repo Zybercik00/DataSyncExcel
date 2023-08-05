@@ -36,7 +36,6 @@
         <h2.version>2.1.214</h2.version>
         <mockito-core.version>4.11.0</mockito-core.version>
         <jackson.version>2.15.2</jackson.version>
-        <liquibase-core.version>4.23.0</liquibase-core.version>
     </properties>
 
     <dependencyManagement>
@@ -195,18 +194,6 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.liquibase</groupId>
-                    <artifactId>liquibase-maven-plugin</artifactId>
-                    <version>4.23.0</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.h2database</groupId>
-                            <artifactId>h2</artifactId>
-                            <version>${h2.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.jsonschema2pojo</groupId>

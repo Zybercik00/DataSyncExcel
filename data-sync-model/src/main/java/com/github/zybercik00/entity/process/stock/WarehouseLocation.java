@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "WAREHOUSE_LOCATION")
+@Table(name = "WAREHOUSE_LOCATION",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_WAREHOUSE_LOCATION",
+                columnNames = "LOCATION_NAME"))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

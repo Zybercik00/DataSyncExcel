@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "EMPLOYEE")
+@Table(name = "EMPLOYEE",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_EMPLOYEE_NME",
+                columnNames = "EMPLOYEE_NAME"))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -25,7 +28,7 @@ public class Employee {
     private String name;
 
 
-    @Column(name = "POSITIN")
+    @Column(name = "EMP_POSITION")
     private String position;
 
 

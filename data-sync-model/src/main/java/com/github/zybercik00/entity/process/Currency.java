@@ -7,7 +7,10 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "CURRENCY")
+@Table(name = "CURRENCY",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_CURRENCY_NME",
+                columnNames = "CURRENCY_NAME"))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

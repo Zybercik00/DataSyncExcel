@@ -1,8 +1,8 @@
-
+#
 com:
   github:
     zybercik00:
-      excelResource: Chemical treatment process .xlsx
+      excelResource: Chemical treatment process.xlsx
       sheetName: process data
 
 spring:
@@ -11,14 +11,14 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password: password
-    liquibase:
-      change-log=classpath:db/changelog/db.changelog-master.xml
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
   jpa:
+    generate-ddl: false
     database-platform: org.hibernate.dialect.H2Dialect
-    generate-ddl: true
   h2:
-    console.path: /h2-console
     console:
+      path: /h2-console
       settings:
         trace: false
         web-allow-others: false

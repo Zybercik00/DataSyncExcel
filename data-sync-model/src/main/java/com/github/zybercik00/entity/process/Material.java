@@ -6,7 +6,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "MATERIAL")
+@Table(name = "MATERIAL",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_MATERIAL_NME",
+                columnNames = "LOT"))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -42,12 +45,14 @@ public class Material {
     private String content;
 
 
-    @JoinColumn(name = "WAREHOUSE")
+    @JoinColumn(name = "WAREHOUSE",
+            foreignKey = @ForeignKey(name = "FK_MAT_WHS"))
     @ManyToOne
     private Warehouse warehouse;
 
 
-    @JoinColumn(name = "SUPPILER")
+    @JoinColumn(name = "SUPPLIER",
+            foreignKey = @ForeignKey(name = "FK_MAT_SPL"))
     @ManyToOne
     private Supplier supplier;
 }
