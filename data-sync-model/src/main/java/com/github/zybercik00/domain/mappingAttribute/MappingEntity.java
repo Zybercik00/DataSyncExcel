@@ -4,10 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "MAPPING_ENTITY")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name = "MAPPING_ENTITY",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_MAPPING_ENTITY",
+                columnNames = {"TARGET", "SOURCE"}))
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -17,11 +17,15 @@ public class MappingEntity {
     @Id
     @GeneratedValue
     private Long id;
+
     //excel
-    @Column(name = "SOURCE")
+    @EqualsAndHashCode.Include
+    @Column(name = "SOURCE", length = 32, nullable = false)
     private String source;
+
     //db attribute
-    @JoinColumn(name = "TARGET")
+    @EqualsAndHashCode.Include
+    @JoinColumn(name = "TARGET", nullable = false)
     @ManyToOne
     private AttributeEntity target;
 

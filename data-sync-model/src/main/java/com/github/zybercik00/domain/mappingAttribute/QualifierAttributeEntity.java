@@ -4,25 +4,23 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Entity
 @Table(name = "QUALIFIER_ATTRIBUTE")
-@NoArgsConstructor
-@AllArgsConstructor
-@SuperBuilder
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString
-@DiscriminatorValue("3")
 public class QualifierAttributeEntity extends AttributeEntity {
 
 
-    @Column(name = "TARGET_PROPERTY")
-    private String targetProperty;
-    @Column(name = "QUALIFIER")
-    private String qualifier;
-    @Column(name = "QUALIFIER_PROPERTY")
+    @Column(name = "QUALIFIER_PROPERTY", length = 128, nullable = false)
     private String qualifierProperty;
-    @Column(name = "QUALIFIER_PARENT")
+
+    @Column(name = "QUALIFIER_PARENT", length = 128, nullable = false)
     private String qualifierParent;
+
+    @OneToMany(mappedBy = "attribute", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    private List<QualifierValueEntity> values;
 }

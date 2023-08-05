@@ -6,19 +6,13 @@ import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "REFERENCE_ATTRIBUTE")
-@NoArgsConstructor
-@AllArgsConstructor
-@SuperBuilder
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @ToString
-@DiscriminatorValue("2")
 public class ReferenceAttributeEntity extends AttributeEntity {
 
 
-    @Column(name = "TARGET_PROPERTY")
-    private String targetProperty;
-    @Column(name = "NESTED_PROPERTY")
+    @Column(name = "NESTED_PROPERTY", length = 32, nullable = false)
     private String nestedProperty;
 }

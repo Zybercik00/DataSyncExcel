@@ -5,23 +5,26 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Entity
-@Table(name = "SIMPLE_ATTRIBUTE")
-@NoArgsConstructor
-@AllArgsConstructor
-@SuperBuilder
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "SIMPLE_ATTRIBUTE",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_ATTRIBUTE",
+                columnNames = "PATH"))
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "ATTRIBUTE_TYPE", discriminatorType = DiscriminatorType.INTEGER)
 public class AttributeEntity {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "PATH")
+
+    @Column(name = "PATH", length = 1024, nullable = false)
     @EqualsAndHashCode.Include
     private String path;
+
+    @Column(name = "TARGET_PROPERTY", length = 128, nullable = false)
+    private String targetProperty;
 
 }
