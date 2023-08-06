@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,20 +14,22 @@ import java.util.List;
         uniqueConstraints = @UniqueConstraint(
                 name = "UC_EXTRACTION",
                 columnNames = {"MATERIAL", "PREPARED_ON"}))
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Extraction {
 
+    public Extraction() {
+        waste = new Waste(this);
+        purchasePrices = new ArrayList<>();
+        salePrices = new ArrayList<>();
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "EXTRACTION_ID")
     private Long id;
-
 
     @JoinColumn(name = "MATERIAL",
             foreignKey = @ForeignKey(name = "FK_EXT_MAT"))
@@ -34,15 +37,12 @@ public class Extraction {
     @EqualsAndHashCode.Include
     private Material material;
 
-
     @Column(name = "PREPARED_ON")
     @EqualsAndHashCode.Include
     private Date preparedOn;
 
-
     @Column(name = "WEIGHT_BEFORE")
     private BigDecimal weightBefore;
-
 
     @Column(name = "WEIGHT_AFTER")
     private BigDecimal weightAfter;
@@ -51,12 +51,10 @@ public class Extraction {
     @OneToOne
     private Employee realizedBy;
 
-
     @Column(name = "RECEIVED_IN_BERN")
     private Date receivedBackOn;
 
-    @PrimaryKeyJoinColumn(name = "WASTE")
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "extraction")
     private Waste waste;
 
     @Column(name = "SAMPLE_TEST_RESULT")

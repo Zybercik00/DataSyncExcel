@@ -16,4 +16,7 @@
     <changeSet id="4" author="marta">
         <sqlFile path="/sql/issue-18/execute-18.sql"/>
     </changeSet>
+    <changeSet id="4" author="marta">
+        <sqlFile path="/sql/issue-19/execute-19.sql"/>
+    </changeSet>
 </databaseChangeLog>

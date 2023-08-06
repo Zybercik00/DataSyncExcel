@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.zybercik00.entity.metadata.*;
 import com.github.zybercik00.entity.process.Extraction;
-import com.github.zybercik00.entity.process.Waste;
 import com.github.zybercik00.repository.metadata.MappingRepo;
 import com.github.zybercik00.repository.proces.ExtractionRepo;
 import jakarta.transaction.Transactional;
@@ -82,7 +81,7 @@ public class ExtractionService {
 
     private Extraction getExtraction(String materialLot, Date preparedOn) {
         Optional<Extraction> persistedExtraction = extractionRepo.findByMaterialLotAndPreparedOn(materialLot, preparedOn);
-        return persistedExtraction.orElseGet(this::createExtraction);
+        return persistedExtraction.orElseGet(Extraction::new);
     }
 
     private MappingAttribute getMappingAttribute(AttributeEntity entity) throws JsonProcessingException {
@@ -150,15 +149,6 @@ public class ExtractionService {
             values.put(key, toValue(jsonNode));
         }
         return values;
-    }
-
-    private Extraction createExtraction() {
-        // TODO Should be also incremental
-        Extraction extraction = new Extraction();
-        extraction.setWaste(new Waste());
-        extraction.setPurchasePrices(new ArrayList<>());
-        extraction.setSalePrices(new ArrayList<>());
-        return extractionRepo.save(extraction);
     }
 
 }
