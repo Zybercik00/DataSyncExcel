@@ -9,7 +9,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "EXTRACTION")
+@Table(name = "EXTRACTION",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_EXTRACTION",
+                columnNames = {"MATERIAL", "PREPARED_ON"}))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -22,17 +25,18 @@ public class Extraction {
     @Id
     @GeneratedValue
     @Column(name = "EXTRACTION_ID")
-    @EqualsAndHashCode.Include
     private Long id;
 
 
     @JoinColumn(name = "MATERIAL",
             foreignKey = @ForeignKey(name = "FK_EXT_MAT"))
     @ManyToOne
+    @EqualsAndHashCode.Include
     private Material material;
 
 
     @Column(name = "PREPARED_ON")
+    @EqualsAndHashCode.Include
     private Date preparedOn;
 
 

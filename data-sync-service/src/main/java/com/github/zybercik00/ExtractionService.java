@@ -53,8 +53,12 @@ public class ExtractionService {
     }
 
     @SneakyThrows
-    private Extraction getExtraction(ExcelTableWithHeader.Cursor cursor, Map<String, MappingAttribute> mappings) {
-        Extraction extraction = getExtraction();
+    private Extraction getExtraction(
+            ExcelTableWithHeader.Cursor cursor,
+            Map<String, MappingAttribute> mappings) {
+
+        Extraction extraction = getExtraction(cursor);
+
         for (Map.Entry<String, MappingAttribute> entry : mappings.entrySet()) {
             String source = entry.getKey();
             MappingAttribute attribute = entry.getValue();
@@ -67,6 +71,18 @@ public class ExtractionService {
         }
         // TODO Use batch updates
         return extractionRepo.save(extraction);
+    }
+
+    private Extraction getExtraction(ExcelTableWithHeader.Cursor cursor) {
+        // TODO Use MapperService and configuration to define unique key for mapping
+        String materialLot = cursor.getStringValue("Lot");
+        Date preparedOn = cursor.getDateValue("Made on");
+        return getExtraction(materialLot, preparedOn);
+    }
+
+    private Extraction getExtraction(String materialLot, Date preparedOn) {
+        Optional<Extraction> persistedExtraction = extractionRepo.findByMaterialLotAndPreparedOn(materialLot, preparedOn);
+        return persistedExtraction.orElseGet(this::createExtraction);
     }
 
     private MappingAttribute getMappingAttribute(AttributeEntity entity) throws JsonProcessingException {
@@ -136,7 +152,7 @@ public class ExtractionService {
         return values;
     }
 
-    private Extraction getExtraction() {
+    private Extraction createExtraction() {
         // TODO Should be also incremental
         Extraction extraction = new Extraction();
         extraction.setWaste(new Waste());
