@@ -1,6 +1,5 @@
-package com.github.zybercik00.domain.proces;
+package com.github.zybercik00.entity.process;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -17,7 +16,7 @@ import java.math.BigDecimal;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class SalePrice {
+public class PurchasePrice {
 
     @Id
     @GeneratedValue
@@ -25,17 +24,9 @@ public class SalePrice {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Column(name = "SALE_PRICE")
-    @JsonFormat
-    private BigDecimal salePrice;
-
     @JoinColumn(name = "CURRENCY")
     @ManyToOne
     private Currency currency;
-
-    @JoinColumn(name = "MARGIN")
-    @ManyToOne
-    private Margin margin;
 
     @Column(name = "PURCHASE_PRICE")
     @JsonFormat

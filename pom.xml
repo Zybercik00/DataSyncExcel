@@ -12,10 +12,12 @@
     <modules>
         <module>data-sync-app</module>
         <module>data-sync-repository</module>
+        <module>data-sync-init</module>
         <module>data-sync-excel</module>
         <module>data-sync-model</module>
         <module>data-sync-service</module>
         <module>data-sync-config</module>
+        <module>data-sync-init</module>
     </modules>
 
     <properties>
@@ -73,6 +75,11 @@
                 <artifactId>data-sync-config</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-init</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -114,6 +121,11 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
             <dependency>
@@ -185,6 +197,31 @@
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.liquibase</groupId>
+                    <artifactId>liquibase-maven-plugin</artifactId>
+                    <version>4.23.0</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.h2database</groupId>
+                            <artifactId>h2</artifactId>
+                            <version>${h2.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.jsonschema2pojo</groupId>
+                    <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                    <version>1.2.1</version>
+                    <configuration>
+                        <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
+                        <targetPackage>com.github.zybercik00.json</targetPackage>
+                        <generateBuilders>true</generateBuilders>
+                        <outputEncoding>UTF-8</outputEncoding>
+                        <useTitleAsClassname>true</useTitleAsClassname>
+                        <includeAdditionalProperties>false</includeAdditionalProperties>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -203,35 +240,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.3.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>4.23.0</version>
-                <executions>
-                    <execution>
-                        <id>generateChangeLog</id>
-                        <goals>
-                            <goal>generateChangeLog</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <driver>org.h2.Driver</driver>
-                            <url>jdbc:h2:file:./data/DataSyncExcel</url>
-                            <username>sa</username>
-                            <password>password</password>
-                            <outputChangeLogFile>src/main/resources/liquibase-outputChangeLog.xml</outputChangeLogFile>
-                            <overwriteOutputFile>true</overwriteOutputFile>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                    <version>${h2.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>

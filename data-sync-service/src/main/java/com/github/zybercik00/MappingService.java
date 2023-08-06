@@ -1,6 +1,6 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Extraction;
+import com.github.zybercik00.entity.process.Extraction;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;

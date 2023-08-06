@@ -1,4 +1,4 @@
-package com.github.zybercik00.domain.mappingAttribute;
+package com.github.zybercik00.entity.metadata;
 
 import jakarta.persistence.*;
 import lombok.*;

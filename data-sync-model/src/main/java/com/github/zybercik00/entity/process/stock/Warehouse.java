@@ -1,4 +1,4 @@
-package com.github.zybercik00.domain.proces.stock;
+package com.github.zybercik00.entity.process.stock;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;

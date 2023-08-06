@@ -1,4 +1,4 @@
-package com.github.zybercik00.domain.proces;
+package com.github.zybercik00.entity.process;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

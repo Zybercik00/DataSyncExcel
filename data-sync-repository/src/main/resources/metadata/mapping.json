@@ -1,0 +1,20 @@
+{
+  "mappings": [
+    {
+      "target": "material",
+      "source": "Lot"
+    },
+    {
+      "target": "material.name",
+      "source": "Name"
+    },
+    {
+      "target": "purchasePrice[currency.code='EUR]",
+      "source": "Purchase price EUR"
+    },
+    {
+      "target": "salePrice[margin.name='30% marge']",
+      "source": "Sale price 40% marge"
+    }
+  ]
+}
