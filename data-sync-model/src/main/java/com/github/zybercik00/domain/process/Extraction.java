@@ -1,4 +1,4 @@
-package com.github.zybercik00.domain.proces;
+package com.github.zybercik00.domain.process;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -21,7 +21,7 @@ public class Extraction {
 
     @Id
     @GeneratedValue
-    @Column(name = "EXTRACTION_|D")
+    @Column(name = "EXTRACTION_ID")
     @EqualsAndHashCode.Include
     private Long id;
 

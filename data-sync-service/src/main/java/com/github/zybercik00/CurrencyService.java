@@ -1,9 +1,7 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Currency;
-import com.github.zybercik00.domain.proces.Margin;
-import com.github.zybercik00.repository.proces.CurrencyRepo;
-import com.github.zybercik00.repository.proces.MarginRepo;
+import com.github.zybercik00.domain.process.Currency;
+import com.github.zybercik00.repository.process.CurrencyRepo;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

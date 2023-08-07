@@ -1,6 +1,6 @@
-package com.github.zybercik00.repository.proces;
+package com.github.zybercik00.repository.process;
 
-import com.github.zybercik00.domain.proces.Price;
+import com.github.zybercik00.domain.process.Price;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PriceRepo extends JpaRepository<Price, String> {

@@ -1,6 +1,6 @@
-package com.github.zybercik00.repository.proces;
+package com.github.zybercik00.repository.process;
 
-import com.github.zybercik00.domain.proces.Margin;
+import com.github.zybercik00.domain.process.Margin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,9 +1,9 @@
-package com.github.zybercik00.domain.proces;
+package com.github.zybercik00.domain.process;
 
 import jakarta.persistence.*;
 import lombok.*;
-import com.github.zybercik00.domain.proces.stock.Supplier;
-import com.github.zybercik00.domain.proces.stock.Warehouse;
+import com.github.zybercik00.domain.process.stock.Supplier;
+import com.github.zybercik00.domain.process.stock.Warehouse;
 
 @Entity
 @Table(name = "MATERIAL")

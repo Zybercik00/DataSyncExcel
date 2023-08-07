@@ -1,6 +1,5 @@
-package com.github.zybercik00.domain.proces;
+package com.github.zybercik00.domain.process;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

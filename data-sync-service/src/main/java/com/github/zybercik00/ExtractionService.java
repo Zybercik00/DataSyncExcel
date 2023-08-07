@@ -1,8 +1,8 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Extraction;
-import com.github.zybercik00.domain.proces.Waste;
-import com.github.zybercik00.repository.proces.ExtractionRepo;
+import com.github.zybercik00.domain.process.Extraction;
+import com.github.zybercik00.domain.process.Waste;
+import com.github.zybercik00.repository.process.ExtractionRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

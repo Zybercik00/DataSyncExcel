@@ -1,4 +1,4 @@
-package com.github.zybercik00.domain.proces;
+package com.github.zybercik00.domain.process;
 
 import jakarta.persistence.*;
 import lombok.*;

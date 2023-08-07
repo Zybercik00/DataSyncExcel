@@ -2,7 +2,7 @@ package com.github.zybercik00;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.github.zybercik00.repository.proces.*;
+import com.github.zybercik00.repository.process.*;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.DataFormatter;
