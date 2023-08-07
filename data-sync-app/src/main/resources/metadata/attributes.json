@@ -1,0 +1,98 @@
+{
+  "attributes": {
+    "simple": [
+      {
+        "path":  "material.name",
+        "targetProperty": "material.name"
+      },
+      {
+        "path": "preparedOn",
+        "targetProperty": "preparedOn"
+      },
+      {
+        "path": "weightBefore",
+        "targetProperty": "weight"
+      },
+      {
+        "path": "weightAfter",
+        "targetProperty": "weightAfter"
+      },
+      {
+        "path": "waste.loosAfterExtraction",
+        "targetProperty": "waste.lossAfterExtractionInKg"
+      },
+      {
+        "path": "waste.lossAfterExtractionInPercent",
+        "targetProperty": "waste.lossAfterExtractionInPercent"
+      },
+      {
+        "path": "receivedBackOn",
+        "targetProperty": "receivedBackOn"
+      },
+      {
+        "path": "sampleTestResult",
+        "targetProperty": "sampleTestResult"
+      },
+      {
+        "path": "waste.packedKg",
+        "targetProperty": "waste.packedKg"
+      },
+      {
+        "path": "waste.lossTotalKg",
+        "targetProperty": "waste.lossTotalKg"
+      },
+      {
+        "path": "waste.lossTotalPercent",
+        "targetProperty": "waste.lossTotalPercent"
+      }
+    ],
+    "reference": [
+      {
+        "path": "material",
+        "targetProperty": "material",
+        "nestedProperty": "lot"
+      },
+      {
+        "path": "realizedBy",
+        "targetProperty": "realizedBy",
+        "nestedProperty": "name"
+      }
+    ],
+    "qualified": [
+      {
+        "targetProperty": "purchasePrice",
+        "qualifierProperty": "purchasePrice",
+        "qualifierParent": "extraction",
+        "qualifierValue": [
+          {
+            "key": "currency",
+            "value": [
+              {
+                "key": "code",
+                "value": "EUR"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "targetProperty": "purchasePrice",
+        "qualifierProperty": "purchasePrice",
+        "qualifierParent": "extraction",
+        "qualifierValue": [
+          {
+            "key": "currency",
+            "value": [
+              {
+                "key": "code",
+                "value": "EUR"
+              }
+            ]
+          }
+        ]
+      },
+
+    ]
+
+}
+}

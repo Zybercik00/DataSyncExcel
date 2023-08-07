@@ -16,9 +16,13 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     generate-ddl: true
+    defer-datasource-initialization: true
   h2:
     console.path: /h2-console
     console:
       settings:
         trace: false
         web-allow-others: false
+  sql:
+    init:
+      mode: always
