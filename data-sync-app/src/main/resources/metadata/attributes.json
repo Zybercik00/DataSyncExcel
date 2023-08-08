@@ -65,13 +65,7 @@
         "qualifierParent": "extraction",
         "qualifierValue": [
           {
-            "key": "currency",
-            "value": [
-              {
-                "key": "code",
-                "value": "EUR"
-              }
-            ]
+            "currency":{"code":"EUR"}
           }
         ]
       },
@@ -81,18 +75,10 @@
         "qualifierParent": "extraction",
         "qualifierValue": [
           {
-            "key": "currency",
-            "value": [
-              {
-                "key": "code",
-                "value": "EUR"
-              }
-            ]
+            "currency":{"code":"CHF"}
           }
         ]
-      },
-
+      }
     ]
-
 }
 }
