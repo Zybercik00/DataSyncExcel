@@ -2,93 +2,64 @@ create table CURRENCY
 (
     CURRENCY_ID   BIGINT not null
         primary key,
-    CURRENCY_NAME CHARACTER VARYING(255)
+    CURRENCY_NAME VARCHAR(255)
+    CONSTRAINT UC_CURRENCY UNIQUE (CURRENCY_CODE)
 );
 
 create table EMPLOYEE
 (
     EMPLOYEE_ID   BIGINT not null
         primary key,
-    ACCESS_LEVEL  CHARACTER VARYING(255),
-    EMPLOYEE_NAME CHARACTER VARYING(255),
-    POSITIN       CHARACTER VARYING(255)
-);
-
-create table MAPPING_ATTRIBUTE_ENTITY
-(
-    ID              BIGINT not null
-        primary key,
-    PATH            CHARACTER VARYING(255),
-    TARGET_PROPERTY CHARACTER VARYING(255)
+    ACCESS_LEVEL  VARCHAR(255),
+    EMPLOYEE_NAME VARCHAR(255),
+    POSITION      VARCHAR(255)
+    CONSTRAINT UC_EMPLOYEE UNIQUE (EMPLOYEE_NAME)
 );
 
 create table MARGIN
 (
     MARGIN_ID   BIGINT not null
         primary key,
-    MARGIN_NAME CHARACTER VARYING(255)
-);
-
-create table PRICE
-(
-    PRICE_ID BIGINT not null
-        primary key
-);
-
-create table QUALIFIER_MAPPING_ATTRIBUTE_ENTITY
-(
-    ID                 BIGINT not null
-        primary key,
-    PATH               CHARACTER VARYING(255),
-    QUALIFIER          CHARACTER VARYING(255),
-    QUALIFIER_PARENT   CHARACTER VARYING(255),
-    QUALIFIER_PROPERTY CHARACTER VARYING(255),
-    TARGET_PROPERTY    CHARACTER VARYING(255)
-);
-
-create table REFERENCE_MAPPING_ATTRIBUTE_ENTITY
-(
-    ID              BIGINT not null
-        primary key,
-    NESTED_PROPERTY CHARACTER VARYING(255),
-    PATH            CHARACTER VARYING(255),
-    TARGET_PROPERTY CHARACTER VARYING(255)
+    MARGIN_NAME VARCHAR(255)
+CONSTRAINT UC_MARGIN UNIQUE (MARGIN_NAME)
 );
 
 create table SUPPLIER
 (
-    SUPPILER_ID   BIGINT not null
+    SUPPLIER_ID   BIGINT not null
         primary key,
-    SUPPILER_NAME CHARACTER VARYING(255)
+    SUPPLIER_NAME VARCHAR(255)
+    CONSTRAINT UC_SUPPLIER UNIQUE (SUPPILER_NAME)
 );
 
 create table WAREHOUSE
 (
     WAREHOUSE_ID   BIGINT not null
         primary key,
-    WAREHOUSE_NAME CHARACTER VARYING(255)
+    WAREHOUSE_NAME VARCHAR(255)
+    CONSTRAINT UC_WAREHOUSE UNIQUE (WAREHOUSE_NAME)
 );
 
 create table MATERIAL
 (
     MATERIAL_ID      BIGINT not null
         primary key,
-    CONTENT          CHARACTER VARYING(255),
-    STATUS_INVENTORY CHARACTER VARYING(255),
-    LOT              CHARACTER VARYING(255),
-    MATERIAL_NAME    CHARACTER VARYING(255),
-    WEIGHT           CHARACTER VARYING(255),
-    SUPPILER         BIGINT,
+    CONTENT          VARCHAR(255),
+    STATUS_INVENTORY VARCHAR(255),
+    LOT              VARCHAR(255),
+    MATERIAL_NAME    VARCHAR(255),
+    WEIGHT           VARCHAR(255),
+    SUPPLIER         BIGINT,
     WAREHOUSE        BIGINT,
-    constraint FKFMH5NRQM4NHXVXO7PX9MISBC7
-        foreign key (SUPPILER) references SUPPLIER,
-    constraint FKOFSKC3C96YJQLD3U81X9254VA
+    constraint FK_MAT_SUP
+        foreign key (SUPPLIER) references SUPPLIER,
+    constraint FK_MAT_WAR
         foreign key (WAREHOUSE) references WAREHOUSE
 );
 
 create table EXTRACTION
 (
-    "extraction_|d"    BIGINT not null
+    EXTRACTION_ID    BIGINT not null
         primary key,
     PREPARED_ON        TIMESTAMP,
     RECEIVED_IN_BERN   TIMESTAMP,
@@ -96,7 +67,7 @@ create table EXTRACTION
     WEIGHT_AFTER       NUMERIC(38, 2),
     WEIGHT_BEFORE      NUMERIC(38, 2),
     MATERIAL           BIGINT,
-    constraint FKMS8DLT6JOUB0DGGKC4OGHTWAS
+    constraint FK_EXT_MAT
         foreign key (MATERIAL) references MATERIAL
 );
 
@@ -109,43 +80,56 @@ create table PURCHASE_PRICE
     CURRENCY       BIGINT,
     EXTRACTION     BIGINT,
     MARGIN         BIGINT,
-    constraint FK1SO3RU3QTROKR17DF22O0HJF7
+    constraint FK_PPR_MAR
         foreign key (MARGIN) references MARGIN,
-    constraint FK30WL5CMP8PID2WQ85L53CN42S
+    constraint FK_PPR_EXT
         foreign key (EXTRACTION) references EXTRACTION,
-    constraint FKT1Q36QGL8FTTD0BREXB2LMTBL
+    constraint FK_PPR_CUR
         foreign key (CURRENCY) references CURRENCY
+);
+
+create table SALE_PRICE
+(
+    ID             BIGINT not null
+        primary key,
+    SALE_PRICE NUMERIC(38, 2),
+    EXTRACTION     BIGINT,
+    MARGIN         BIGINT,
+    constraint FK_SPR_MAR
+        foreign key (MARGIN) references MARGIN,
+    CONSTRAINT UC_SALE_PRICE UNIQUE (EXTRACTION, MARGIN)
 );
 
 create table CURRENCY_PURCHASE_PRICES
 (
     CURRENCY_CURRENCY_ID BIGINT not null,
     PURCHASE_PRICES_ID   BIGINT not null
-        constraint UK_LJL3HMOQM5HX4DYJNLTACLNSJ
+        constraint UC_CURPPR
             unique,
-    constraint FK3D8D62PKAGCX3ECLAQBBAWJ63
+    constraint FK_CURPPR_PPR
         foreign key (PURCHASE_PRICES_ID) references PURCHASE_PRICE,
-    constraint FKSXL27388SBKRY5ORAICWYDDU2
+    constraint FK_CURPPR_CUR
         foreign key (CURRENCY_CURRENCY_ID) references CURRENCY
 );
 
-create table SUPPLIER_SUPPLIER_MATERIALS
+create table SUPPLIER_MATERIALS
 (
-    SUPPLIER_SUPPILER_ID           BIGINT not null,
+    SUPPLIER_SUPPLIER_ID           BIGINT not null,
     SUPPLIER_MATERIALS_MATERIAL_ID BIGINT not null
-        constraint UK_T8G2WFTEQGWM9EXD1R5KVJ3XK
+        constraint UC_SUPMAT
             unique,
-    constraint FKDM2N0RTDWL5UD918DJ9PYKEX1
+    constraint FK_SUPMAT_MAT
         foreign key (SUPPLIER_MATERIALS_MATERIAL_ID) references MATERIAL,
-    constraint FKML69H4R2KMOYA245WWPI0R5YD
-        foreign key (SUPPLIER_SUPPILER_ID) references SUPPLIER
+    constraint FK_SUPMAT_SUP
+        foreign key (SUPPLIER_SUPPLIER_ID) references SUPPLIER
 );
 
 create table WAREHOUSE_LOCATION
 (
     WAREHOUSE_LOCATION_ID BIGINT not null
         primary key,
-    LOCATION_NAME         CHARACTER VARYING(255)
+    LOCATION_NAME         VARCHAR(255)
+    CONSTRAINT UC_WAR_LOC UNIQUE (LOCATION_NAME)
 );
 
 create table WASTE
