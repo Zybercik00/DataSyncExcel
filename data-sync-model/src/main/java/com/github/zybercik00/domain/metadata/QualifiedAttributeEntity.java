@@ -18,5 +18,7 @@ public class QualifiedAttributeEntity extends AttributeEntity {
     private String qualifiedProperty;
     @Column(name = "QUALIFIED_PARENT")
     private String qualifiedParent;
+    @Column(name = "QUALIFIER")
+    private String qualifier;
 
 }
