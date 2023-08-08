@@ -52,6 +52,7 @@ public class Extraction {
 
     @PrimaryKeyJoinColumn(name = "WASTE")
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(unique = true)
     private Waste waste;
 
     @Column(name = "SAMPLE_TEST_RESULT")
