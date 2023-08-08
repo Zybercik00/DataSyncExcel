@@ -23,7 +23,7 @@ public class Currency {
     private Long id;
 
     @EqualsAndHashCode.Include
-    @Column(name = "CURRENCY_NAME")
+    @Column(name = "CURRENCY_CODE")
     private String code;
 
     @OneToMany(mappedBy = "currency")

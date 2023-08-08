@@ -25,7 +25,7 @@ public class Employee {
     private String name;
 
 
-    @Column(name = "POSITIN")
+    @Column(name = "POSITION")
     private String position;
 
 
