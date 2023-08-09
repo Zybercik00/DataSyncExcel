@@ -60,22 +60,101 @@
     ],
     "qualified": [
       {
+        "path": "purchasePrice[currency.code='EUR']",
         "targetProperty": "purchasePrice",
         "qualifierProperty": "purchasePrice",
         "qualifierParent": "extraction",
-        "qualifierValue": [
+        "qualifier": [
           {
             "currency":{"code":"EUR"}
           }
         ]
       },
       {
+        "path": "purchasePrice[currency.code='CHF']",
         "targetProperty": "purchasePrice",
         "qualifierProperty": "purchasePrice",
         "qualifierParent": "extraction",
-        "qualifierValue": [
+        "qualifier": [
           {
             "currency":{"code":"CHF"}
+          }
+        ]
+      },
+      {
+        "path": "salePrices[margin.name='10% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier": [
+          {
+          "margin":  {"name": "10% marge"}
+          }
+        ]
+      },
+      {
+        "path": "salePrices[margin.name='20% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier": [
+          {
+            "margin":  {"name": "20% marge"}
+          }
+        ]
+      },
+      {
+        "path": "salePrices[margin.name='40% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier": [
+          {
+            "margin":  {"name": "40% marge"}
+          }
+        ]
+      },
+      {
+        "path": "salePrices[margin.name='50% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier": [
+          {
+            "margin":  {"name": "50% marge"}
+          }
+        ]
+      },
+      {
+        "path": "salePrices[margin.name='60% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier": [
+          {
+            "margin":  {"name": "60% marge"}
+          }
+        ]
+      },
+      {
+        "path": "salePrices[margin.name='70% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier": [
+          {
+            "margin":  {"name": "70% marge"}
+          }
+        ]
+      },
+      {
+        "path": "salePrices[margin.name='100% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier": [
+          {
+            "margin":  {"name": "100% marge"}
           }
         ]
       }

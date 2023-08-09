@@ -1,39 +1,39 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-1">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-1">
         <createSequence sequenceName="CURRENCY_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-2">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-2">
         <createSequence sequenceName="EMPLOYEE_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-3">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-3">
         <createSequence sequenceName="EXTRACTION_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-4">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-4">
         <createSequence sequenceName="MARGIN_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-5">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-5">
         <createSequence sequenceName="MATERIAL_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-6">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-6">
         <createSequence sequenceName="PRICE_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-7">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-7">
         <createSequence sequenceName="PURCHASE_PRICE_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-8">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-8">
         <createSequence sequenceName="SUPPLIER_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-9">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-9">
         <createSequence sequenceName="WAREHOUSE_LOCATION_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-10">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-10">
         <createSequence sequenceName="WAREHOUSE_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-11">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-11">
         <createSequence sequenceName="WASTE_SEQ"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-12">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-12">
         <createTable tableName="CURRENCY">
             <column name="CURRENCY_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_5"/>
@@ -41,7 +41,7 @@
             <column name="CURRENCY_NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-13">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-13">
         <createTable tableName="EMPLOYEE">
             <column name="EMPLOYEE_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_7"/>
@@ -51,7 +51,7 @@
             <column name="POSITIN" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-14">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-14">
         <createTable tableName="EXTRACTION">
             <column name="extraction_|d" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_4"/>
@@ -64,7 +64,7 @@
             <column name="MATERIAL" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-15">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-15">
         <createTable tableName="EXTRACTION_SALE_PRICE">
             <column name="extraction_extraction_|d" type="BIGINT">
                 <constraints nullable="false"/>
@@ -74,7 +74,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-16">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-16">
         <createTable tableName="MARGIN">
             <column name="MARGIN_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_8"/>
@@ -82,7 +82,7 @@
             <column name="MARGIN_NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-17">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-17">
         <createTable tableName="MATERIAL">
             <column name="MATERIAL_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_40"/>
@@ -96,14 +96,14 @@
             <column name="WAREHOUSE" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-18">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-18">
         <createTable tableName="PRICE">
             <column name="PRICE_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_48"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-19">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-19">
         <createTable tableName="PURCHASE_PRICE">
             <column name="ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_2"/>
@@ -115,7 +115,7 @@
             <column name="MARGIN" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-20">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-20">
         <createTable tableName="SUPPLIER">
             <column name="SUPPILER_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_C"/>
@@ -123,7 +123,7 @@
             <column name="SUPPILER_NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-21">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-21">
         <createTable tableName="SUPPLIER_SUPPLIER_MATERIALS">
             <column name="SUPPLIER_SUPPILER_ID" type="BIGINT">
                 <constraints nullable="false"/>
@@ -133,7 +133,7 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-22">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-22">
         <createTable tableName="WAREHOUSE">
             <column name="WAREHOUSE_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_2F"/>
@@ -141,7 +141,7 @@
             <column name="WAREHOUSE_NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-23">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-23">
         <createTable tableName="WAREHOUSE_LOCATION">
             <column name="WAREHOUSE_LOCATION_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_3"/>
@@ -149,7 +149,7 @@
             <column name="LOCATION_NAME" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-24">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-24">
         <createTable tableName="WASTE">
             <column name="WASTE_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="CONSTRAINT_4E"/>
@@ -164,80 +164,80 @@
             <column name="LOSS_AFTER_EXTRACTION_PERCENT" type="numeric(38, 2)"/>
         </createTable>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-25">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-25">
         <addUniqueConstraint columnNames="SALE_PRICE_ID" constraintName="UK_4SXNLDKA293GD34UYYM4LCORB" tableName="EXTRACTION_SALE_PRICE"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-26">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-26">
         <addUniqueConstraint columnNames="SUPPLIER_MATERIALS_MATERIAL_ID" constraintName="UK_T8G2WFTEQGWM9EXD1R5KVJ3XK" tableName="SUPPLIER_SUPPLIER_MATERIALS"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-27">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-27">
         <createIndex indexName="FK1SO3RU3QTROKR17DF22O0HJF7_INDEX_2" tableName="PURCHASE_PRICE">
             <column name="MARGIN"/>
         </createIndex>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-28">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-28">
         <createIndex indexName="FK30WL5CMP8PID2WQ85L53CN42S_INDEX_2" tableName="PURCHASE_PRICE">
             <column name="EXTRACTION"/>
         </createIndex>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-29">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-29">
         <createIndex indexName="FK5E5QPESCB28NH6GVV2DM1XVJC_INDEX_A" tableName="EXTRACTION_SALE_PRICE">
             <column name="extraction_extraction_|d"/>
         </createIndex>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-30">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-30">
         <createIndex indexName="FKFMH5NRQM4NHXVXO7PX9MISBC7_INDEX_4" tableName="MATERIAL">
             <column name="SUPPILER"/>
         </createIndex>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-31">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-31">
         <createIndex indexName="FKML69H4R2KMOYA245WWPI0R5YD_INDEX_E" tableName="SUPPLIER_SUPPLIER_MATERIALS">
             <column name="SUPPLIER_SUPPILER_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-32">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-32">
         <createIndex indexName="FKMS8DLT6JOUB0DGGKC4OGHTWAS_INDEX_9" tableName="EXTRACTION">
             <column name="MATERIAL"/>
         </createIndex>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-33">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-33">
         <createIndex indexName="FKOFSKC3C96YJQLD3U81X9254VA_INDEX_4" tableName="MATERIAL">
             <column name="WAREHOUSE"/>
         </createIndex>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-34">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-34">
         <createIndex indexName="FKT1Q36QGL8FTTD0BREXB2LMTBL_INDEX_2" tableName="PURCHASE_PRICE">
             <column name="CURRENCY"/>
         </createIndex>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-35">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-35">
         <addForeignKeyConstraint baseColumnNames="MARGIN" baseTableName="PURCHASE_PRICE" constraintName="FK1SO3RU3QTROKR17DF22O0HJF7" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="MARGIN_ID" referencedTableName="MARGIN" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-36">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-36">
         <addForeignKeyConstraint baseColumnNames="EXTRACTION" baseTableName="PURCHASE_PRICE" constraintName="FK30WL5CMP8PID2WQ85L53CN42S" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="extraction_|d" referencedTableName="EXTRACTION" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-37">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-37">
         <addForeignKeyConstraint baseColumnNames="extraction_extraction_|d" baseTableName="EXTRACTION_SALE_PRICE" constraintName="FK5E5QPESCB28NH6GVV2DM1XVJC" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="extraction_|d" referencedTableName="EXTRACTION" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-38">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-38">
         <addForeignKeyConstraint baseColumnNames="SALE_PRICE_ID" baseTableName="EXTRACTION_SALE_PRICE" constraintName="FKB9E1BDKXY93IVEGSYVR7YGEX0" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="PURCHASE_PRICE" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-39">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-39">
         <addForeignKeyConstraint baseColumnNames="SUPPLIER_MATERIALS_MATERIAL_ID" baseTableName="SUPPLIER_SUPPLIER_MATERIALS" constraintName="FKDM2N0RTDWL5UD918DJ9PYKEX1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="MATERIAL_ID" referencedTableName="MATERIAL" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-40">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-40">
         <addForeignKeyConstraint baseColumnNames="SUPPILER" baseTableName="MATERIAL" constraintName="FKFMH5NRQM4NHXVXO7PX9MISBC7" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SUPPILER_ID" referencedTableName="SUPPLIER" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-41">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-41">
         <addForeignKeyConstraint baseColumnNames="SUPPLIER_SUPPILER_ID" baseTableName="SUPPLIER_SUPPLIER_MATERIALS" constraintName="FKML69H4R2KMOYA245WWPI0R5YD" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SUPPILER_ID" referencedTableName="SUPPLIER" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-42">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-42">
         <addForeignKeyConstraint baseColumnNames="MATERIAL" baseTableName="EXTRACTION" constraintName="FKMS8DLT6JOUB0DGGKC4OGHTWAS" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="MATERIAL_ID" referencedTableName="MATERIAL" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-43">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-43">
         <addForeignKeyConstraint baseColumnNames="WAREHOUSE" baseTableName="MATERIAL" constraintName="FKOFSKC3C96YJQLD3U81X9254VA" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="WAREHOUSE_ID" referencedTableName="WAREHOUSE" validate="true"/>
     </changeSet>
-    <changeSet author="kamilchmiel (generated)" id="1691435257196-44">
+    <changeSet author="kamilchmiel (generated)" id="1691570884723-44">
         <addForeignKeyConstraint baseColumnNames="CURRENCY" baseTableName="PURCHASE_PRICE" constraintName="FKT1Q36QGL8FTTD0BREXB2LMTBL" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="CURRENCY_ID" referencedTableName="CURRENCY" validate="true"/>
     </changeSet>
 </databaseChangeLog>

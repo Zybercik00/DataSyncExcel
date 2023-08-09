@@ -13,6 +13,7 @@
         <module>data-sync-app</module>
         <module>data-sync-repository</module>
         <module>data-sync-excel</module>
+        <module>data-sync-jackson</module>
         <module>data-sync-model</module>
         <module>data-sync-service</module>
         <module>data-sync-config</module>
