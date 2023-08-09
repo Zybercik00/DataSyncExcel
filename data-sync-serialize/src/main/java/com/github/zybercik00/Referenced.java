@@ -4,5 +4,5 @@ import java.util.List;
 
 public class Referenced {
 
-    private List<RefFields> refAttributes;
+    private List<ReferencedFields> refAttributes;
 }
