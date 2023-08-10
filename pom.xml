@@ -17,6 +17,7 @@
         <module>data-sync-model</module>
         <module>data-sync-service</module>
         <module>data-sync-config</module>
+        <module>data-sync-metadata</module>
     </modules>
 
     <properties>

@@ -1,9 +1,13 @@
 package com.github.zybercik00;
 
-import java.util.List;
-import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
-public class Simple {
+import java.util.List;
+
+@Getter
+@Setter
+public class JsonSimpleAttribute {
 
     private List<SimpleFilds> simpleAttributes;
 }
