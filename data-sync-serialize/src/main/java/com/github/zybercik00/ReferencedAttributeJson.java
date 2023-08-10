@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ReferencedFields {
+public class ReferencedAttributeJson {
     private String path;
+    private String targetProperty;
     private String nestedProperty;
 }

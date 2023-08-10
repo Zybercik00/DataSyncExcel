@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SimpleFilds {
+public class SimpleAttributeJson {
     private String path;
     private String targetProperty;
 }
