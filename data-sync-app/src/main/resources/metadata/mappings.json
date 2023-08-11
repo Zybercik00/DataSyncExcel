@@ -1,0 +1,96 @@
+{
+  "mappings": [
+    {
+      "targer":"material",
+      "source": "Lot"
+    },
+    {
+      "targer":"material.name",
+      "source": "Name"
+    },
+    {
+      "targer":"preparedOn",
+      "source": "Made on"
+    },
+    {
+      "targer":"weightBefore",
+      "source": "Weight before"
+    },
+    {
+      "targer":"weightAfter",
+      "source": "Weight after"
+    },
+    {
+      "targer":"waste.lossAfterExtractionKg",
+      "source": "Loss kg"
+    },
+    {
+      "targer":"lossAfterExtractionPercent",
+      "source": "Loss %"
+    },
+    {
+      "targer":"realizedBy",
+      "source": "Prepared by "
+    },
+    {
+      "targer":"receivedBackOn",
+      "source": "Received back"
+    },
+    {
+      "targer":"sampleTestResult",
+      "source": "Result of the tested sample "
+    },
+    {
+      "targer":"waste.packedKg",
+      "source": "Packed kg"
+    },
+    {
+      "targer":"waste.lossTotalKg",
+      "source": "Aggregate loss kg"
+    },
+    {
+      "targer":"waste.lossTotalPercents",
+      "source": "Aggregate loss %"
+    },
+    {
+      "targer":"purchasePrices[extraction,currency[code='EUR']].purchasePrice",
+      "source": "Purchase price EUR"
+    },
+    {
+      "targer":"purchasePrices[extraction,currency[code='CHF']].purchasePrice",
+      "source": "Purchase price CHF"
+    },
+    {
+      "targer":"salePrice[extraction, margin[name='10% marge']",
+      "source": "Sale price 10% marge"
+    },
+    {
+      "targer":"salePrice[extraction, margin[name='20% marge']",
+      "source": "Sale price 20% marge"
+    },
+    {
+      "targer":"salePrice[extraction, margin[name='30% marge']",
+      "source": "Sale price 30% marge"
+    },
+    {
+      "targer":"salePrice[extraction, margin[name='40% marge']",
+      "source": "Sale price 40% marge"
+    },
+    {
+      "targer":"salePrice[extraction, margin[name='50% marge']",
+      "source": "Sale price 50% marge"
+    },
+    {
+      "targer":"salePrice[extraction, margin[name='60% marge']",
+      "source": "Sale price 60% marge"
+    },
+    {
+      "targer":"salePrice[extraction, margin[name='70% marge']",
+      "source": "Sale price 70% marge"
+    },
+    {
+      "targer":"salePrice[extraction, margin[name='100% marge']",
+      "source": "Sale price 100% marge"
+    }
+  ]
+}
