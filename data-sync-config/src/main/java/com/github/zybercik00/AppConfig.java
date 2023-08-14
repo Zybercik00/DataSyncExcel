@@ -85,10 +85,14 @@ public class AppConfig {
         return new ExtractionMappingService();
     }
 
-    @Bean
-    public MetadataInitializer metadataInitializer(AttributeEntityRepo attributeEntityRepo) {
-
-        return new MetadataInitializer(resourceLoader, attributeEntityRepo);
+//    @Bean(initMethod = "init")
+//    public MetadataInitializer metadataInitializer(AttributeEntityRepo attributeEntityRepo) {
+//
+//        return new MetadataInitializer(resourceLoader, attributeEntityRepo);
+//    }
+    @Bean(initMethod = "save")
+    public EntitySaver entitySaver(AttributeEntityRepo attributeEntityRepo) {
+        return new EntitySaver(attributeEntityRepo);
     }
 
     @Bean
