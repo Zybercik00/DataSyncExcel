@@ -3,12 +3,14 @@ package com.github.zybercik00;
 import com.github.zybercik00.domain.metadata.QualifiedAttributeEntity;
 import com.github.zybercik00.domain.metadata.ReferenceAttributeEntity;
 import com.github.zybercik00.domain.metadata.SimpleAttributeEntity;
+import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
+@RequiredArgsConstructor
 public class JsonMappingLoader {
 
-    JsonAttributeLoader jsonAttributeLoader;
+    private final JsonAttributeLoader jsonAttributeLoader;
 
     ReferenceAttributeEntity loadReferenced() throws IOException {
         ReferenceAttributeEntity referenceAttributeEntity = new ReferenceAttributeEntity();
@@ -21,7 +23,7 @@ public class JsonMappingLoader {
     }
     SimpleAttributeEntity loadSimple() throws IOException {
         SimpleAttributeEntity simpleAttributeEntity = new SimpleAttributeEntity();
-        for (SimpleAttributeJson simpleAttributeJson : jsonAttributeLoader.load().getSimple()) {
+        for (SimpleAttributeJson simpleAttributeJson :  jsonAttributeLoader.load().getSimple()) {
             simpleAttributeEntity.setPath(simpleAttributeJson.getPath());
             simpleAttributeEntity.setTargetProperty(simpleAttributeJson.getTargetProperty());
         }

@@ -16,13 +16,14 @@ import lombok.*;
 @ToString
 public class QualifiedAttributeEntity extends AttributeEntity {
 
-    @Column(name = "QUALIFIED_PROPERTY")
+    @Column(name = "QUALIFIED_PROPERTY", length = 128, nullable = false)
     private String qualifiedProperty;
 
-    @Column(name = "QUALIFIED_PARENT")
+    @Column(name = "QUALIFIED_PARENT", length = 128, nullable = false)
     private String qualifiedParent;
     
-    @Column(name = "QUALIFIER")
+    @Column(name = "QUALIFIER", length = 128, nullable = false)
+    @Convert(converter = JsonNodeConverter.class)
     private String qualifier;
 
 }

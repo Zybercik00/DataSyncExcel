@@ -14,6 +14,6 @@ import lombok.experimental.SuperBuilder;
 @ToString
 public class ReferenceAttributeEntity extends AttributeEntity {
 
-    @Column(name = "NESTED_PROPERTY")
+    @Column(name = "NESTED_PROPERTY", length = 128, nullable = false)
     private String nestedProperty;
 }

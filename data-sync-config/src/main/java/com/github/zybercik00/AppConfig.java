@@ -90,9 +90,18 @@ public class AppConfig {
 //
 //        return new MetadataInitializer(resourceLoader, attributeEntityRepo);
 //    }
+    @Bean
+    public JsonAttributeLoader jsonAttributeLoader(ResourceLoader resourceLoader) {
+        return new JsonAttributeLoader(resourceLoader);
+    }
+    @Bean
+    public JsonMappingLoader jsonMappingLoader(){
+        return new JsonMappingLoader(jsonAttributeLoader(resourceLoader));
+    }
+
     @Bean(initMethod = "save")
-    public EntitySaver entitySaver(AttributeEntityRepo attributeEntityRepo) {
-        return new EntitySaver(attributeEntityRepo);
+    public EntitySaver entitySaver(AttributeEntityRepo attributeEntityRepo, JsonMappingLoader jsonMappingLoader) {
+        return new EntitySaver(jsonMappingLoader, attributeEntityRepo);
     }
 
     @Bean

@@ -8,15 +8,15 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class EntitySaver {
 
+    private final JsonMappingLoader jsonMappingLoader;
     private final AttributeEntityRepo attributeEntityRepo;
 
 
 
     void save() throws IOException {
-        JsonMappingLoader mappingLoader = new JsonMappingLoader();
-        attributeEntityRepo.save(mappingLoader.loadReferenced());
-        attributeEntityRepo.save(mappingLoader.loadSimple());
-        attributeEntityRepo.save(mappingLoader.loadQualified());
+        attributeEntityRepo.save(jsonMappingLoader.loadReferenced());
+        attributeEntityRepo.save(jsonMappingLoader.loadSimple());
+        attributeEntityRepo.save(jsonMappingLoader.loadQualified());
     }
 
 
