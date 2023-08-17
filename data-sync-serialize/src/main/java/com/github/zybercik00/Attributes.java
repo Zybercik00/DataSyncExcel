@@ -8,7 +8,8 @@ import java.util.List;
 @Setter
 public class Attributes {
 
-    private List<QualifiedAttributeJson> qualified;
-    private List<ReferencedAttributeJson> reference;
+
     private List<SimpleAttributeJson> simple;
+    private List<ReferencedAttributeJson> reference;
+    private List<QualifiedAttributeJson> qualified;
 }

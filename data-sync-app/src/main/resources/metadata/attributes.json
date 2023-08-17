@@ -1,5 +1,4 @@
 {
-  "attributes": {
     "simple": [
       {
         "path":  "material.name",
@@ -150,5 +149,4 @@
           }
       }
     ]
-}
 }
