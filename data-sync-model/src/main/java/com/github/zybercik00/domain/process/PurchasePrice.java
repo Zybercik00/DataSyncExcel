@@ -8,13 +8,15 @@ import lombok.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "PURCHASE_PRICE")
+@Table(name = "PURCHASE_PRICE", uniqueConstraints = @UniqueConstraint(
+        name = "UC_PURCHASE_PRICE",
+        columnNames = {"CURRENCY", "EXTRACTION"}))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class PurchasePrice {
 
@@ -24,21 +26,22 @@ public class PurchasePrice {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @JoinColumn(name = "CURRENCY")
+    @JoinColumn(name = "CURRENCY",
+            foreignKey = @ForeignKey(name = "FK_PPR_CUR"))
     @ManyToOne
+    @EqualsAndHashCode.Include
     private Currency currency;
 
     @Column(name = "PURCHASE_PRICE")
     @JsonFormat
     private BigDecimal purchasePrice;
 
-    @JoinColumn
-    @OneToOne(mappedBy = "purchasePrice")
-    @JsonIgnore
-    private Price price;
 
-    @JoinColumn(name = "EXTRACTION")
+    @JoinColumn(name = "EXTRACTION",
+            foreignKey = @ForeignKey(name = "FK_PPR_EXT"))
     @ManyToOne
     @JsonIgnore
+    @ToString.Exclude
+    @EqualsAndHashCode.Include
     private Extraction extraction;
 }

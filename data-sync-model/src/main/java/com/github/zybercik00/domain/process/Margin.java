@@ -7,13 +7,15 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "MARGIN")
+@Table(name = "MARGIN", uniqueConstraints = @UniqueConstraint(
+        name = "UC_MARGIN_NME",
+        columnNames = "MARGIN_NAME"))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Margin {
 

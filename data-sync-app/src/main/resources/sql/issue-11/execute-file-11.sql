@@ -141,5 +141,6 @@ create table WASTE
     LOSS_TOTAL_KG                 NUMERIC(38, 2),
     LOSS_TOTAL_PERCENTS           NUMERIC(38, 2),
     PACKED_KG                     NUMERIC(38, 2)
+
 );
 

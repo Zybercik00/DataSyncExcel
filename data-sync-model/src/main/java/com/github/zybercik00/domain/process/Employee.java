@@ -4,19 +4,20 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "EMPLOYEE")
+@Table(name = "EMPLOYEE", uniqueConstraints = @UniqueConstraint(
+        name = "UC_EMPLOYEE_NME",
+        columnNames = "EMPLOYEE_NAME"))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Employee {
 
     @Id
     @GeneratedValue
-
     @Column(name = "EMPLOYEE_ID")
     private Long id;
 

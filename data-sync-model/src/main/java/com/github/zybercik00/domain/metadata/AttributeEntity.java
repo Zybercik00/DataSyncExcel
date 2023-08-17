@@ -14,9 +14,10 @@ public class AttributeEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "ATTRIBUTE_ID")
     private Long id;
 
-    @Column(name = "PATH", length = 1024, nullable = false)
+    @Column(name = "PATH", length = 1024, nullable = false, unique = true)
     @EqualsAndHashCode.Include
     private String path;
 

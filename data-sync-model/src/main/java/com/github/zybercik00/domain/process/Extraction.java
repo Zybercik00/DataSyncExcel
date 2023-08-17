@@ -1,43 +1,49 @@
 package com.github.zybercik00.domain.process;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.github.zybercik00.domain.process.*;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "EXTRACTION")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name = "EXTRACTION",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_EXTRACTION",
+                columnNames = {"MATERIAL", "PREPARED_ON"}))
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Extraction {
+
+    public Extraction() {
+        waste = new Waste(this);
+        purchasePrices = new ArrayList<>();
+        salePrices = new ArrayList<>();
+    }
 
     @Id
     @GeneratedValue
     @Column(name = "EXTRACTION_ID")
-    @EqualsAndHashCode.Include
     private Long id;
 
-
-    @JoinColumn(name = "MATERIAL")
+    @JoinColumn(name = "MATERIAL",
+            foreignKey = @ForeignKey(name = "FK_EXT_MAT"))
     @ManyToOne
+    @EqualsAndHashCode.Include
     private Material material;
 
-
     @Column(name = "PREPARED_ON")
+    @EqualsAndHashCode.Include
     private Date preparedOn;
-
 
     @Column(name = "WEIGHT_BEFORE")
     private BigDecimal weightBefore;
-
 
     @Column(name = "WEIGHT_AFTER")
     private BigDecimal weightAfter;
@@ -45,7 +51,6 @@ public class Extraction {
     @PrimaryKeyJoinColumn(name = "REALIZED_BY")
     @OneToOne
     private Employee realizedBy;
-
 
     @Column(name = "RECEIVED_IN_BERN")
     private Date receivedBackOn;

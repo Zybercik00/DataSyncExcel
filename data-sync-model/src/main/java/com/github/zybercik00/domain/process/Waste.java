@@ -1,26 +1,34 @@
 package com.github.zybercik00.domain.process;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "WASTE")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name = "WASTE",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_WASTE",
+                columnNames = "EXTRACTION_ID"))
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Waste {
+
+    public Waste() {
+        extraction = new Extraction();
+    }
+
+    public Waste(Extraction extraction) {
+        this.extraction = extraction;
+    }
 
     @Id
     @GeneratedValue
     @Column(name = "WASTE_ID")
-    @EqualsAndHashCode.Include
     private Long id;
 
     @Column(name = "PACKED_KG")
@@ -38,7 +46,11 @@ public class Waste {
     @Column(name = "LOSS_TOTAL_PERCENTS")
     private BigDecimal lossTotalPercents;
 
-    @OneToOne(mappedBy = "waste")
-    @JsonBackReference
+    @OneToOne
+    @JoinColumn(name = "EXTRACTION_ID",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "FK_WST_EXT"))
+    @EqualsAndHashCode.Include
+    @JsonIgnore
     private Extraction extraction;
 }
