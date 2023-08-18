@@ -23,7 +23,7 @@ public class QualifiedAttributeEntity extends AttributeEntity {
     private String qualifiedParent;
     
     @Column(name = "QUALIFIER", length = 128, nullable = false)
-    @Convert(converter = JsonNodeConverter.class)
+//    @Convert(converter = JsonNodeConverter.class)
     private String qualifier;
 
 }
