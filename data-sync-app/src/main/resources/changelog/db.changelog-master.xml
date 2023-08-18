@@ -7,4 +7,10 @@
     <changeSet id="1" author="kamil">
         <sqlFile path="/sql/issue-11/execute-file-11.sql"/>
     </changeSet>
+    <changeSet id="1" author="kamil">
+        <sqlFile path="/sql/issue-11/execute-file-11-mapping.sql"/>
+    </changeSet>
+    <changeSet id="1" author="kamil">
+        <sqlFile path="/sql/issue-11/execute-file-11-metadata.sql"/>
+    </changeSet>
 </databaseChangeLog>
