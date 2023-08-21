@@ -50,7 +50,7 @@ public class Extraction {
     private BigDecimal weightAfter;
 
     @PrimaryKeyJoinColumn(name = "REALIZED_BY")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Employee realizedBy;
 
     @Column(name = "RECEIVED_IN_BERN")

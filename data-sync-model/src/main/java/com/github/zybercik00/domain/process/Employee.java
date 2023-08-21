@@ -33,4 +33,8 @@ public class Employee {
 
     @Column(name = "ACCESS_LEVEL")
     private String accessLevel;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    private Extraction extraction;
 }

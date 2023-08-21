@@ -47,7 +47,7 @@ public class Waste {
     @Column(name = "LOSS_TOTAL_PERCENTS")
     private BigDecimal lossTotalPercents;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "EXTRACTION_ID",
             nullable = false,
             foreignKey = @ForeignKey(name = "FK_WST_EXT"))
