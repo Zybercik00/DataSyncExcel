@@ -20,7 +20,8 @@ import java.util.List;
 public class Currency {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "currency_generator")
+    @SequenceGenerator(name = "currency_generator", sequenceName = "currency_sec", allocationSize = 50)
     @Column(name = "CURRENCY_ID")
     private Long id;
 

@@ -17,7 +17,8 @@ import lombok.*;
 public class Employee {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_generator")
+    @SequenceGenerator(name = "employee_generator", sequenceName = "employee_sec", allocationSize = 50)
     @Column(name = "EMPLOYEE_ID")
     private Long id;
 

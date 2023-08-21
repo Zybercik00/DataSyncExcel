@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SimpleAttributeJson {
+
     private String path;
     private String targetProperty;
 }

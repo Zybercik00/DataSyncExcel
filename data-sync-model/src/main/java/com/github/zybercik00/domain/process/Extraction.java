@@ -28,7 +28,8 @@ public class Extraction {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "extraction_generator")
+    @SequenceGenerator(name = "extraction_generator", sequenceName = "extraction_sec", allocationSize = 50)
     @Column(name = "EXTRACTION_ID")
     private Long id;
 

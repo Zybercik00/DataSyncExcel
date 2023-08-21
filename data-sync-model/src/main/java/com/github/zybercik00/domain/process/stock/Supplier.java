@@ -19,7 +19,8 @@ import java.util.List;
 public class Supplier {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "supplier_generator")
+    @SequenceGenerator(name = "supplier_generator", sequenceName = "supplier_sec", allocationSize = 50)
     @Nonnull
     @Column(name = "SUPPILER_ID")
     private Long id;

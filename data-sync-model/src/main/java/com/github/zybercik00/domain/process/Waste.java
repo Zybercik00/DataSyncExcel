@@ -27,7 +27,8 @@ public class Waste {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "waste_generator")
+    @SequenceGenerator(name = "waste_generator", sequenceName = "waste_sec", allocationSize = 50)
     @Column(name = "WASTE_ID")
     private Long id;
 

@@ -19,7 +19,8 @@ import com.github.zybercik00.domain.process.stock.Warehouse;
 public class Material {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "material_generator")
+    @SequenceGenerator(name = "material_generator", sequenceName = "material_sec", allocationSize = 50)
     @Column(name = "MATERIAL_ID")
     private Long id;
 

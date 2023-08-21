@@ -21,7 +21,8 @@ import java.math.BigDecimal;
 public class PurchasePrice {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "purchasePrice_generator")
+    @SequenceGenerator(name = "purchasePrice_generator", sequenceName = "purchasePrice_sec", allocationSize = 50)
     @Column(name = "ID")
     @EqualsAndHashCode.Include
     private Long id;

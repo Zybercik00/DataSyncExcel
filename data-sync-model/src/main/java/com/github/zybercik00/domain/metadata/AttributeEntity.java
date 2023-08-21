@@ -13,7 +13,8 @@ import lombok.*;
 public class AttributeEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "attributeEntity_generator")
+    @SequenceGenerator(name = "attributeEntity_generator", sequenceName = "attributeEntity_sec", allocationSize = 50)
     @Column(name = "ATTRIBUTE_ID")
     private Long id;
 

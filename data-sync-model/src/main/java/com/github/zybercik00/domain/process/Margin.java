@@ -20,7 +20,8 @@ import java.util.List;
 public class Margin {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "margin_generator")
+    @SequenceGenerator(name = "margin_generator", sequenceName = "margin_sec", allocationSize = 50)
     @Column(name = "MARGIN_ID")
     private Long id;
 

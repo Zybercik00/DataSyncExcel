@@ -21,7 +21,8 @@ import java.math.BigDecimal;
 public class SalePrice {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "salePrice_generator")
+    @SequenceGenerator(name = "salePrice_generator", sequenceName = "salePrice_sec", allocationSize = 50)
     @Column(name = "ID")
     private Long id;
 

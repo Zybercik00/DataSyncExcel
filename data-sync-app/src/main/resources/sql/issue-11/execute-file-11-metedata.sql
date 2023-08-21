@@ -1,3 +1,7 @@
+create sequence ATTRIBUTE_SEC
+    START WITH 1
+    INCREMENT BY 50;
+
 
 create table ATTRIBUTE
 (
