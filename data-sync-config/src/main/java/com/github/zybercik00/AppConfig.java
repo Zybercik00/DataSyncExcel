@@ -85,11 +85,6 @@ public class AppConfig {
         return new ExtractionMappingService();
     }
 
-//    @Bean(initMethod = "init")
-//    public MetadataInitializer metadataInitializer(AttributeEntityRepo attributeEntityRepo) {
-//
-//        return new MetadataInitializer(resourceLoader, attributeEntityRepo);
-//    }
     @Bean
     public JsonAttributeLoader jsonAttributeLoader(ResourceLoader resourceLoader) {
         return new JsonAttributeLoader(resourceLoader);
@@ -97,6 +92,11 @@ public class AppConfig {
     @Bean
     public JsonMappingLoader jsonMappingLoader(){
         return new JsonMappingLoader(jsonAttributeLoader(resourceLoader));
+    }
+
+    @Bean(initMethod = "save")
+    public EntitySaver entitySaver(AttributeEntityRepo attributeEntityRepo, JsonMappingLoader jsonMappingLoader) {
+        return new EntitySaver(jsonMappingLoader, attributeEntityRepo);
     }
 
 
