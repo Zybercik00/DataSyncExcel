@@ -99,10 +99,6 @@ public class AppConfig {
         return new JsonMappingLoader(jsonAttributeLoader(resourceLoader));
     }
 
-    @Bean(initMethod = "save")
-    public EntitySaver entitySaver(AttributeEntityRepo attributeEntityRepo, JsonMappingLoader jsonMappingLoader) {
-        return new EntitySaver(jsonMappingLoader, attributeEntityRepo);
-    }
 
     @Bean
     public ExtractionService extractionService(
