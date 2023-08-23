@@ -6,9 +6,10 @@ import com.github.zybercik00.domain.process.stock.Supplier;
 import com.github.zybercik00.domain.process.stock.Warehouse;
 
 @Entity
-@Table(name = "MATERIAL", uniqueConstraints = @UniqueConstraint(
-        name = "UC_MATERIAL_NME",
-        columnNames = "LOT"))
+@Table(name = "MATERIAL",
+        uniqueConstraints = @UniqueConstraint(
+            name = "UC_MATERIAL_NME",
+            columnNames = "LOT"))
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

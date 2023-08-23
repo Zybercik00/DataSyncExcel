@@ -18,6 +18,7 @@ public class AppConfig {
 
     private final EntityManager entityManager;
     private final ResourceLoader resourceLoader;
+    private final AttributeEntityRepo attributeEntityRepo;
     @Bean
     public MaterialService materialService(MaterialRepo materialRepo) {
         return new MaterialService(materialRepo);
@@ -85,18 +86,19 @@ public class AppConfig {
         return new ExtractionMappingService();
     }
 
+
     @Bean
-    public JsonAttributeLoader jsonAttributeLoader(ResourceLoader resourceLoader) {
+    public JsonAttributeLoader jsonAttributeLoader() {
         return new JsonAttributeLoader(resourceLoader);
     }
     @Bean
     public JsonMappingLoader jsonMappingLoader(){
-        return new JsonMappingLoader(jsonAttributeLoader(resourceLoader));
+        return new JsonMappingLoader(jsonAttributeLoader());
     }
 
     @Bean(initMethod = "save")
-    public EntitySaver entitySaver(AttributeEntityRepo attributeEntityRepo, JsonMappingLoader jsonMappingLoader) {
-        return new EntitySaver(jsonMappingLoader, attributeEntityRepo);
+    public EntitySaver entitySaver() {
+        return new EntitySaver(jsonMappingLoader(), attributeEntityRepo);
     }
 
 
