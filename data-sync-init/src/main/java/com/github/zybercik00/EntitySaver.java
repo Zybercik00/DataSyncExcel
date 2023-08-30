@@ -20,9 +20,6 @@ public class EntitySaver {
 
 
     void save() throws IOException {
-
-
-
         List<ReferenceAttributeEntity> referencedEntities = jsonMappingLoader.loadReferenced();
         for (ReferenceAttributeEntity referencedEntity : referencedEntities) {
             Optional<AttributeEntity> optionalDbEntity = attributeEntityRepo.findByPath(referencedEntity.getPath());
