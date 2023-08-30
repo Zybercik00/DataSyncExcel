@@ -56,9 +56,7 @@ public class Extraction {
     @Column(name = "RECEIVED_IN_BERN")
     private Date receivedBackOn;
 
-    @PrimaryKeyJoinColumn(name = "WASTE")
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(unique = true)
+    @OneToOne(mappedBy = "extraction", cascade = CascadeType.ALL)
     private Waste waste;
 
     @Column(name = "SAMPLE_TEST_RESULT")
