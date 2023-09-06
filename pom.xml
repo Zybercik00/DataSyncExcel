@@ -13,9 +13,12 @@
         <module>data-sync-app</module>
         <module>data-sync-repository</module>
         <module>data-sync-excel</module>
+        <module>data-sync-serialize</module>
         <module>data-sync-model</module>
         <module>data-sync-service</module>
         <module>data-sync-config</module>
+        <module>data-sync-metadata</module>
+        <module>data-sync-init</module>
     </modules>
 
     <properties>
@@ -66,6 +69,11 @@
             <dependency>
                 <groupId>com.github.zybercik00</groupId>
                 <artifactId>data-sync-service</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-serialize</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>

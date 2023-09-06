@@ -1,9 +1,8 @@
 package com.github.zybercik00;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.github.zybercik00.domain.proces.Extraction;
+import com.github.zybercik00.domain.process.Extraction;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

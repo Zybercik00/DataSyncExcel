@@ -1,7 +1,7 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Employee;
-import com.github.zybercik00.repository.proces.EmployeeRepo;
+import com.github.zybercik00.domain.process.Employee;
+import com.github.zybercik00.repository.process.EmployeeRepo;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -11,9 +11,6 @@ public class EmployeeService {
 
     public Employee getEmployee(String name) {
         return repository.findByName(name)
-                .orElseGet(() -> repository.save(Employee
-                        .builder()
-                        .name(name)
-                        .build()));
+                .orElseGet(() -> repository.save(new Employee(name)));
     }
 }

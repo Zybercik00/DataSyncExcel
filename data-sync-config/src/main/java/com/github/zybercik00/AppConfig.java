@@ -2,19 +2,23 @@ package com.github.zybercik00;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.github.zybercik00.repository.proces.*;
+import com.github.zybercik00.repository.process.*;
+import com.github.zybercik00.repository.process.metadata.AttributeEntityRepo;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ResourceLoader;
 
 @Configuration
 @RequiredArgsConstructor
 public class AppConfig {
 
     private final EntityManager entityManager;
+    private final ResourceLoader resourceLoader;
+    private final AttributeEntityRepo attributeEntityRepo;
     @Bean
     public MaterialService materialService(MaterialRepo materialRepo) {
         return new MaterialService(materialRepo);
@@ -81,6 +85,22 @@ public class AppConfig {
     public ExtractionMappingService extractionMappingService() {
         return new ExtractionMappingService();
     }
+
+
+    @Bean
+    public JsonAttributeLoader jsonAttributeLoader() {
+        return new JsonAttributeLoader(resourceLoader);
+    }
+    @Bean
+    public JsonMappingLoader jsonMappingLoader(){
+        return new JsonMappingLoader(jsonAttributeLoader());
+    }
+
+    @Bean(initMethod = "save")
+    public EntitySaver entitySaver() {
+        return new EntitySaver(jsonMappingLoader(), attributeEntityRepo);
+    }
+
 
     @Bean
     public ExtractionService extractionService(

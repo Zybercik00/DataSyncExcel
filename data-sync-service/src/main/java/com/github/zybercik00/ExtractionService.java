@@ -1,15 +1,19 @@
 package com.github.zybercik00;
 
-import com.github.zybercik00.domain.proces.Extraction;
-import com.github.zybercik00.domain.proces.Waste;
-import com.github.zybercik00.repository.proces.ExtractionRepo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.zybercik00.domain.process.Extraction;
+import com.github.zybercik00.domain.process.Waste;
+import com.github.zybercik00.repository.process.ExtractionRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RequiredArgsConstructor
 public class ExtractionService {
@@ -33,7 +37,7 @@ public class ExtractionService {
 
     @SneakyThrows
     private Extraction getExtraction(ExcelTableWithHeader.Cursor cursor) {
-        Extraction extraction = getExtraction();
+        Extraction extraction = getExtractionByConstrain(cursor);
         for (Mapping mapping : extractionMappingService.getMappings()) {
             mappingService.setSimpleValue(
                     cursor,
@@ -41,17 +45,18 @@ public class ExtractionService {
                     attributeService.getAttribute(mapping.getTarget()),
                     mapping.getSource());
         }
-        // TODO Use batch updates
         return extractionRepo.save(extraction);
     }
 
-    private Extraction getExtraction() {
-        // TODO Should be also incremental
-        Extraction extraction = new Extraction();
-        extraction.setWaste(new Waste());
-        extraction.setPurchasePrices(new ArrayList<>());
-        extraction.setSalePrices(new ArrayList<>());
-        return extractionRepo.save(extraction);
+    private Extraction getExtractionByConstrain(ExcelTableWithHeader.Cursor cursor) {
+        String materialLot = cursor.getStringValue("Lot");
+        Date preparedOn = cursor.getDateValue("Made on");
+        return getExtraction(materialLot, preparedOn);
+    }
+
+    private Extraction getExtraction(String materialLot, Date preparedOn) {
+        Optional<Extraction> persistedExtraction = extractionRepo.findByMaterialLotAndPreparedOn(materialLot, preparedOn);
+        return persistedExtraction.orElseGet(Extraction::new);
     }
 
 }

@@ -1,0 +1,152 @@
+{
+    "simple": [
+      {
+        "path":  "material.name",
+        "targetProperty": "material.name"
+      },
+      {
+        "path": "preparedOn",
+        "targetProperty": "preparedOn"
+      },
+      {
+        "path": "weightBefore",
+        "targetProperty": "weight"
+      },
+      {
+        "path": "weightAfter",
+        "targetProperty": "weightAfter"
+      },
+      {
+        "path": "waste.loosAfterExtractionInKg",
+        "targetProperty": "waste.lossAfterExtractionInKg"
+      },
+      {
+        "path": "waste.lossAfterExtractionInPercent",
+        "targetProperty": "waste.lossAfterExtractionInPercent"
+      },
+      {
+        "path": "receivedBackOn",
+        "targetProperty": "receivedBackOn"
+      },
+      {
+        "path": "sampleTestResult",
+        "targetProperty": "sampleTestResult"
+      },
+      {
+        "path": "waste.packedKg",
+        "targetProperty": "waste.packedKg"
+      },
+      {
+        "path": "waste.lossTotalKg",
+        "targetProperty": "waste.lossTotalKg"
+      },
+      {
+        "path": "waste.lossTotalPercent",
+        "targetProperty": "waste.lossTotalPercent"
+      }
+    ],
+    "reference": [
+      {
+        "path": "material",
+        "targetProperty": "material",
+        "nestedProperty": "lot"
+      },
+      {
+        "path": "realizedBy",
+        "targetProperty": "realizedBy",
+        "nestedProperty": "name"
+      }
+    ],
+    "qualified": [
+      {
+        "path": "purchasePrice[currency.code='EUR']",
+        "targetProperty": "purchasePrice",
+        "qualifierProperty": "purchasePrice",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+            "currency":{"code":"EUR"}
+          }
+      },
+      {
+        "path": "purchasePrice[currency.code='CHF']",
+        "targetProperty": "purchasePrice",
+        "qualifierProperty": "purchasePrice",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+            "currency":{"code":"CHF"}
+          }
+      },
+      {
+        "path": "salePrices[margin.name='10% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+          "margin":  {"name": "10% marge"}
+          }
+      },
+      {
+        "path": "salePrices[margin.name='20% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+            "margin":  {"name": "20% marge"}
+          }
+      },
+      {
+        "path": "salePrices[margin.name='40% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+            "margin":  {"name": "40% marge"}
+          }
+      },
+      {
+        "path": "salePrices[margin.name='50% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+            "margin":  {"name": "50% marge"}
+          }
+      },
+      {
+        "path": "salePrices[margin.name='60% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+            "margin":  {"name": "60% marge"}
+          }
+      },
+      {
+        "path": "salePrices[margin.name='70% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+            "margin":  {"name": "70% marge"}
+          }
+      },
+      {
+        "path": "salePrices[margin.name='100% marge']",
+        "targetProperty": "salePrices",
+        "qualifierProperty": "salePrices",
+        "qualifierParent": "extraction",
+        "qualifier":
+          {
+            "margin":  {"name": "100% marge"}
+          }
+      }
+    ]
+}
