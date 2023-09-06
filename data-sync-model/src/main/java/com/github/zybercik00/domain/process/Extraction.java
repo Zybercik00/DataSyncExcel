@@ -21,11 +21,6 @@ import java.util.List;
 @ToString
 public class Extraction {
 
-    public Extraction() {
-        waste = new Waste(this);
-        purchasePrices = new ArrayList<>();
-        salePrices = new ArrayList<>();
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "extraction_generator")
@@ -49,8 +44,8 @@ public class Extraction {
     @Column(name = "WEIGHT_AFTER")
     private BigDecimal weightAfter;
 
-    @PrimaryKeyJoinColumn(name = "REALIZED_BY")
-    @OneToOne
+    @JoinColumn(name = "REALIZED_BY")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Employee realizedBy;
 
     @Column(name = "RECEIVED_IN_BERN")
@@ -62,11 +57,15 @@ public class Extraction {
     @Column(name = "SAMPLE_TEST_RESULT")
     private BigDecimal sampleTestResult;
 
-    @OneToMany(mappedBy = "extraction")
+    @OneToMany(mappedBy = "extraction", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<PurchasePrice> purchasePrices;
+    private List<PurchasePrice> purchasePrices = new ArrayList<>();
 
-    @OneToMany(mappedBy = "extraction")
+    @OneToMany(mappedBy = "extraction", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<SalePrice> salePrices;
+    private List<SalePrice> salePrices = new ArrayList<>();
+
+    public Extraction() {
+        waste = new Waste(this);
+    }
 }

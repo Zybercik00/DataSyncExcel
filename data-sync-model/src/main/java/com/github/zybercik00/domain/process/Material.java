@@ -10,9 +10,6 @@ import com.github.zybercik00.domain.process.stock.Warehouse;
         uniqueConstraints = @UniqueConstraint(
             name = "UC_MATERIAL_NME",
             columnNames = "LOT"))
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -48,12 +45,19 @@ public class Material {
 
     @JoinColumn(name = "WAREHOUSE",
             foreignKey = @ForeignKey(name = "FK_MAT_WHS"))
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Warehouse warehouse;
 
 
     @JoinColumn(name = "SUPPLIER",
             foreignKey = @ForeignKey(name = "FK_MAT_SPL"))
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Supplier supplier;
+
+    public Material() {
+    }
+
+    public Material(String lot) {
+        this.lot = lot;
+    }
 }

@@ -11,8 +11,6 @@ public class MaterialService {
 
     public Material getMaterial(String lot) {
         return repository.findByLot(lot)
-                .orElseGet(() -> repository.save(Material.builder()
-                        .lot(lot)
-                        .build()));
+                .orElseGet(() -> repository.save(new Material(lot)));
     }
 }

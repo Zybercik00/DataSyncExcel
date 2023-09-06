@@ -11,9 +11,6 @@ import java.math.BigDecimal;
 @Table(name = "PURCHASE_PRICE", uniqueConstraints = @UniqueConstraint(
         name = "UC_PURCHASE_PRICE",
         columnNames = {"CURRENCY", "EXTRACTION"}))
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -24,12 +21,11 @@ public class PurchasePrice {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "purchasePrice_generator")
     @SequenceGenerator(name = "purchasePrice_generator", sequenceName = "purchasePrice_sec", allocationSize = 50)
     @Column(name = "ID")
-    @EqualsAndHashCode.Include
     private Long id;
 
     @JoinColumn(name = "CURRENCY",
             foreignKey = @ForeignKey(name = "FK_PPR_CUR"))
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @EqualsAndHashCode.Include
     private Currency currency;
 
@@ -40,7 +36,7 @@ public class PurchasePrice {
 
     @JoinColumn(name = "EXTRACTION",
             foreignKey = @ForeignKey(name = "FK_PPR_EXT"))
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Include

@@ -8,9 +8,6 @@ import lombok.*;
         uniqueConstraints = @UniqueConstraint(
             name = "UC_EMPLOYEE_NME",
             columnNames = "EMPLOYEE_NAME"))
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -38,4 +35,11 @@ public class Employee {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private Extraction extraction;
+
+    public Employee() {
+    }
+
+    public Employee(String name) {
+        this.name = name;
+    }
 }

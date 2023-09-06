@@ -5,24 +5,22 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "WAREHOUSE_LOCATION")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name = "WAREHOUSE_LOCATION", uniqueConstraints = @UniqueConstraint(
+        name = "UC_LOCATION_NME",
+        columnNames = "WAREHOUSE_NAME"))
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class WarehouseLocation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "warehouseLocation_generator")
     @SequenceGenerator(name = "warehouseLocation_generator", sequenceName = "warehouseLocation_sec", allocationSize = 50)
-    @Nonnull
     @Column(name = "WAREHOUSE_LOCATION_ID")
     private Long id;
 
-    @Nonnull
+
     @Column(name = "LOCATION_NAME")
     @EqualsAndHashCode.Include
     private String locationName;

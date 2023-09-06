@@ -10,9 +10,6 @@ import java.util.List;
 @Table(name = "MARGIN", uniqueConstraints = @UniqueConstraint(
         name = "UC_MARGIN_NME",
         columnNames = "MARGIN_NAME"))
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -29,7 +26,10 @@ public class Margin {
     @Column(name = "MARGIN_NAME")
     private String name;
 
-    @OneToMany(mappedBy = "margin")
-    @JsonIgnore
-    private List<SalePrice> prices;
+    public Margin() {
+    }
+
+    public Margin(String name) {
+        this.name = name;
+    }
 }

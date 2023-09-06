@@ -11,9 +11,6 @@ import java.math.BigDecimal;
 @Table(name = "SALE_PRICE", uniqueConstraints = @UniqueConstraint(
         name = "UC_SALE_PRICE",
         columnNames = {"MARGIN", "EXTRACTION"}))
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -32,13 +29,13 @@ public class SalePrice {
 
     @JoinColumn(name = "MARGIN",
             foreignKey = @ForeignKey(name = "FK_SPR_MRG"))
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @EqualsAndHashCode.Include
     private Margin margin;
 
     @JoinColumn(name = "EXTRACTION",
             foreignKey = @ForeignKey(name = "FK_SPR_EXT"))
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Include

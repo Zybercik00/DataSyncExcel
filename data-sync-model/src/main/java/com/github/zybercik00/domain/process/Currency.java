@@ -11,9 +11,6 @@ import java.util.List;
         uniqueConstraints = @UniqueConstraint(
             name = "UC_CURRENCY_NME",
             columnNames = "CURRENCY_NAME"))
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -30,8 +27,10 @@ public class Currency {
     @Column(name = "CURRENCY_NAME")
     private String code;
 
-    @OneToMany(mappedBy = "currency")
-    @JsonIgnore
-    @ToString.Exclude
-    private List<PurchasePrice> purchasePrices;
+    public Currency() {
+    }
+
+    public Currency(String code) {
+        this.code = code;
+    }
 }

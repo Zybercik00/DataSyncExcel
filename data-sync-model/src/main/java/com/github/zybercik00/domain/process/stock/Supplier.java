@@ -8,30 +8,28 @@ import com.github.zybercik00.domain.process.Material;
 import java.util.List;
 
 @Entity
-@Table(name = "SUPPLIER")
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name = "SUPPLIER",
+        uniqueConstraints = @UniqueConstraint(
+                name = "UC_SUPPLIER_NME",
+                columnNames = "SUPPILER_NAME"))
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "supplier_generator")
     @SequenceGenerator(name = "supplier_generator", sequenceName = "supplier_sec", allocationSize = 50)
-    @Nonnull
     @Column(name = "SUPPILER_ID")
     private Long id;
 
-    @Nonnull
+
     @Column(name = "SUPPILER_NAME")
     @EqualsAndHashCode.Include
     private String name;
 
-    @Nonnull
-    @Column(name = "MATERIALS")
-    @OneToMany
+
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
     private List<Material> supplierMaterials;
 }

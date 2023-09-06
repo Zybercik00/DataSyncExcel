@@ -18,13 +18,6 @@ import java.math.BigDecimal;
 @ToString
 public class Waste {
 
-    public Waste() {
-        extraction = new Extraction();
-    }
-
-    public Waste(Extraction extraction) {
-        this.extraction = extraction;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "waste_generator")
@@ -47,11 +40,19 @@ public class Waste {
     @Column(name = "LOSS_TOTAL_PERCENTS")
     private BigDecimal lossTotalPercents;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "EXTRACTION_ID",
             nullable = false,
             foreignKey = @ForeignKey(name = "FK_WST_EXT"))
     @EqualsAndHashCode.Include
     @JsonIgnore
     private Extraction extraction;
+
+    public Waste() {
+        extraction = new Extraction();
+    }
+
+    public Waste(Extraction extraction) {
+        this.extraction = extraction;
+    }
 }

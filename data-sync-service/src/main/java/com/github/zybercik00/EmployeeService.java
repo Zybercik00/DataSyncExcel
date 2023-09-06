@@ -11,9 +11,6 @@ public class EmployeeService {
 
     public Employee getEmployee(String name) {
         return repository.findByName(name)
-                .orElseGet(() -> repository.save(Employee
-                        .builder()
-                        .name(name)
-                        .build()));
+                .orElseGet(() -> repository.save(new Employee(name)));
     }
 }

@@ -9,11 +9,8 @@ public class CurrencyService {
 
     private final CurrencyRepo repository;
 
-    public Currency getByCode(String name) {
-        return repository.findByCode(name)
-                .orElseGet(() -> repository.save(Currency
-                        .builder()
-                        .code(name)
-                        .build()));
+    public Currency getByCode(String code) {
+        return repository.findByCode(code)
+                .orElseGet(() -> repository.save(new Currency(code)));
     }
 }
