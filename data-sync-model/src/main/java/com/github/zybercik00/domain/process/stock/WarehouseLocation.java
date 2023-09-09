@@ -7,7 +7,7 @@ import lombok.*;
 @Entity
 @Table(name = "WAREHOUSE_LOCATION", uniqueConstraints = @UniqueConstraint(
         name = "UC_LOCATION_NME",
-        columnNames = "WAREHOUSE_NAME"))
+        columnNames = "LOCATION_NAME"))
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
