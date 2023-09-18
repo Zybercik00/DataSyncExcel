@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
+
 public class Extraction {
 
 
@@ -30,7 +30,7 @@ public class Extraction {
 
     @JoinColumn(name = "MATERIAL",
             foreignKey = @ForeignKey(name = "FK_EXT_MAT"))
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @EqualsAndHashCode.Include
     private Material material;
 
