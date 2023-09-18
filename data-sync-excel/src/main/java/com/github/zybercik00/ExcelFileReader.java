@@ -33,13 +33,13 @@ public class ExcelFileReader implements CommandLineRunner {
             throw new IOException("Resource not found: " + properties.getExcelResource());
         }
     }
-
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
         readListExcelFile();
     }
 
-    @Transactional
+
     void readListExcelFile() throws IOException {
         List<Extraction> extractions = getExtractions();
         processExtractions(extractions);
