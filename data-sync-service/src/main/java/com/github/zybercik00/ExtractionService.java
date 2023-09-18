@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.zybercik00.domain.process.Extraction;
 import com.github.zybercik00.domain.process.Waste;
 import com.github.zybercik00.repository.process.ExtractionRepo;
+import com.github.zybercik00.repository.process.metadata.AttributeEntityRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -56,7 +57,7 @@ public class ExtractionService {
 
     private Extraction getExtraction(String materialLot, Date preparedOn) {
         Optional<Extraction> persistedExtraction = extractionRepo.findByMaterialLotAndPreparedOn(materialLot, preparedOn);
-        return persistedExtraction.orElseGet(Extraction::new);
+        return persistedExtraction.orElseGet(() -> extractionRepo.save(new Extraction()));
     }
 
 }
