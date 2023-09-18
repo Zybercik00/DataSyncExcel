@@ -49,7 +49,7 @@ public class MappingService {
         try {
             return query.getSingleResult();
         } catch (NoResultException nre) {
-            entityManager.persist(entity);
+           entityManager.persist(entity);
             return entity;
         }
     }
