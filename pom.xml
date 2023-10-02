@@ -40,6 +40,9 @@
         <mockito-core.version>4.11.0</mockito-core.version>
         <jackson.version>2.15.2</jackson.version>
         <liquibase-core.version>4.23.0</liquibase-core.version>
+        <log4j-slf4j-impl.version>2.20.0</log4j-slf4j-impl.version>
+        <logback-classic.version>1.4.11</logback-classic.version>
+
     </properties>
 
     <dependencyManagement>
@@ -161,6 +164,18 @@
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockito-core.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j-slf4j-impl.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback-classic.version}</version>
                 <scope>test</scope>
             </dependency>
 
