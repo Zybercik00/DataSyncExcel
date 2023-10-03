@@ -43,6 +43,11 @@
         <log4j-slf4j-impl.version>2.20.0</log4j-slf4j-impl.version>
         <logback-classic.version>1.4.11</logback-classic.version>
 
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <velocity-engine.version>2.3</velocity-engine.version>
+        <velocity-tools.version>2.0</velocity-tools.version>
+        <commons-text.version>1.10.0</commons-text.version>
+        <xmlbeans.version>5.1.1</xmlbeans.version>
     </properties>
 
     <dependencyManagement>
@@ -63,6 +68,11 @@
             <dependency>
                 <groupId>com.github.zybercik00</groupId>
                 <artifactId>data-sync-excel</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-init</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -166,8 +176,32 @@
                 <version>${mockito-core.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
 
-
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity-engine.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-tools</artifactId>
+                <version>${velocity-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons-text.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlbeans</groupId>
+                <artifactId>xmlbeans</artifactId>
+                <version>${xmlbeans.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
