@@ -1,9 +1,10 @@
 package com.github.zybercik00.domain.process;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.github.zybercik00.domain.process.*;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

@@ -1,20 +1,16 @@
 package com.github.zybercik00;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.zybercik00.domain.process.Extraction;
-import com.github.zybercik00.domain.process.Waste;
 import com.github.zybercik00.repository.process.ExtractionRepo;
-import com.github.zybercik00.repository.process.metadata.AttributeEntityRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class ExtractionService {
