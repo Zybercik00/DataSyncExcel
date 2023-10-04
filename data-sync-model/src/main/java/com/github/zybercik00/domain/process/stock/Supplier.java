@@ -1,9 +1,11 @@
 package com.github.zybercik00.domain.process.stock;
 
-import jakarta.annotation.Nonnull;
-import jakarta.persistence.*;
-import lombok.*;
 import com.github.zybercik00.domain.process.Material;
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 

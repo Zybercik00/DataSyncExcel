@@ -11,12 +11,13 @@
 
     <modules>
         <module>data-sync-app</module>
+        <module>data-sync-config</module>
+        <module>data-sync-entity-generator</module>
         <module>data-sync-repository</module>
         <module>data-sync-excel</module>
         <module>data-sync-serialize</module>
         <module>data-sync-model</module>
         <module>data-sync-service</module>
-        <module>data-sync-config</module>
         <module>data-sync-metadata</module>
         <module>data-sync-init</module>
     </modules>
@@ -26,8 +27,8 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <lombok.version>1.18.28</lombok.version>
-        <spring-boot.version>3.1.1</spring-boot.version>
+        <lombok.version>1.18.30</lombok.version>
+        <spring-boot.version>3.1.4</spring-boot.version>
         <spring-framework.version>6.0.10</spring-framework.version>
         <snakeyaml.version>2.0</snakeyaml.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
@@ -39,6 +40,14 @@
         <mockito-core.version>4.11.0</mockito-core.version>
         <jackson.version>2.15.2</jackson.version>
         <liquibase-core.version>4.23.0</liquibase-core.version>
+        <log4j-slf4j-impl.version>2.20.0</log4j-slf4j-impl.version>
+        <logback-classic.version>1.4.11</logback-classic.version>
+
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <velocity-engine.version>2.3</velocity-engine.version>
+        <velocity-tools.version>2.0</velocity-tools.version>
+        <commons-text.version>1.10.0</commons-text.version>
+        <xmlbeans.version>5.1.1</xmlbeans.version>
     </properties>
 
     <dependencyManagement>
@@ -59,6 +68,11 @@
             <dependency>
                 <groupId>com.github.zybercik00</groupId>
                 <artifactId>data-sync-excel</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.zybercik00</groupId>
+                <artifactId>data-sync-init</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -162,11 +176,48 @@
                 <version>${mockito-core.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity-engine.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-tools</artifactId>
+                <version>${velocity-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons-text.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.xmlbeans</groupId>
+                <artifactId>xmlbeans</artifactId>
+                <version>${xmlbeans.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j-slf4j-impl.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -211,6 +262,34 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>3.3.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.13.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-core</artifactId>
+                        <version>6.55.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-java</artifactId>
+                        <version>6.55.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <failOnViolation>true</failOnViolation>
+                    <printFailingErrors>true</printFailingErrors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.liquibase</groupId>

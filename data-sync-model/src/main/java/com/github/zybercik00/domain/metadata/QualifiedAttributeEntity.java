@@ -1,11 +1,12 @@
 package com.github.zybercik00.domain.metadata;
 
-import com.fasterxml.jackson.databind.node.JsonNodeCreator;
 import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 
 @Entity

@@ -1,8 +1,10 @@
 package com.github.zybercik00.domain.process.stock;
 
-import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "WAREHOUSE_LOCATION", uniqueConstraints = @UniqueConstraint(
