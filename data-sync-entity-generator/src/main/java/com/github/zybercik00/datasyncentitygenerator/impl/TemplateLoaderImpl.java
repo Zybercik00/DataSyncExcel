@@ -2,10 +2,12 @@ package com.github.zybercik00.datasyncentitygenerator.impl;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.app.VelocityEngine;
+import org.springframework.stereotype.Component;
 
-public class TemplateLoaderImpl implements  TemplateLoader{
+@Component
+public class TemplateLoaderImpl implements TemplateLoader {
     private final VelocityEngine velocityEngine;
-    private  final String velocityTemplate = "v.template";
+    private final String velocityTemplate = "v.template";
 
     public TemplateLoaderImpl(VelocityEngine velocityEngine) {
         this.velocityEngine = velocityEngine;
